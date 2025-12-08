@@ -9,10 +9,9 @@
     <link rel="stylesheet" href="css/footer.css">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Дополнительная информация</title>
-        <script defer src="./test.js"></script>
+    <script defer src="./test.js"></script>
     <script defer src="js/script.js"></script>
     <style>
-
         .container {
             max-width: 800px;
             margin: 200px auto 200px auto;
@@ -75,8 +74,7 @@
                                 <img class="bell" src="./image/svg/bell.min.svg" alt="">
                             </div> -->
                             <!-- <img src="./image/svg/Simple.svg" class="modal-google none" alt=""> -->
-                            <a id="google-play" href='#heder' rel="nofollow"
-                                class="header__link js-open-modal google-play">
+                            <a id="google-play" href='' rel="nofollow" class="header__link js-open-modal google-play">
                                 <svg width="30" height="30" viewBox="0 0 30 30" fill="none"
                                     xmlns="http://www.w3.org/2000/svg">
                                     <path d="M23.6212 20.398L20.4866 17.6583L8.97925 27.7452L23.6212 20.398Z"
@@ -129,7 +127,7 @@
     <div class="container">
         <main id="main-content">
             <!-- Динамический контент будет здесь -->
-             
+
         </main>
         <button class="back-button" onclick="goBack()">Назад</button>
     </div>
@@ -187,7 +185,7 @@
                     content = 'Подробная информация о нашей компании, истории и достижениях.';
                     break;
                 case 'Реклама на Vexs':
-                    title = 'Реклама на Vexs';
+                    title = 'Реклама на VEXS';
                     content = 'Возможности размещения рекламы на нашей платформе.';
                     break;
                 case 'Вакансии':
@@ -256,7 +254,7 @@
             }
 
             // Обновляем заголовок страницы и контент
-            document.title = title + ' - Vexs';
+            document.title = title + ' - VEXS';
             document.getElementById('main-content').innerHTML = `
                 <h1>${title}</h1>
                 <div class="content">${content}</div>
@@ -384,6 +382,141 @@
                     download href="./policy/Политика конфиденциальности.pdf">Политикой конфиденциальности</a></p>
         </div>
     </footer>
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            const footerItems = document.querySelectorAll('.footer-row2__item');
+
+            // Функция для проверки наложения элементов
+            function checkOverlap() {
+                if (window.innerWidth <= 768) {
+                    initAccordion();
+                } else {
+                    // На больших экранах отключаем аккордеон
+                    footerItems.forEach(item => {
+                        item.classList.remove('active');
+                        const links = item.querySelectorAll('a');
+                        links.forEach(link => {
+                            link.style.display = 'block';
+                            link.style.opacity = '1';
+                            link.style.transform = 'none';
+                        });
+                    });
+                }
+            }
+
+            // Инициализация аккордеона
+            function initAccordion() {
+                footerItems.forEach(item => {
+                    // Только если есть ссылки
+                    const links = item.querySelectorAll('a');
+                    if (links.length > 0) {
+                        // Скрываем все ссылки по умолчанию
+                        links.forEach(link => {
+                            link.style.display = 'none';
+                            link.style.opacity = '0';
+                            link.style.transform = 'translateY(-10px)';
+                        });
+
+                        // Оставляем первый элемент открытым по умолчанию
+                        if (item === footerItems[0]) {
+                            item.classList.add('active');
+                            links.forEach(link => {
+                                link.style.display = 'block';
+                                setTimeout(() => {
+                                    link.style.opacity = '1';
+                                    link.style.transform = 'translateY(0)';
+                                }, 10);
+                            });
+                        }
+
+                        // Добавляем обработчик клика на заголовок
+                        const title = item.querySelector('p');
+                        if (title) {
+                            title.addEventListener('click', function (e) {
+                                e.preventDefault();
+                                e.stopPropagation();
+
+                                // Закрываем все остальные аккордеоны
+                                footerItems.forEach(otherItem => {
+                                    if (otherItem !== item) {
+                                        otherItem.classList.remove('active');
+                                        const otherLinks = otherItem.querySelectorAll('a');
+                                        otherLinks.forEach(link => {
+                                            link.style.opacity = '0';
+                                            link.style.transform = 'translateY(-10px)';
+                                            setTimeout(() => {
+                                                link.style.display = 'none';
+                                            }, 300);
+                                        });
+                                    }
+                                });
+
+                                // Переключаем текущий аккордеон
+                                if (item.classList.contains('active')) {
+                                    item.classList.remove('active');
+                                    links.forEach(link => {
+                                        link.style.opacity = '0';
+                                        link.style.transform = 'translateY(-10px)';
+                                        setTimeout(() => {
+                                            link.style.display = 'none';
+                                        }, 300);
+                                    });
+                                } else {
+                                    item.classList.add('active');
+                                    links.forEach(link => {
+                                        link.style.display = 'block';
+                                        setTimeout(() => {
+                                            link.style.opacity = '1';
+                                            link.style.transform = 'translateY(0)';
+                                        }, 10);
+                                    });
+                                }
+                            });
+                        }
+                    }
+                });
+            }
+
+            // Проверяем при загрузке
+            checkOverlap();
+
+            // Проверяем при изменении размера окна
+            let resizeTimer;
+            window.addEventListener('resize', function () {
+                clearTimeout(resizeTimer);
+                resizeTimer = setTimeout(function () {
+                    checkOverlap();
+                }, 250);
+            });
+
+            // Дополнительная проверка для планшетов
+            function checkTabletOverlap() {
+                if (window.innerWidth <= 992 && window.innerWidth > 768) {
+                    const footerRow2 = document.querySelector('.footer-row2');
+                    const items = document.querySelectorAll('.footer-row2__item');
+                    let hasOverlap = false;
+
+                    // Проверяем, выходят ли элементы за границы контейнера
+                    const containerRect = footerRow2.getBoundingClientRect();
+
+                    items.forEach(item => {
+                        const itemRect = item.getBoundingClientRect();
+                        if (itemRect.right > containerRect.right + 10) { // +10 для небольшого запаса
+                            hasOverlap = true;
+                        }
+                    });
+
+                    if (hasOverlap) {
+                        initAccordion();
+                    }
+                }
+            }
+
+            // Проверяем наложение на планшетах
+            checkTabletOverlap();
+            window.addEventListener('resize', checkTabletOverlap);
+        });
+    </script>
 </body>
 
 </html>

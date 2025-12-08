@@ -376,168 +376,168 @@ document.addEventListener('DOMContentLoaded', function () {
 });
 
 
-document.addEventListener('DOMContentLoaded', function() {
-    // Функция для инициализации аккордеона
-    function initAccordion() {
-        const accordionItems = document.querySelectorAll('.footer-row2__item');
-        const windowWidth = window.innerWidth;
+// document.addEventListener('DOMContentLoaded', function() {
+//     // Функция для инициализации аккордеона
+//     function initAccordion() {
+//         const accordionItems = document.querySelectorAll('.footer-row2__item');
+//         const windowWidth = window.innerWidth;
         
-        // Инициализируем только на мобильных (<= 900px)
-        if (windowWidth <= 900) {
-            accordionItems.forEach(item => {
-                const header = item.querySelector('.footer-row2__header');
-                const content = item.querySelector('.footer-row2__content');
+//         // Инициализируем только на мобильных (<= 900px)
+//         if (windowWidth <= 900) {
+//             accordionItems.forEach(item => {
+//                 const header = item.querySelector('.footer-row2__header');
+//                 const content = item.querySelector('.footer-row2__content');
                 
-                // Сначала скрываем все контенты
-                content.style.display = 'none';
+//                 // Сначала скрываем все контенты
+//                 content.style.display = 'none';
                 
-                header.addEventListener('click', function() {
-                    // Закрываем все другие элементы
-                    accordionItems.forEach(otherItem => {
-                        if (otherItem !== item) {
-                            otherItem.classList.remove('active');
-                            otherItem.querySelector('.footer-row2__content').style.display = 'none';
-                        }
-                    });
+//                 header.addEventListener('click', function() {
+//                     // Закрываем все другие элементы
+//                     accordionItems.forEach(otherItem => {
+//                         if (otherItem !== item) {
+//                             otherItem.classList.remove('active');
+//                             otherItem.querySelector('.footer-row2__content').style.display = 'none';
+//                         }
+//                     });
                     
-                    // Переключаем текущий элемент
-                    const isActive = item.classList.contains('active');
-                    item.classList.toggle('active');
+//                     // Переключаем текущий элемент
+//                     const isActive = item.classList.contains('active');
+//                     item.classList.toggle('active');
                     
-                    if (item.classList.contains('active')) {
-                        content.style.display = 'flex';
-                    } else {
-                        content.style.display = 'none';
-                    }
-                });
-            });
+//                     if (item.classList.contains('active')) {
+//                         content.style.display = 'flex';
+//                     } else {
+//                         content.style.display = 'none';
+//                     }
+//                 });
+//             });
             
-            // По умолчанию открываем первый элемент
-            if (accordionItems.length > 0) {
-                accordionItems[0].classList.add('active');
-                accordionItems[0].querySelector('.footer-row2__content').style.display = 'flex';
-            }
-        } else {
-            // На десктопе показываем все элементы
-            accordionItems.forEach(item => {
-                item.querySelector('.footer-row2__content').style.display = 'flex';
-                item.classList.remove('active');
-            });
-        }
-    }
+//             // По умолчанию открываем первый элемент
+//             if (accordionItems.length > 0) {
+//                 accordionItems[0].classList.add('active');
+//                 accordionItems[0].querySelector('.footer-row2__content').style.display = 'flex';
+//             }
+//         } else {
+//             // На десктопе показываем все элементы
+//             accordionItems.forEach(item => {
+//                 item.querySelector('.footer-row2__content').style.display = 'flex';
+//                 item.classList.remove('active');
+//             });
+//         }
+//     }
     
-    // Инициализируем при загрузке
-    initAccordion();
+//     // Инициализируем при загрузке
+//     initAccordion();
     
-    // Обновляем при изменении размера окна
-    let resizeTimer;
-    window.addEventListener('resize', function() {
-        clearTimeout(resizeTimer);
-        resizeTimer = setTimeout(initAccordion, 250);
-    });
-});
+//     // Обновляем при изменении размера окна
+//     let resizeTimer;
+//     window.addEventListener('resize', function() {
+//         clearTimeout(resizeTimer);
+//         resizeTimer = setTimeout(initAccordion, 250);
+//     });
+// });
 
 
-document.addEventListener('DOMContentLoaded', function() {
-    function initAccordion() {
-        const accordionItems = document.querySelectorAll('.footer-row2__item');
-        const windowWidth = window.innerWidth;
+// document.addEventListener('DOMContentLoaded', function() {
+//     function initAccordion() {
+//         const accordionItems = document.querySelectorAll('.footer-row2__item');
+//         const windowWidth = window.innerWidth;
         
-        // Инициализируем только на мобильных (<= 900px)
-        if (windowWidth <= 900) {
-            accordionItems.forEach(item => {
-                const header = item.querySelector('.footer-row2__header');
-                const content = item.querySelector('.footer-row2__content');
-                const links = content.querySelectorAll('footer-row2__item');
-                links = links.querySelectorAll('a')
-                console.log(links);
+//         // Инициализируем только на мобильных (<= 900px)
+//         if (windowWidth <= 900) {
+//             accordionItems.forEach(item => {
+//                 const header = item.querySelector('.footer-row2__header');
+//                 const content = item.querySelector('.footer-row2__content');
+//                 const links = content.querySelectorAll('footer-row2__item');
+//                 links = links.querySelectorAll('a')
+//                 console.log(links);
                 
-                // Сначала скрываем все контенты
-                content.style.maxHeight = '0';
-                content.style.opacity = '0';
-                content.style.paddingBottom = '0';
+//                 // Сначала скрываем все контенты
+//                 content.style.maxHeight = '0';
+//                 content.style.opacity = '0';
+//                 content.style.paddingBottom = '0';
                 
-                // Отключаем клики по ссылкам по умолчанию
-                links.forEach(link => {
-                    link.style.pointerEvents = 'none';
-                    link.style.display= 'none';
-                });
+//                 // Отключаем клики по ссылкам по умолчанию
+//                 links.forEach(link => {
+//                     link.style.pointerEvents = 'none';
+//                     link.style.display= 'none';
+//                 });
                 
-                header.addEventListener('click', function(e) {
-                    e.preventDefault();
-                    e.stopPropagation();
+//                 header.addEventListener('click', function(e) {
+//                     e.preventDefault();
+//                     e.stopPropagation();
                     
-                    const isActive = item.classList.contains('active');
+//                     const isActive = item.classList.contains('active');
                     
-                    // Закрываем все другие элементы
-                    accordionItems.forEach(otherItem => {
-                        if (otherItem !== item) {
-                            otherItem.classList.remove('active');
-                            const otherContent = otherItem.querySelector('.footer-row2__content');
-                            const otherLinks = otherContent.querySelectorAll('a');
+//                     // Закрываем все другие элементы
+//                     accordionItems.forEach(otherItem => {
+//                         if (otherItem !== item) {
+//                             otherItem.classList.remove('active');
+//                             const otherContent = otherItem.querySelector('.footer-row2__content');
+//                             const otherLinks = otherContent.querySelectorAll('a');
                             
-                            otherContent.style.maxHeight = '0';
-                            otherContent.style.opacity = '0';
-                            otherContent.style.paddingBottom = '0';
+//                             otherContent.style.maxHeight = '0';
+//                             otherContent.style.opacity = '0';
+//                             otherContent.style.paddingBottom = '0';
                             
-                            otherLinks.forEach(link => {
-                                link.style.pointerEvents = 'none';
-                            });
-                        }
-                    });
+//                             otherLinks.forEach(link => {
+//                                 link.style.pointerEvents = 'none';
+//                             });
+//                         }
+//                     });
                     
-                    // Переключаем текущий элемент
-                    item.classList.toggle('active');
+//                     // Переключаем текущий элемент
+//                     item.classList.toggle('active');
                     
-                    if (item.classList.contains('active')) {
-                        content.style.maxHeight = content.scrollHeight + 'px';
-                        content.style.opacity = '1';
-                        content.style.paddingBottom = '15px';
+//                     if (item.classList.contains('active')) {
+//                         content.style.maxHeight = content.scrollHeight + 'px';
+//                         content.style.opacity = '1';
+//                         content.style.paddingBottom = '15px';
                         
-                        // Включаем клики по ссылкам
-                        setTimeout(() => {
-                            links.forEach(link => {
-                                link.style.pointerEvents = 'auto';
-                            });
-                        }, 300);
-                    } else {
-                        content.style.maxHeight = '0';
-                        content.style.opacity = '0';
-                        content.style.paddingBottom = '0';
+//                         // Включаем клики по ссылкам
+//                         setTimeout(() => {
+//                             links.forEach(link => {
+//                                 link.style.pointerEvents = 'auto';
+//                             });
+//                         }, 300);
+//                     } else {
+//                         content.style.maxHeight = '0';
+//                         content.style.opacity = '0';
+//                         content.style.paddingBottom = '0';
                         
-                        // Отключаем клики по ссылкам
-                        links.forEach(link => {
-                            link.style.pointerEvents = 'none';
-                        });
-                    }
-                });
-            });
-        } else {
-            // На десктопе показываем все элементы
-            accordionItems.forEach(item => {
-                item.classList.remove('active');
-                const content = item.querySelector('.footer-row2__content');
-                const links = content.querySelectorAll('a');
+//                         // Отключаем клики по ссылкам
+//                         links.forEach(link => {
+//                             link.style.pointerEvents = 'none';
+//                         });
+//                     }
+//                 });
+//             });
+//         } else {
+//             // На десктопе показываем все элементы
+//             accordionItems.forEach(item => {
+//                 item.classList.remove('active');
+//                 const content = item.querySelector('.footer-row2__content');
+//                 const links = content.querySelectorAll('a');
                 
-                content.style.maxHeight = 'none';
-                content.style.opacity = '1';
-                content.style.paddingBottom = '0';
+//                 content.style.maxHeight = 'none';
+//                 content.style.opacity = '1';
+//                 content.style.paddingBottom = '0';
                 
-                // Включаем клики по ссылкам
-                links.forEach(link => {
-                    link.style.pointerEvents = 'auto';
-                });
-            });
-        }
-    }
+//                 // Включаем клики по ссылкам
+//                 links.forEach(link => {
+//                     link.style.pointerEvents = 'auto';
+//                 });
+//             });
+//         }
+//     }
     
-    // Инициализируем при загрузке
-    initAccordion();
+//     // Инициализируем при загрузке
+//     initAccordion();
     
-    // Обновляем при изменении размера окна
-    let resizeTimer;
-    window.addEventListener('resize', function() {
-        clearTimeout(resizeTimer);
-        resizeTimer = setTimeout(initAccordion, 250);
-    });
-});
+//     // Обновляем при изменении размера окна
+//     let resizeTimer;
+//     window.addEventListener('resize', function() {
+//         clearTimeout(resizeTimer);
+//         resizeTimer = setTimeout(initAccordion, 250);
+//     });
+// });

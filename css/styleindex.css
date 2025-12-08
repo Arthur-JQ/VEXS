@@ -671,7 +671,7 @@ h1 {
 }
 
 @media (max-width: 768px) {
-  
+
   .global-btn a {
     left: 232px;
     top: -109px;
@@ -685,8 +685,8 @@ h1 {
 
   .help-animation-container {
     position: relative;
-    top: 239px;
-    left: 132px;
+    top: 400px !important;
+    left: 101px !important;
 
   }
 }
@@ -2003,9 +2003,7 @@ h1 {
 
 
 @media (max-width: 768px) {
-  .global__btn {
-    margin-top: -45px !important;
-  }
+
 
   .global__favorits {
     display: flex;
@@ -2098,11 +2096,6 @@ h1 {
   margin-top: -20px;
 }
 
-@media (max-width: 768px) {
-  .global__opicanie {
-    margin-top: -5px;
-  }
-}
 
 /* Align footer store links vertically */
 .footer-download .app-links-row {
@@ -2113,6 +2106,10 @@ h1 {
 
 /* Mobile spacing tweaks for hero text and feature labels */
 @media (max-width: 768px) {
+  .global__opicanie {
+    margin-top: -5px;
+  }
+
   .global__opicanie {
     margin-top: 40px !important;
   }

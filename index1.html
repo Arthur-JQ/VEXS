@@ -1381,6 +1381,142 @@
             }
         });
     </script>
+
+    <script>
+    document.addEventListener('DOMContentLoaded', function() {
+        const footerItems = document.querySelectorAll('.footer-row2__item');
+        
+        // Функция для проверки наложения элементов
+        function checkOverlap() {
+            if (window.innerWidth <= 768) {
+                initAccordion();
+            } else {
+                // На больших экранах отключаем аккордеон
+                footerItems.forEach(item => {
+                    item.classList.remove('active');
+                    const links = item.querySelectorAll('a');
+                    links.forEach(link => {
+                        link.style.display = 'block';
+                        link.style.opacity = '1';
+                        link.style.transform = 'none';
+                    });
+                });
+            }
+        }
+        
+        // Инициализация аккордеона
+        function initAccordion() {
+            footerItems.forEach(item => {
+                // Только если есть ссылки
+                const links = item.querySelectorAll('a');
+                if (links.length > 0) {
+                    // Скрываем все ссылки по умолчанию
+                    links.forEach(link => {
+                        link.style.display = 'none';
+                        link.style.opacity = '0';
+                        link.style.transform = 'translateY(-10px)';
+                    });
+                    
+                    // Оставляем первый элемент открытым по умолчанию
+                    if (item === footerItems[0]) {
+                        item.classList.add('active');
+                        links.forEach(link => {
+                            link.style.display = 'block';
+                            setTimeout(() => {
+                                link.style.opacity = '1';
+                                link.style.transform = 'translateY(0)';
+                            }, 10);
+                        });
+                    }
+                    
+                    // Добавляем обработчик клика на заголовок
+                    const title = item.querySelector('p');
+                    if (title) {
+                        title.addEventListener('click', function(e) {
+                            e.preventDefault();
+                            e.stopPropagation();
+                            
+                            // Закрываем все остальные аккордеоны
+                            footerItems.forEach(otherItem => {
+                                if (otherItem !== item) {
+                                    otherItem.classList.remove('active');
+                                    const otherLinks = otherItem.querySelectorAll('a');
+                                    otherLinks.forEach(link => {
+                                        link.style.opacity = '0';
+                                        link.style.transform = 'translateY(-10px)';
+                                        setTimeout(() => {
+                                            link.style.display = 'none';
+                                        }, 300);
+                                    });
+                                }
+                            });
+                            
+                            // Переключаем текущий аккордеон
+                            if (item.classList.contains('active')) {
+                                item.classList.remove('active');
+                                links.forEach(link => {
+                                    link.style.opacity = '0';
+                                    link.style.transform = 'translateY(-10px)';
+                                    setTimeout(() => {
+                                        link.style.display = 'none';
+                                    }, 300);
+                                });
+                            } else {
+                                item.classList.add('active');
+                                links.forEach(link => {
+                                    link.style.display = 'block';
+                                    setTimeout(() => {
+                                        link.style.opacity = '1';
+                                        link.style.transform = 'translateY(0)';
+                                    }, 10);
+                                });
+                            }
+                        });
+                    }
+                }
+            });
+        }
+        
+        // Проверяем при загрузке
+        checkOverlap();
+        
+        // Проверяем при изменении размера окна
+        let resizeTimer;
+        window.addEventListener('resize', function() {
+            clearTimeout(resizeTimer);
+            resizeTimer = setTimeout(function() {
+                checkOverlap();
+            }, 250);
+        });
+        
+        // Дополнительная проверка для планшетов
+        function checkTabletOverlap() {
+            if (window.innerWidth <= 992 && window.innerWidth > 768) {
+                const footerRow2 = document.querySelector('.footer-row2');
+                const items = document.querySelectorAll('.footer-row2__item');
+                let hasOverlap = false;
+                
+                // Проверяем, выходят ли элементы за границы контейнера
+                const containerRect = footerRow2.getBoundingClientRect();
+                
+                items.forEach(item => {
+                    const itemRect = item.getBoundingClientRect();
+                    if (itemRect.right > containerRect.right + 10) { // +10 для небольшого запаса
+                        hasOverlap = true;
+                    }
+                });
+                
+                if (hasOverlap) {
+                    initAccordion();
+                }
+            }
+        }
+        
+        // Проверяем наложение на планшетах
+        checkTabletOverlap();
+        window.addEventListener('resize', checkTabletOverlap);
+    });
+    </script>
 </body>
 
 </html>
