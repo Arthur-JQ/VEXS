@@ -6,10 +6,10 @@
     <link rel="icon" type="image/x-icon" href="./image/svg/Frame 1171274804.svg">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title></title>
-    <link rel="stylesheet" href="css/modal.css">
-    <link rel="stylesheet" href="css/header.css">
-    <link rel="stylesheet" href="css/styleindex.css">
-    <link rel="stylesheet" href="css/footer.css">
+    <link rel="stylesheet" href="./css/modal.css">
+    <link rel="stylesheet" href="./css/header.css">
+    <link rel="stylesheet" href="./css/styleindex.css">
+    <link rel="stylesheet" href="./css/footer.css">
     <style>
         /* Стили для модального окна */
 
@@ -301,6 +301,65 @@
             100% {
                 transform: rotate(360deg);
                 border-top-color: #ffffff;
+            }
+        }
+
+        @media (max-width: 1000px) {
+            * {
+                border: 0.2px solid red;
+            }
+
+            header {
+                max-width: 1000px;
+                width: 80%;
+                margin: 0;
+            }
+
+            header .header__container {
+                width: 100%;
+                margin: 0;
+            }
+
+            .global-btn a {
+                width: 146px;
+                height: 146px;
+            }
+
+            .global__content {
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+            }
+
+            .tt {
+                left: -100px;
+                top: 34px;
+            }
+
+            .help-main__ridth #registerBtn {
+                left: 104px;
+                top: -109px;
+            }
+
+            .help-main {
+                padding: 0 30px;
+            }
+
+            .footer-row1 {
+                flex-wrap: wrap;
+                align-items: center;
+                justify-content: center;
+            }
+
+            .map {
+                background-position-y: none;
+            }
+
+            .missia video{
+                    transform: translate(0%, -85%) scale(1);
+            }
+            .help-header {
+                padding: 0 30px;
             }
         }
 
@@ -678,11 +737,8 @@
             </div>
         </section>
         <section class="missia" id="missionBtn">
-
-
             <div class="missia__container _container">
                 <div class="missia__content flexbox">
-
                     <div class="missia__cont">
                         <div class="missia__title text-animate-blur _anim-items">
                             <h2>
@@ -729,7 +785,6 @@
                 </video>
                 <div class="video-overlay"></div>
             </div>
-
         </section>
         <section class="help-button flexbox">
             <div class="help-left">
@@ -741,7 +796,6 @@
                     помогать детям, семьям, пожилым людям и любому человеку, оказавшемуся в беде.</p>
             </div>
             <div class="help-ridth">
-
                 <div class="help-ridth__animated help-animation-container">
                     <div class="help-ridth__animated">
                         <div class="help-animation-container">
@@ -758,8 +812,6 @@
                 <img src="./image/jpg/Rectangle.jpg" alt="">
             </div>
         </section>
-     
-
         <section class="why">
             <div class="why__container _container">
                 <div class="why__top flexbox">

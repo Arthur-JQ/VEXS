@@ -288,6 +288,11 @@ body.blur-all>.no-blur {
    }
 }
 
+.why {
+   padding-top: 0;
+   margin-top: 0;
+}
+
 .modal-overlay img {
    width: 30px;
    margin: 0 auto;
@@ -600,7 +605,8 @@ body.blur-all>.no-blur {
 }
 
 .map .global__item {
-   margin-left: 840px;
+    position: relative;
+    transform: translate(224%, 8%);
 }
 .help {
    padding: 0;
@@ -610,7 +616,7 @@ body.blur-all>.no-blur {
 .help-button {
    max-width: 1440px;
    padding: 0 80px 160px 80px;
-   margin: 50px auto 0px auto;
+   margin: -350px auto 0px auto;
    padding-bottom: 160px;
 }
 
@@ -940,5 +946,11 @@ body.blur-all>.no-blur {
    .help-ripple:nth-child(6) {
       width: 130px;
       height: 130px;
+   }
+}
+
+
+@media (max-width: 1000px) {
+   * {
    }
 }
