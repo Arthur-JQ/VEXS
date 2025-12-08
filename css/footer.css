@@ -84,29 +84,4 @@
     }
     
     /* Дополнительная адаптивность для очень маленьких экранов */
-    @media (max-width: 480px) {
-        .footer-row1 {
-            flex-direction: column;
-            gap: 20px;
-            align-items: center;
-            text-align: center;
-        }
-        
-        .footer-row1__logo,
-        .footer-row1__apps,
-        .footer-row1__social {
-            width: 100%;
-            justify-content: center;
-        }
-        
-        .footer-row3 {
-            padding: 15px;
-        }
-        
-        .footer-row3__item1,
-        .footer-row3__item2,
-        .footer-row3__item3 {
-            font-size: 12px;
-            line-height: 1.4;
-        }
-    }
+  
