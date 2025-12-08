@@ -304,171 +304,114 @@
             }
         }
 
-        @media (max-width: 1000px) {
-            * {
-                border: 0.2px solid red;
-            }
+      
 
-            header {
-                max-width: 1000px;
-                width: 80%;
-                margin: 0;
-            }
-
-            header .header__container {
-                width: 100%;
-                margin: 0;
-            }
-
-            .global-btn a {
-                width: 146px;
-                height: 146px;
-            }
-
-            .global__content {
+            /* Стили для букв */
+            .letters {
                 display: flex;
-                justify-content: space-between;
-                align-items: center;
+                gap: 15px;
             }
 
-            .tt {
-                left: -100px;
-                top: 34px;
-            }
-
-            .help-main__ridth #registerBtn {
-                left: 104px;
-                top: -109px;
-            }
-
-            .help-main {
-                padding: 0 30px;
-            }
-
-            .footer-row1 {
-                flex-wrap: wrap;
-                align-items: center;
-                justify-content: center;
-            }
-
-            .map {
-                background-position-y: none;
-            }
-
-            .missia video{
-                    transform: translate(0%, -85%) scale(1);
-            }
-            .help-header {
-                padding: 0 30px;
-            }
-        }
-
-        /* Стили для букв */
-        .letters {
-            display: flex;
-            gap: 15px;
-        }
-
-        .letters span {
-            display: inline-block;
-            font-size: 48px;
-            font-weight: 800;
-            color: white;
-            text-transform: uppercase;
-            text-shadow:
-                0 0 10px rgba(255, 255, 255, 0.7),
-                0 0 20px rgba(0, 191, 255, 0.5);
-            opacity: 0;
-            transform: translateY(30px);
-            animation: letterFloat 0.5s forwards;
-            font-family: 'Arial Black', sans-serif;
-            letter-spacing: 2px;
-        }
-
-        /* Анимация появления букв */
-        @keyframes letterFloat {
-            from {
-                opacity: 0;
-                transform: translateY(30px) scale(0.8);
-            }
-
-            to {
-                opacity: 1;
-                transform: translateY(0) scale(1);
-            }
-        }
-
-        /* Анимация пульсации для букв после появления */
-        @keyframes letterPulse {
-
-            0%,
-            100% {
+            .letters span {
+                display: inline-block;
+                font-size: 48px;
+                font-weight: 800;
+                color: white;
+                text-transform: uppercase;
                 text-shadow:
                     0 0 10px rgba(255, 255, 255, 0.7),
                     0 0 20px rgba(0, 191, 255, 0.5);
-                transform: scale(1);
-            }
-
-            50% {
-                text-shadow:
-                    0 0 15px rgba(255, 255, 255, 0.9),
-                    0 0 30px rgba(0, 191, 255, 0.8),
-                    0 0 40px rgba(0, 191, 255, 0.4);
-                transform: scale(1.05);
-            }
-        }
-
-        /* Анимации скрытия */
-        .loader.hide {
-            opacity: 0;
-            visibility: hidden;
-            transform: scale(0.9);
-            transition: all 0.8s cubic-bezier(0.4, 0, 0.2, 1);
-        }
-
-        .loader.hide .circle {
-            animation: none;
-            border-color: rgba(255, 255, 255, 0.1);
-            transition: all 0.5s ease;
-        }
-
-        .loader-wrapper.hide {
-            opacity: 0;
-            visibility: hidden;
-            transition: all 1s ease 0.3s;
-        }
-
-        .loader-wrapper.hide .video-bg video {
-            opacity: 0;
-            filter: blur(20px) brightness(0.3);
-            transform: scale(1.2);
-        }
-
-        /* Дополнительный эффект при наведении на буквы */
-        .letters span:hover {
-            color: #00bfff;
-            animation: letterPulse 0.5s ease infinite;
-        }
-
-        @keyframes spin {
-            to {
-                transform: rotate(360deg);
-            }
-        }
-
-        @keyframes showLetter {
-            from {
                 opacity: 0;
-                transform: scale(0.8);
-                filter: blur(6px);
+                transform: translateY(30px);
+                animation: letterFloat 0.5s forwards;
+                font-family: 'Arial Black', sans-serif;
+                letter-spacing: 2px;
             }
 
-            to {
-                opacity: 1;
-                transform: scale(1);
-                filter: blur(0);
+            /* Анимация появления букв */
+            @keyframes letterFloat {
+                from {
+                    opacity: 0;
+                    transform: translateY(30px) scale(0.8);
+                }
+
+                to {
+                    opacity: 1;
+                    transform: translateY(0) scale(1);
+                }
             }
-        }
+
+            /* Анимация пульсации для букв после появления */
+            @keyframes letterPulse {
+
+                0%,
+                100% {
+                    text-shadow:
+                        0 0 10px rgba(255, 255, 255, 0.7),
+                        0 0 20px rgba(0, 191, 255, 0.5);
+                    transform: scale(1);
+                }
+
+                50% {
+                    text-shadow:
+                        0 0 15px rgba(255, 255, 255, 0.9),
+                        0 0 30px rgba(0, 191, 255, 0.8),
+                        0 0 40px rgba(0, 191, 255, 0.4);
+                    transform: scale(1.05);
+                }
+            }
+
+            /* Анимации скрытия */
+            .loader.hide {
+                opacity: 0;
+                visibility: hidden;
+                transform: scale(0.9);
+                transition: all 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+            }
+
+            .loader.hide .circle {
+                animation: none;
+                border-color: rgba(255, 255, 255, 0.1);
+                transition: all 0.5s ease;
+            }
+
+            .loader-wrapper.hide {
+                opacity: 0;
+                visibility: hidden;
+                transition: all 1s ease 0.3s;
+            }
+
+            .loader-wrapper.hide .video-bg video {
+                opacity: 0;
+                filter: blur(20px) brightness(0.3);
+                transform: scale(1.2);
+            }
+
+            /* Дополнительный эффект при наведении на буквы */
+            .letters span:hover {
+                color: #00bfff;
+                animation: letterPulse 0.5s ease infinite;
+            }
+
+            @keyframes spin {
+                to {
+                    transform: rotate(360deg);
+                }
+            }
+
+            @keyframes showLetter {
+                from {
+                    opacity: 0;
+                    transform: scale(0.8);
+                    filter: blur(6px);
+                }
+
+                to {
+                    opacity: 1;
+                    transform: scale(1);
+                    filter: blur(0);
+                }
+            }
     </style>
     <link rel="stylesheet" href="css/adaptive.css">
 </head>
@@ -1191,26 +1134,26 @@
         </div>
         <div class="footer-row2 flexbox">
             <div class="footer-row2__item flexbox">
-                <a href="footer.html?section=КОМПАНИЯ">КОМПАНИЯ</a>
+                <p>КОМПАНИЯ</p>
                 <a href="footer.html?section=О компании">О компании</a>
                 <a href="footer.html?section=Реклама на Vexs">Реклама на VEXS</a>
                 <a href="footer.html?section=Вакансии">Вакансии</a>
                 <a href="footer.html?section=Блог">Блог</a>
             </div>
             <div class="footer-row2__item flexbox">
-                <a href="footer.html?section=МИССИЯ">МИССИЯ</a>
+                <p>МИССИЯ</p>
                 <a href="footer.html?section=О миссии">О миссии</a>
                 <a href="footer.html?section=Кнопка HELP">Кнопка HELP</a>
                 <a href="footer.html?section=Благотворительность">Благотворительность</a>
             </div>
             <div class="footer-row2__item flexbox">
-                <a href="footer.html?section=ЗАКАЗЧИКАМ">ЗАКАЗЧИКАМ</a>
+                <p>ЗАКАЗЧИКАМ</p>
                 <a href="footer.html?section=Как найти мастера?">Как найти мастера?</a>
                 <a href="footer.html?section=Каталог услуг">Каталог услуг</a>
                 <a href="footer.html?section=Условия оплаты">Условия оплаты</a>
             </div>
             <div class="footer-row2__item flexbox">
-                <a href="footer.html?section=МАСТЕРАМ">МАСТЕРАМ</a>
+                <p>МАСТЕРАМ</p>
                 <a href="footer.html?section=Как зарегистрироваться?">Как зарегистрироваться?</a>
                 <a href="footer.html?section=Вход для мастеров">Вход для мастеров</a>
                 <a href="footer.html?section=Система выплат мастерам">Система выплат мастерам</a>

@@ -564,7 +564,6 @@ h1 {
   -ms-flex-direction: column;
   flex-direction: column;
   gap: 20px;
-
   -webkit-transition: all 0.2s ease 0s;
   transition: all 0.2s ease 0s;
   font-size: clamp(15px, 0.8333333333vw + 12px, 24px);
@@ -584,7 +583,7 @@ h1 {
   .global-btn a {
     width: 100%;
     height: 50px;
-    border-radius: 40px;
+    border-radius: 50%;
     display: -webkit-box;
     display: -ms-flexbox;
     display: flex;
@@ -593,6 +592,11 @@ h1 {
     -ms-flex-direction: row;
     flex-direction: row;
     gap: 10px;
+  }
+
+  .global-btn a::before {
+    width: 200px;
+    height: 200px;
   }
 }
 
@@ -620,7 +624,6 @@ h1 {
   }
 }
 
-/* Постоянная анимация пульсации */
 @keyframes pulse {
 
   0%,
@@ -635,7 +638,6 @@ h1 {
   }
 }
 
-/* Анимация при наведении - более быстрая и с большим масштабом */
 @keyframes pulse-hover {
 
   0%,
@@ -669,10 +671,23 @@ h1 {
 }
 
 @media (max-width: 768px) {
+  
+  .global-btn a {
+    left: 232px;
+    top: -109px;
+  }
+
   .global-btn a::before {
-    border-radius: 40px;
-    width: 105%;
-    height: 130%;
+    border-radius: 50%;
+    width: 200px;
+    height: 200px;
+  }
+
+  .help-animation-container {
+    position: relative;
+    top: 239px;
+    left: 132px;
+
   }
 }
 
@@ -865,29 +880,33 @@ h1 {
 .missia {
   overflow: hidden;
 }
+
 .video-container {
-    position: relative;
-    
-    transform: translate(0%, -40%) scale(1);
+  position: relative;
+
+  transform: translate(0%, -40%) scale(1);
   z-index: -1;
-    width: 100%;
-    height: 100vh; /* или нужная высота */
+  width: 100%;
+  height: 100vh;
+  /* или нужная высота */
 }
 
 #myVideo {
-    width: 100%;
-    height: 100%;
-    object-fit: cover; /* или contain в зависимости от нужд */
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  /* или contain в зависимости от нужд */
 }
 
 .video-overlay {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: rgba(0, 0, 0, 0.5); /* регулируйте прозрачность */
-    z-index: 1;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.5);
+  /* регулируйте прозрачность */
+  z-index: 1;
 }
 
 .missia__container {
@@ -1330,9 +1349,10 @@ h1 {
 }
 
 @keyframes svgRotateRevers {
-   0% {
+  0% {
     transform: rotate(-90deg);
   }
+
   100% {
     transform: rotate(0deg);
   }
@@ -1342,6 +1362,7 @@ h1 {
   0% {
     transform: rotate(-90deg);
   }
+
   100% {
     transform: rotate(0deg);
   }
