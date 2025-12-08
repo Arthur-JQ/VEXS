@@ -1383,7 +1383,7 @@ body.blur-all>.no-blur {
    }
 
    .help-main__left h2 {
-      width: 93%;
+      width: 73%;
       font-size: 24px;
       line-height: 19px;
    }
@@ -1392,13 +1392,31 @@ body.blur-all>.no-blur {
       padding-left: 5px;
    }
 
-   .help-main__left p {}
+   .help-main__left p {
+      padding-right: 60px;
+   }
 
-.help-button {
-   padding-left: 0;
-}
+   .help-button {
+      padding-left: 0;
+   }
 
    .missia__desp p {
       width: 440px;
+   }
+
+   .start__btn {
+      left: -393px;
+      margin: 0;
+      padding: 0;
+      top: 141px;
+   }
+
+   .help-button .help-left p {
+      width: 453px;
+   }
+
+   .global-btn a {
+      margin-top: 3px;
+      margin-left: -69px;
    }
 }
