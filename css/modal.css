@@ -1,0 +1,944 @@
+/* Стили для подложки */
+
+* {
+   -webkit-user-select: none;
+   -moz-user-select: none;
+   -ms-user-select: none;
+   user-select: none;
+}
+
+.overlay {
+   /* Скрываем подложку  */
+   opacity: 0;
+   visibility: hidden;
+   position: fixed;
+   top: 0;
+   left: 0;
+   width: 100%;
+   height: 100%;
+   background-color: rgba(0, 0, 0, .5);
+   z-index: 20;
+   transition: .3s all;
+}
+
+body.blur-all>* {
+   /* Все элементы непосредственно внутри body.blur-all
+     (1-го уровня вложенности, но не глубже) получат этот стиль */
+   filter: blur(10px);
+}
+
+body.blur-all>.no-blur {
+   /* Кроме элемента .no-blur — класс заранее будет добавлен на кнопку */
+   filter: blur(0);
+   position: absolute;
+   z-index: 9999;
+}
+
+/* Стили для модальных окон */
+
+.modal-google {
+   display: none;
+   -webkit-animation-name: animatetop;
+   -webkit-animation-duration: 0.4s;
+   animation-name: animatetop;
+   animation-duration: 0.5s;
+   padding: 10px 20px 0 20px;
+}
+
+@-webkit-keyframes animatetop {
+   from {
+      top: -300px;
+      opacity: 0
+   }
+
+   to {
+      top: 50%;
+      opacity: 1
+   }
+}
+
+@keyframes animatetop {
+   from {
+      top: -300px;
+      opacity: 0
+   }
+
+   to {
+      top: 50%;
+      opacity: 1
+   }
+}
+
+.bell {
+   animation: ring 1s infinite;
+   transform-origin: top center;
+   animation-delay: 0.5s;
+}
+
+@keyframes ring {
+   0% {
+      transform: rotate(0deg);
+   }
+
+   25% {
+      transform: rotate(10deg);
+   }
+
+   50% {
+      transform: rotate(-10deg);
+   }
+
+   75% {
+      transform: rotate(10deg);
+   }
+
+   100% {
+      transform: rotate(0deg);
+   }
+}
+
+
+.modal-google img {
+   width: 154px;
+   height: 60px;
+}
+
+
+.modal-google svg {
+   position: relative;
+}
+
+.modal-google p {
+   text-align: center;
+   font-size: 10px;
+   text-transform: uppercase;
+}
+
+.modal-google__header {
+   display: flex;
+   justify-content: space-between;
+   align-items: center;
+}
+
+.none {
+   display: none;
+}
+
+.show {
+   display: block;
+}
+
+.popap img {
+   margin: 8px auto 0 auto;
+}
+
+.popap-two {
+   position: absolute;
+   content: '';
+   background: inherit;
+   top: 50%;
+   color: #FFF;
+   font-feature-settings: 'liga' off, 'clig' off;
+   font-family: var(--Font-Font-Family, Inter);
+   font-size: 12px;
+   font-style: normal;
+   font-weight: 400;
+   line-height: 150%;
+   letter-spacing: -0.06px;
+   display: flex;
+   padding: 12px;
+   flex-direction: column;
+   align-items: flex-start;
+   left: 50%;
+   transform: translate(142%, 28%);
+
+   border-radius: 15px;
+}
+
+/* Стили для кнопки закрытия */
+.modal__cross {
+   width: 15px;
+   height: 15px;
+   position: absolute;
+   top: 20px;
+   right: 20px;
+   fill: #444;
+   cursor: pointer;
+}
+
+.activTab {
+   color: black !important;
+   background-color: #ffffff !important;
+}
+
+
+.loader-with-video {
+   position: fixed;
+   top: 0;
+   left: 0;
+   width: 100%;
+   height: 100%;
+   z-index: 9999;
+   display: flex;
+   justify-content: center;
+   align-items: center;
+}
+
+.video-background {
+   position: absolute;
+   top: 0;
+   left: 0;
+   width: 100%;
+   height: 100%;
+   overflow: hidden;
+}
+
+.video-background video {
+   width: 100%;
+   height: 100%;
+   object-fit: cover;
+   filter: brightness(0.7);
+   transition: opacity 1s ease;
+}
+
+.video-overlay {
+   position: absolute;
+   top: 0;
+   left: 0;
+   width: 100%;
+   height: 100%;
+   background: rgba(0, 0, 0, 0.5);
+   z-index: 1;
+}
+
+.loader {
+   position: relative;
+   z-index: 2;
+   text-align: center;
+}
+
+.loader .letters span {
+   display: inline-block;
+   font-size: 40px;
+   color: white;
+   font-weight: bold;
+   opacity: 0;
+   transform: translateY(20px);
+   animation: letterAppear 0.5s forwards;
+}
+
+@keyframes letterAppear {
+   to {
+      opacity: 1;
+      transform: translateY(0);
+   }
+}
+
+.loader.hide {
+   opacity: 0;
+   transform: scale(1.1);
+   transition: all 0.8s ease;
+}
+
+.loader-with-video.hide {
+   opacity: 0;
+   visibility: hidden;
+   transition: all 1s ease 0.3s;
+}
+
+.loader-with-video.hide .video-background video {
+   opacity: 0;
+   transform: scale(1.1);
+   filter: blur(20px) brightness(0.3);
+}
+
+.popap {
+   position: absolute;
+   content: '';
+   top: 36%;
+   left: 46.4%;
+   transform: translate(65%, 31%);
+}
+
+.popap1 {
+   position: absolute;
+   content: '';
+   top: 45%;
+   left: 60.18%;
+   transform: translate(65%, 31%);
+}
+
+.modal-overlay {
+   display: none;
+   justify-content: space-around;
+   flex-direction: column;
+   align-items: center;
+   padding: 112px;
+   width: 280px;
+   font-size: 16px;
+   height: 332px !important;
+   transform: translate(-10%, -120%);
+   border-bottom-left-radius: 0;
+   border-bottom-right-radius: 0;
+}
+
+@media (max-width: 1300px) {
+   .modal-overlay {
+      transform: translate(-53%, -175%);
+   }
+}
+
+.modal-overlay img {
+   width: 30px;
+   margin: 0 auto;
+   height: 30px;
+}
+
+.help-header {
+   display: flex;
+   justify-content: space-between;
+   align-items: center;
+   margin: 0 auto;
+   max-width: 1400px;
+   width: 100%;
+}
+
+.help-header div {
+   display: flex;
+   justify-content: space-around;
+   align-items: center;
+}
+
+.help-header div p {
+   color: #FFF;
+   font-family: "SF Pro Text";
+   font-size: 24px;
+   font-style: normal;
+   font-weight: 500;
+   margin-left: 16px;
+   line-height: 31.2px;
+}
+
+.help-main__left h2 {
+   color: #FFF;
+   max-width: 633px;
+   width: 100%;
+   font-family: "SF Pro Display";
+   font-size: 55px;
+   font-style: normal;
+   font-weight: 700;
+   line-height: 66px;
+}
+
+.help-main__left p {
+   color: #FFF;
+   font-family: "SF Pro Text";
+   font-size: 24px;
+   font-style: normal;
+   margin-top: 31.38px;
+   width: 512px;
+   font-weight: 500;
+   line-height: 31.2px;
+}
+
+.help-main {
+   max-width: 1400px;
+   margin: 0 auto;
+   display: flex;
+   margin-top: 120px;
+   align-items: center;
+   justify-content: space-between;
+}
+
+.help-main__ridth div a::before {
+   content: "";
+   width: 364px;
+   height: 104px;
+   position: relative;
+   z-index: -1;
+   background-color: rgba(0, 0, 255, 0.3);
+   position: absolute;
+   top: 50%;
+   left: 50%;
+   -webkit-transform: translate(-50%, -50%);
+   transform: translate(-50%, -50%);
+   border-radius: 50px;
+}
+
+.help-main__ridth div a {
+   z-index: 1;
+   display: flex;
+   width: 337px;
+   padding: 15px 88px !important;
+   justify-content: center;
+   align-items: center;
+   gap: 10px;
+   border-radius: 40px;
+   border: 10px solid rgba(0, 0, 255, 0.30);
+   background: #00F;
+   color: #FFF;
+   font-family: "SF Pro Text";
+   font-size: 24px;
+   font-style: normal;
+   font-weight: 500;
+   line-height: 32px;
+   position: relative;
+}
+
+.tt {
+   border-radius: 1076px;
+   opacity: 0.4;
+   position: relative;
+   left: 200px;
+    top: 0;
+   width: 776px;
+   height: 269px;
+   background: linear-gradient(45deg, #F0F 33.23%, #0FF 73.31%);
+   filter: blur(150px);
+}
+
+.help-main__ridth #registerBtn{
+       left: 444px;
+    top: -199px;
+}
+
+.flexbox {
+   display: flex;
+   justify-content: space-between;
+   align-items: center;
+}
+
+
+.footer-row1 {
+   display: flex;
+   justify-content: space-between;
+   align-items: center;
+   height: 100px;
+   border-top: 1px solid #75758E;
+   border-bottom: 1px solid #75758E;
+}
+
+.footer-row1__logo {
+   display: flex;
+   justify-content: space-between;
+}
+
+.footer-row1__logo p {
+   color: #FFF;
+   font-family: "SF Pro Text";
+   font-size: 20px;
+   font-style: normal;
+   font-weight: 500;
+   margin-left: 20px;
+   line-height: 26px;
+   width: 227px;
+}
+
+.footer-row1__apps #google-play {
+   width: 210px;
+}
+
+.footer-row1__apps #app-store {
+   margin-left: 40px;
+   width: 210px;
+}
+
+.footer-row1__apps a {
+   border-radius: 10px;
+   border: 1px solid #FFF;
+}
+
+.footer-row1__social {
+   width: 500px;
+}
+
+.footer-row1__social div {
+   transition: 0.5s;
+}
+
+
+.footer-row1__social .tg-ikon:hover {
+   box-shadow: 5px 5px 14px rgb(0, 225, 255);
+}
+
+.footer-row1__social .vk-ikon:hover {
+   box-shadow: 5px 5px 14px rgb(29, 44, 255);
+}
+
+.footer-row1__social .od-ikon:hover {
+   box-shadow: 5px 5px 14px rgb(255, 167, 36);
+}
+
+.footer-row1__social .tik-ikon:hover {
+   box-shadow: 5px 5px 14px rgb(255, 255, 255);
+}
+
+.footer-row1__social .you-ikon:hover {
+   box-shadow: 5px 5px 14px rgb(255, 37, 37);
+}
+
+.footer-row1 .footer-row1__social div {
+   display: flex;
+   width: 50px;
+   height: 50px;
+   min-height: var(--height-50, 50px);
+   padding: 10px;
+   margin-left: 40px;
+   justify-content: center;
+   align-items: center;
+   border-radius: 36px;
+   background: #28293D;
+}
+
+.footer-row2 {
+   align-items: baseline;
+   margin-bottom: 100px;
+}
+
+.footer-row2__item {
+   flex-direction: column;
+   align-items: start;
+}
+
+.footer-row2 .footer-row2__item a:first-child {
+   color: white;
+   font-family: "SF Pro Display";
+   font-size: 18px;
+   font-style: normal;
+   align-self: stretch;
+   font-weight: 800;
+   text-decoration: underline;
+   /* border-bottom: 1px solid white; */
+   line-height: 30px;
+   margin-top: 30px;
+}
+
+.footer-row2 .footer-row2__item a {
+   color: #FFF;
+   position: relative;
+   text-decoration: none;
+   font-family: "SF Pro Display";
+   font-size: 20px;
+   font-style: normal;
+   font-weight: 400;
+   line-height: 30px;
+   margin-top: 15px;
+}
+
+.footer-row3 {
+   border-top: 1px solid #75758E;
+}
+
+.footer-row3 * {
+   font-family: "SF Pro Display";
+   font-size: 16px;
+   font-style: normal;
+   font-weight: 400;
+   line-height: 24px;
+   color: #75758E;
+}
+
+.footer-row3 a {
+   text-decoration: underline;
+}
+
+.footer-row3__item1 a {
+   margin-left: 20px;
+}
+
+.footer-row3__item1 {
+   margin-top: 15px;
+}
+
+.footer-row3__item3 {
+   margin-top: 15px;
+}
+
+.footer-row3__item2 {
+   margin-top: 10px;
+}
+
+.footer-row3__item2 a {
+   margin-left: 20px;
+}
+
+.footer-row3__item3 {
+   max-width: 1295px;
+   width: 100%;
+   height: 70px;
+   line-height: 24px;
+}
+
+.footer-row3__item3 a {
+   color: #75758E;
+   font-family: "SF Pro Display";
+   font-size: 16px;
+   font-style: normal;
+   font-weight: 400;
+   line-height: 24px;
+}
+
+.map {
+   background-position-y: -379px;
+   height: 495px;
+   display: flex;
+   justify-content: end;
+   align-items: center;
+   background-size: cover;
+   background-repeat: no-repeat;
+   width: 100%;
+   background-image: url('../image/jpg/map.jpg');
+}
+
+.h2-title {
+   max-width: 451px;
+   width: 100%;
+}
+
+.mb-73 {
+   margin-bottom: 73px;
+}
+
+.map .global__item {
+   margin-left: 840px;
+}
+.help {
+   padding: 0;
+   padding-bottom: 167px;
+}
+
+.help-button {
+   max-width: 1440px;
+   padding: 0 80px 160px 80px;
+   margin: 50px auto 0px auto;
+   padding-bottom: 160px;
+}
+
+.help-button .help-left h2 {
+   color: #FFF;
+   font-family: "SF Pro Display";
+   font-size: 55px;
+   font-style: normal;
+   font-weight: 700;
+   line-height: 66px;
+   /* 120% */
+}
+
+.help-button .help-left p {
+   color: #FFF;
+   font-family: "SF Pro Text";
+   font-size: 24px;
+   font-style: normal;
+   margin-top: 45px;
+   font-weight: 500;
+   line-height: 31.2px;
+   /* 130% */
+}
+
+.help-button .help-left {
+   max-width: 650px;
+   width: 100%;
+}
+
+.help-ridth img {
+
+   border-radius: 160px;
+}
+
+.help-ridth__button {
+   width: 175.222px;
+   position: relative;
+   height: 175.222px;
+   background-color: #FF0033;
+   border-radius: 50%;
+   display: flex;
+   top: 511px;
+   left: 41px;
+   justify-content: center;
+   align-items: center;
+   font-size: 35px;
+   font-weight: 900;
+   color: white;
+}
+
+/* Основные стили контейнера */
+.help-ridth__animated {
+   position: relative;
+   width: 400px;
+   height: 400px;
+   margin: 50px auto;
+}
+
+/* Стили для изображения-фона */
+.help-ridth__animated img {
+   position: absolute;
+   width: 100%;
+   height: 100%;
+   object-fit: contain;
+   z-index: 1;
+}
+
+/* Стили кнопки HELP (ваши оригинальные + немного адаптации) */
+.help-ridth__button {
+   width: 175.222px;
+   position: relative;
+   height: 175.222px;
+   background-color: #FF0033;
+   border-radius: 50%;
+   display: flex;
+   top: -263px;
+   left: -86px;
+   justify-content: center;
+   align-items: center;
+   font-size: 35px;
+   font-weight: 900;
+   color: white;
+   z-index: 10;
+   cursor: pointer;
+   transition: all 0.3s ease;
+   box-shadow:
+      0 0 30px rgba(255, 0, 51, 0.6),
+      0 0 60px rgba(255, 0, 51, 0.3),
+      inset 0 0 20px rgba(255, 255, 255, 0.2);
+}
+
+/* Эффект при наведении на кнопку */
+.help-ridth__button:hover {
+   transform: scale(1.05);
+   box-shadow:
+      0 0 40px rgba(255, 0, 51, 0.8),
+      0 0 80px rgba(255, 0, 51, 0.4),
+      inset 0 0 30px rgba(255, 255, 255, 0.3);
+   animation: button-pulse 1.5s ease-in-out infinite;
+}
+
+/* Пульсация кнопки при наведении */
+@keyframes button-pulse {
+
+   0%,
+   100% {
+      transform: scale(1.05);
+   }
+
+   50% {
+      transform: scale(1.08);
+   }
+}
+
+.help-animation-container {
+   top: 762px;
+   left: -42px;
+   width: 175.222px;
+   height: 175.222px;
+   transform: translate(-50%, -50%);
+   z-index: 5;
+}
+
+/* Стили для расходящихся кругов */
+.help-ripple {
+   position: absolute;
+   top: 50%;
+   left: 50%;
+   transform: translate(-50%, -50%);
+   border-radius: 50%;
+   border: 2px solid transparent;
+   animation: help-ripple-animation 3s linear infinite;
+   pointer-events: none;
+}
+
+/* Создаем 6 колец с разными задержками */
+.help-ripple:nth-child(1) {
+   width: 175.222px;
+   height: 175.222px;
+   border-color: rgba(255, 0, 51, 0.6);
+   animation-delay: 0s;
+}
+
+.help-ripple:nth-child(2) {
+   width: 175.222px;
+   height: 175.222px;
+   border-color: rgba(255, 0, 51, 0.5);
+   animation-delay: 0.5s;
+}
+
+.help-ripple:nth-child(3) {
+   width: 175.222px;
+   height: 175.222px;
+   border-color: rgba(255, 0, 51, 0.4);
+   animation-delay: 1s;
+}
+
+.help-ripple:nth-child(4) {
+   width: 175.222px;
+   height: 175.222px;
+   border-color: rgba(255, 0, 51, 0.3);
+   animation-delay: 1.5s;
+}
+
+.help-ripple:nth-child(5) {
+   width: 175.222px;
+   height: 175.222px;
+   border-color: rgba(255, 0, 51, 0.2);
+   animation-delay: 2s;
+}
+
+.help-ripple:nth-child(6) {
+   width: 175.222px;
+   height: 175.222px;
+   border-color: rgba(255, 0, 51, 0.1);
+   animation-delay: 2.5s;
+}
+
+/* Анимация расхождения и затухания */
+@keyframes help-ripple-animation {
+   0% {
+      transform: translate(-50%, -50%) scale(1);
+      opacity: 0.8;
+      border-width: 2px;
+   }
+
+   50% {
+      opacity: 0.4;
+      border-width: 1px;
+   }
+
+   100% {
+      transform: translate(-50%, -50%) scale(2);
+      opacity: 0;
+      border-width: 0;
+   }
+}
+
+/* Дополнительный эффект свечения вокруг кнопки */
+.help-glow {
+   position: absolute;
+   top: 531px;
+   left: 83px;
+   width: 300px;
+   height: 300px;
+   transform: translate(-50%, -50%);
+   background: radial-gradient(circle at center,
+         rgba(255, 0, 51, 0.2) 0%,
+         transparent 70%);
+   border-radius: 50%;
+   filter: blur(20px);
+   z-index: 0;
+   animation: help-glow-pulse 3s ease-in-out infinite;
+}
+
+@keyframes help-glow-pulse {
+
+   0%,
+   100% {
+      opacity: 0.3;
+      transform: translate(-50%, -50%) scale(1);
+   }
+
+   50% {
+      opacity: 0.5;
+      transform: translate(-50%, -50%) scale(1.1);
+   }
+}
+
+/* Контролы для управления анимацией */
+.help-controls {
+   position: fixed;
+   bottom: 20px;
+   right: 20px;
+   background: rgba(0, 0, 0, 0.8);
+   color: white;
+   padding: 15px;
+   border-radius: 10px;
+   z-index: 1000;
+}
+
+.help-controls h3 {
+   margin: 0 0 10px 0;
+   font-size: 14px;
+}
+
+.help-controls button {
+   background: #FF0033;
+   color: white;
+   border: none;
+   padding: 5px 10px;
+   margin: 2px;
+   border-radius: 5px;
+   cursor: pointer;
+   font-size: 12px;
+}
+
+.help-controls button:hover {
+   background: #ff3366;
+}
+
+/* Сообщение при клике */
+.help-message {
+   position: fixed;
+   top: 50%;
+   left: 50%;
+   transform: translate(-50%, -50%);
+   background: rgba(0, 0, 0, 0.9);
+   color: white;
+   padding: 30px;
+   border-radius: 15px;
+   text-align: center;
+   display: none;
+   z-index: 1000;
+   animation: message-fade 3s ease-out;
+   border: 2px solid #FF0033;
+}
+
+@keyframes message-fade {
+   0% {
+      opacity: 0;
+      transform: translate(-50%, -50%) scale(0.8);
+   }
+
+   20% {
+      opacity: 1;
+      transform: translate(-50%, -50%) scale(1);
+   }
+
+   80% {
+      opacity: 1;
+      transform: translate(-50%, -50%) scale(1);
+   }
+
+   100% {
+      opacity: 0;
+      transform: translate(-50%, -50%) scale(1.1);
+   }
+}
+
+/* Адаптивность */
+@media (max-width: 768px) {
+   .help-ridth__animated {
+      width: 300px;
+      height: 300px;
+   }
+
+   .help-ridth__button {
+      width: 130px;
+      height: 130px;
+      font-size: 28px;
+      top: 400px;
+      left: 62px;
+   }
+
+   .help-animation-container,
+   .help-glow {
+      top: 400px;
+      left: 62px;
+   }
+
+   .help-ripple:nth-child(1),
+   .help-ripple:nth-child(2),
+   .help-ripple:nth-child(3),
+   .help-ripple:nth-child(4),
+   .help-ripple:nth-child(5),
+   .help-ripple:nth-child(6) {
+      width: 130px;
+      height: 130px;
+   }
+}

@@ -1,0 +1,1391 @@
+<!DOCTYPE html>
+<html lang="ru">
+
+<head>
+    <meta charset="UTF-8">
+    <link rel="icon" type="image/x-icon" href="./image/svg/Frame 1171274804.svg">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title></title>
+    <link rel="stylesheet" href="css/modal.css">
+    <link rel="stylesheet" href="css/header.css">
+    <link rel="stylesheet" href="css/styleindex.css">
+    <link rel="stylesheet" href="css/footer.css">
+    <style>
+        /* Стили для модального окна */
+
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 1000;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.5);
+        }
+
+        .modal-content {
+            background-color: #1a1a1a;
+            margin: 5% auto;
+            padding: 30px;
+            border-radius: 15px;
+            width: 90%;
+            max-width: 450px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+            border: 1px solid #333;
+            position: relative;
+        }
+
+        .close {
+            color: #aaa;
+            float: right;
+            font-size: 28px;
+            font-weight: bold;
+            cursor: pointer;
+            line-height: 1;
+            position: absolute;
+            right: 15px;
+            top: 15px;
+        }
+
+        .close:hover {
+            color: white;
+        }
+
+        .login-form,
+        .register-form {
+            margin-top: 20px;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        .form-group label {
+            display: block;
+            color: white;
+            margin-bottom: 8px;
+            font-size: 14px;
+        }
+
+        .form-group input {
+            width: 100%;
+            padding: 12px;
+            background: #2a2a2a;
+            border: 1px solid #444;
+            border-radius: 8px;
+            color: white;
+            font-size: 14px;
+            box-sizing: border-box;
+        }
+
+        .form-group input:focus {
+            outline: none;
+            border-color: #007bff;
+        }
+
+        .login-btn,
+        .register-btn {
+            width: 100%;
+            padding: 12px;
+            background: linear-gradient(135deg, #007bff, #0056b3);
+            color: white;
+            border: none;
+            border-radius: 8px;
+            font-size: 16px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            margin-top: 10px;
+        }
+
+        .login-btn:hover,
+        .register-btn:hover {
+            background: linear-gradient(135deg, #0056b3, #004085);
+            transform: translateY(-2px);
+        }
+
+        .user-menu {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .user-name {
+            color: white;
+            font-size: 20px;
+        }
+
+        .logout-btn {
+            background: #dc3545;
+            color: white;
+            border: none;
+            padding: 8px 15px;
+            border-radius: 6px;
+            cursor: pointer;
+            text-decoration: none;
+            font-size: 14px;
+            transition: background 0.3s ease;
+        }
+
+        .logout-btn:hover {
+            background: #c82333;
+        }
+
+        .modal-title {
+            color: white;
+            margin-bottom: 20px;
+            text-align: center;
+            font-size: 24px;
+        }
+
+        .form-switch {
+            text-align: center;
+            margin-top: 20px;
+            color: #aaa;
+        }
+
+        .form-switch a {
+            color: #007bff;
+            text-decoration: none;
+            cursor: pointer;
+        }
+
+        .form-switch a:hover {
+            text-decoration: underline;
+        }
+
+        /* Стили для уведомлений об ошибках */
+        .error-message {
+            background: #dc3545;
+            color: white;
+            padding: 10px 15px;
+            border-radius: 6px;
+            margin-bottom: 20px;
+            border: 1px solid #c82333;
+            font-size: 14px;
+        }
+
+        /* ===== Эффект загрузки (обновлённый) ===== */
+        /* Основные стили для контейнера */
+        /* Стили для состояний лоадера */
+        /* Стили для состояний лоадера */
+        .loader-wrapper {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(15, 12, 41, 0.95);
+            z-index: 9999;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            transition: all 1s ease;
+        }
+
+        .loader-wrapper.loaded {
+            background: transparent;
+            pointer-events: none;
+        }
+
+        .loader-wrapper.loaded .loader {
+            opacity: 0.8;
+            transform: scale(0.9);
+            transition: all 1s ease;
+        }
+
+        .loader {
+            text-align: center;
+            z-index: 10000;
+            transition: all 1s ease;
+        }
+
+        .loader .letters {
+            font-size: 3rem;
+            font-weight: bold;
+            color: white;
+            letter-spacing: 0.3em;
+            transition: all 1s ease;
+        }
+
+        .loader .letters span {
+            display: inline-block;
+            transition: all 0.5s ease;
+        }
+
+        /* Анимация появления */
+        @keyframes appear {
+            0% {
+                opacity: 0;
+                transform: translateY(10px);
+            }
+
+            100% {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .loader-wrapper:not(.loaded) .loader .letters span {
+            animation: appear 0.8s ease forwards;
+        }
+
+        /* Убираем анимацию после загрузки */
+        .loader-wrapper.loaded .loader .letters span {
+            animation: none;
+            opacity: 1;
+        }
+
+        /* Стили для фонового видео */
+        .video-bg {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+        }
+
+        .video-bg video {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            filter: brightness(0.6) contrast(1.2);
+            transition: all 1s ease;
+        }
+
+        .video-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(45deg,
+                    rgba(0, 0, 0, 0.7) 0%,
+                    rgba(0, 0, 0, 0.4) 50%,
+                    rgba(0, 0, 0, 0.7) 100%);
+            z-index: 1;
+        }
+
+        /* Стили для лоадера */
+        .loader {
+            position: relative;
+            z-index: 2;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 30px;
+        }
+
+        /* Анимация круга */
+        .circle {
+            width: 100px;
+            height: 100px;
+            border: 4px solid rgba(255, 255, 255, 0.2);
+            border-top: 4px solid #ffffff;
+            border-radius: 50%;
+            animation: spin 1.5s linear infinite;
+            box-shadow: 0 0 20px rgba(255, 255, 255, 0.3);
+        }
+
+        @keyframes spin {
+            0% {
+                transform: rotate(0deg);
+                border-top-color: #ffffff;
+            }
+
+            50% {
+                border-top-color: #00bfff;
+            }
+
+            100% {
+                transform: rotate(360deg);
+                border-top-color: #ffffff;
+            }
+        }
+
+        /* Стили для букв */
+        .letters {
+            display: flex;
+            gap: 15px;
+        }
+
+        .letters span {
+            display: inline-block;
+            font-size: 48px;
+            font-weight: 800;
+            color: white;
+            text-transform: uppercase;
+            text-shadow:
+                0 0 10px rgba(255, 255, 255, 0.7),
+                0 0 20px rgba(0, 191, 255, 0.5);
+            opacity: 0;
+            transform: translateY(30px);
+            animation: letterFloat 0.5s forwards;
+            font-family: 'Arial Black', sans-serif;
+            letter-spacing: 2px;
+        }
+
+        /* Анимация появления букв */
+        @keyframes letterFloat {
+            from {
+                opacity: 0;
+                transform: translateY(30px) scale(0.8);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0) scale(1);
+            }
+        }
+
+        /* Анимация пульсации для букв после появления */
+        @keyframes letterPulse {
+
+            0%,
+            100% {
+                text-shadow:
+                    0 0 10px rgba(255, 255, 255, 0.7),
+                    0 0 20px rgba(0, 191, 255, 0.5);
+                transform: scale(1);
+            }
+
+            50% {
+                text-shadow:
+                    0 0 15px rgba(255, 255, 255, 0.9),
+                    0 0 30px rgba(0, 191, 255, 0.8),
+                    0 0 40px rgba(0, 191, 255, 0.4);
+                transform: scale(1.05);
+            }
+        }
+
+        /* Анимации скрытия */
+        .loader.hide {
+            opacity: 0;
+            visibility: hidden;
+            transform: scale(0.9);
+            transition: all 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .loader.hide .circle {
+            animation: none;
+            border-color: rgba(255, 255, 255, 0.1);
+            transition: all 0.5s ease;
+        }
+
+        .loader-wrapper.hide {
+            opacity: 0;
+            visibility: hidden;
+            transition: all 1s ease 0.3s;
+        }
+
+        .loader-wrapper.hide .video-bg video {
+            opacity: 0;
+            filter: blur(20px) brightness(0.3);
+            transform: scale(1.2);
+        }
+
+        /* Дополнительный эффект при наведении на буквы */
+        .letters span:hover {
+            color: #00bfff;
+            animation: letterPulse 0.5s ease infinite;
+        }
+
+        @keyframes spin {
+            to {
+                transform: rotate(360deg);
+            }
+        }
+
+        @keyframes showLetter {
+            from {
+                opacity: 0;
+                transform: scale(0.8);
+                filter: blur(6px);
+            }
+
+            to {
+                opacity: 1;
+                transform: scale(1);
+                filter: blur(0);
+            }
+        }
+    </style>
+    <link rel="stylesheet" href="css/adaptive.css">
+</head>
+
+<body>
+    <div class="loader-wrapper">
+        <div class="video-bg">
+            <video src="image/video_1.mov" autoplay muted loop playsinline></video>
+            <div class="video-overlay"></div>
+        </div>
+
+        <div class="loader">
+            <div class="circle"></div>
+            <div class="letters">
+                <span>V</span>
+                <span>E</span>
+                <span>X</span>
+                <span>S</span>
+            </div>
+        </div>
+    </div>
+    <header id="header" class="header">
+        <div class="header__container _container">
+            <div class="header__content">
+                <div class="header__column">
+                    <div class="header__item header__logo">
+                        <a href="index1.php">
+                            <img src="image/header/Group 9 (5).png" alt="" title="" width="126" height="36">
+                        </a>
+                        <p>
+                            Цифровая экосистема нового поколения
+                        </p>
+                    </div>
+                </div>
+                <div class="header__column">
+                    <div class="header__item">
+                        <div class="header__links">
+                            <div class="modal-google none">
+                                <img clas="modal-google none" src="./image/svg/Simple.svg" alt="">
+                            </div>
+                            <a id="google-play" href='#heder' rel="nofollow"
+                                class="header__link js-open-modal google-play">
+                                <svg width="30" height="30" viewBox="0 0 30 30" fill="none"
+                                    xmlns="http://www.w3.org/2000/svg">
+                                    <path d="M23.6212 20.398L20.4866 17.6583L8.97925 27.7452L23.6212 20.398Z"
+                                        fill="white" />
+                                    <path d="M23.6212 12.9399L8.97925 5.59283L20.4866 15.6797L23.6212 12.9399Z"
+                                        fill="white" />
+                                    <path
+                                        d="M28.2095 18.0542C29.148 17.4027 29.148 15.9347 28.1471 15.2833L25.0759 13.7297L21.6493 16.6697L25.0759 19.6097L28.2095 18.0542Z"
+                                        fill="white" />
+                                    <path
+                                        d="M5.97225 28.3333L19.3532 16.6647L5.97225 5.00097C5.29521 5.3111 4.84131 5.875 4.84131 6.60903V26.7243C4.84131 27.4583 5.29521 28.0232 5.97225 28.3333Z"
+                                        fill="white" />
+                                </svg>
+                                </svg>
+                                <span>Google Play</span>
+                                <img src="./image/svg/info.svg" alt="">
+                            </a>
+                            <a href='#header' id="app-store" rel="nofollow" class="header__link">
+                                <svg width="30" height="30" viewBox="0 0 30 30" fill="none"
+                                    xmlns="http://www.w3.org/2000/svg">
+                                    <path
+                                        d="M10.4276 27.4888C6.25993 27.4666 2.8125 19.5893 2.8125 15.5775C2.8125 9.0243 8.12186 7.58965 10.168 7.58965C11.0902 7.58965 12.0748 7.92494 12.9433 8.22164C13.5506 8.42861 14.1787 8.64226 14.528 8.64226C14.7371 8.64226 15.2299 8.46051 15.6649 8.30105C16.5927 7.95907 17.7471 7.53404 19.0914 7.53404H19.0995C20.1034 7.53404 23.1471 7.73803 24.9769 10.2824L25.4055 10.8788L24.7886 11.3098C23.9074 11.9255 22.2994 13.0487 22.2994 15.2734C22.2994 17.9082 24.1204 18.9215 24.9953 19.4089C25.3815 19.6241 25.7812 19.8459 25.7812 20.331C25.7812 20.6478 23.0509 27.4495 19.0858 27.4495C18.1157 27.4495 17.4298 27.1795 16.8249 26.9414C16.2129 26.7002 15.6849 26.4926 14.8124 26.4926C14.3701 26.4926 13.8109 26.6862 13.2188 26.8916C12.4098 27.1714 11.494 27.4888 10.4549 27.4888H10.4276Z"
+                                        fill="white" />
+                                    <path
+                                        d="M18.7082 0.882355C18.8123 4.9083 16.1309 7.7013 13.4527 7.52614C13.0114 4.3133 16.1305 0.882355 18.7082 0.882355Z"
+                                        fill="white" />
+                                </svg>
+                                <span>App Store</span>
+                                <img src="./image/svg/info.svg" alt="">
+                            </a>
+                        </div>
+                        <div class="header__btn btn">
+                            <?php if ($user): ?>
+                            <div class="user-menu">
+                                <span class="user-name">
+                                    <?php echo htmlspecialchars($user['name']); ?>
+                                </span>
+                            </div>
+                            <?php else: ?>
+                            <a href="#" rel="nofollow" id="loginBtn">
+                                Вход в кабинет
+                            </a>
+                            <?php endif; ?>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <div id="loginModal" class="modal">
+        <div class="modal-content">
+            <span class="close" data-modal="loginModal">&times;</span>
+            <h2 class="modal-title">Вход в кабинет</h2>
+
+            <?php if ($error && $active_modal === 'login'): ?>
+            <div class="error-message">
+                <?php echo htmlspecialchars($error); ?>
+            </div>
+            <?php endif; ?>
+
+            <form class="login-form" method="POST">
+                <input type="hidden" name="action" value="login">
+                <div class="form-group">
+                    <label for="email">Email</label>
+                    <input type="email" id="email" name="email" required placeholder="Введите ваш email"
+                        value="<?php echo htmlspecialchars($form_data['email'] ?? ''); ?>">
+                </div>
+                <div class="form-group">
+                    <label for="password">Пароль</label>
+                    <input type="password" id="password" name="password" required placeholder="Введите ваш пароль">
+                </div>
+                <button type="submit" class="login-btn">Войти</button>
+            </form>
+            <div class="form-switch">
+                Нет аккаунта? <a href="#" id="switchToRegister">Зарегистрироваться</a>
+            </div>
+        </div>
+    </div>
+
+    <div id="registerModal" class="modal">
+        <div class="modal-content">
+            <span class="close" data-modal="registerModal">&times;</span>
+            <h2 class="modal-title">Регистрация</h2>
+
+            <?php if ($error && $active_modal === 'register'): ?>
+            <div class="error-message">
+                <?php echo htmlspecialchars($error); ?>
+            </div>
+            <?php endif; ?>
+
+            <form class="register-form" method="POST">
+                <input type="hidden" name="action" value="register">
+                <div class="form-group">
+                    <label for="name">Имя</label>
+                    <input type="text" id="name" name="name" required placeholder="Введите ваше имя"
+                        value="<?php echo htmlspecialchars($form_data['name'] ?? ''); ?>">
+                </div>
+                <div class="form-group">
+                    <label for="reg_email">Email</label>
+                    <input type="email" id="reg_email" name="email" required placeholder="Введите ваш email"
+                        value="<?php echo htmlspecialchars($form_data['email'] ?? ''); ?>">
+                </div>
+                <div class="form-group">
+                    <label for="reg_password">Пароль</label>
+                    <input type="password" id="reg_password" name="password" required
+                        placeholder="Пароль (минимум 6 символов)" minlength="6">
+                </div>
+                <div class="form-group">
+                    <label for="phone">Телефон</label>
+                    <input type="text" id="phone" name="phone" required placeholder="+7 (XXX) XXX-XX-XX"
+                        value="<?php echo htmlspecialchars($form_data['phone'] ?? ''); ?>">
+                </div>
+                <button type="submit" class="register-btn">Зарегистрироваться</button>
+            </form>
+            <div class="form-switch">
+                Уже есть аккаунт? <a href="#" id="switchToLogin">Войти</a>
+            </div>
+        </div>
+    </div>
+    <main>
+        <section class="global">
+            <div class="global__container _container">
+                <div class="global__content">
+                    <div class="global__column">
+                        <div class="global__item">
+                            <div class="global__cont">
+                                <div class="global__opicanie text-animate-2 _anim-items">
+                                    <p>
+                                        Цифровая экосистема нового поколения, созданный для помощи людям в экстренных
+                                        ситуациях, для развития рынка труда, повышения прозрачности экономики и
+                                        укрепления социальной безопасности.
+                                    </p>
+                                </div>
+                                <div class="global__favorits text-animate-3 _anim-items">
+                                    <div class="global__favorit">
+                                        <p class="global__text">
+                                            <img src="image/Gosuslugi.svg" alt="Госуслуги"
+                                                style="height:1em;vertical-align:middle;">
+                                        </p>
+
+                                        <p class="global__desp" style="white-space: nowrap;">Верификация <br> через
+                                            госуслуги</p>
+                                    </div>
+                                    <div class="global__favorit">
+                                        <p class="global__text" style="margin-left: -15px;">
+                                            БЕЗ РЕКЛАМЫ
+                                        </p>
+                                        <p class="global__desp" style="margin-left: -15px;">
+                                            Наша экосистема работает без рекламы
+                                        </p>
+                                    </div>
+                                    <div class="global__favorit">
+                                        <p class="global__text">
+                                            БЕЗОПАСНОСТЬ
+                                        </p>
+                                        <p class="global__desp">
+                                            Безопасность нового уровня как часть жизни
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="global__column">
+                        <div class="global__item">
+                            <div class="global__btn global-btn btn-blue image-zoom _anim-items">
+                                <a href="map.php">
+                                    <span>Открыть карту</span>
+                                    <svg width="50" height="50" viewBox="0 0 50 50" fill="none"
+                                        xmlns="http://www.w3.org/2000/svg">
+                                        <g clip-path="url(#clip0_215_2999)">
+                                            <path
+                                                d="M45.139 33.9712C46.3445 31.2186 46.9788 28.2211 46.9788 25.1258C46.9788 21.9133 46.2951 18.8063 44.9991 15.969C48.4813 10.6962 51.7472 4.10437 48.7987 1.15597C47.3204 -0.322481 44.7953 -0.378224 41.2943 0.990308C39.215 1.80298 36.6868 3.1807 33.9463 4.99048C31.1462 3.7348 28.0872 3.07342 24.9264 3.07342C21.8367 3.07342 18.8444 3.70556 16.0959 4.90687C10.8027 1.43625 4.17834 -1.80651 1.18848 1.18492C-1.78828 4.16021 1.41047 10.7336 4.84363 15.9906C3.55402 18.822 2.87377 21.9214 2.87377 25.1257C2.87377 28.3067 3.54395 31.3843 4.81527 34.199C3.08481 36.8404 1.79725 39.226 0.986241 41.2979C-0.382192 44.7992 -0.326547 47.324 1.1519 48.8024C1.92018 49.5707 2.97176 49.9553 4.29501 49.9553C5.26415 49.9553 6.3792 49.749 7.63507 49.3358C9.91201 48.5869 12.6246 47.1868 15.7086 45.1705C18.5622 46.4846 21.6907 47.1782 24.9261 47.1782C28.136 47.1782 31.2405 46.4956 34.076 45.2016C37.8506 47.6603 42.3061 49.996 45.6103 49.996C46.8885 49.996 47.9946 49.6463 48.822 48.819C51.8042 45.8371 48.5865 39.2417 45.139 33.9712ZM44.045 25.1257C44.045 27.1866 43.7159 29.1719 43.1097 31.0333C41.6449 29.0151 40.0015 26.9447 38.2113 24.8601C39.9533 22.83 41.557 20.8155 42.9881 18.8568C43.672 20.8217 44.045 22.9308 44.045 25.1257ZM42.3623 3.72268C44.9383 2.71589 46.3219 2.82815 46.7242 3.23038C47.4553 3.96149 47.0648 7.14449 43.3863 13.0512C42.5624 11.7972 41.6053 10.6178 40.5198 9.53233C39.4007 8.41318 38.1816 7.43044 36.884 6.58971C38.9331 5.31203 40.8004 4.33311 42.3623 3.72268ZM41.5912 15.7648C40.0431 17.9845 38.2452 20.2971 36.2517 22.638C34.8753 21.1163 33.4278 19.5944 31.9203 18.087C27.629 13.7957 23.218 9.98336 19.0308 6.93844C20.8886 6.33476 22.8697 6.00705 24.9262 6.00705C32.0697 6.00705 38.3096 9.94571 41.5912 15.7648ZM28.007 31.9225C28.007 31.1136 28.665 30.4556 29.4739 30.4556C30.2827 30.4556 30.9408 31.1136 30.9408 31.9225C30.9408 32.7314 30.2827 33.3894 29.4739 33.3894C28.665 33.3894 28.007 32.7315 28.007 31.9225ZM31.4128 27.9732C30.8274 27.6846 30.1695 27.5218 29.4739 27.5218C27.0473 27.5218 25.0731 29.4959 25.0731 31.9225C25.0731 32.5752 25.2171 33.1945 25.4731 33.7521C22.0874 36.8337 18.6766 39.5791 15.5173 41.7636C9.72454 38.4748 5.80769 32.2495 5.80769 25.1257C5.80769 17.8584 9.88375 11.5257 15.8694 8.29221C20.3481 11.3913 25.1634 15.4789 29.8459 20.1614C31.4038 21.7193 32.8956 23.2917 34.307 24.8613C33.3754 25.8991 32.4092 26.9382 31.4128 27.9732ZM3.26299 3.25943C4.01297 2.50915 7.21827 2.86072 13.1198 6.49123C11.7653 7.35309 10.4955 8.36956 9.33278 9.53224C8.24462 10.6204 7.28545 11.803 6.46027 13.0605C2.86047 7.1931 2.51633 4.00579 3.26299 3.25943ZM3.22651 46.7279C2.82438 46.3258 2.71192 44.942 3.71851 42.3667C4.31154 40.8517 5.23452 39.0704 6.42457 37.1361C7.25778 38.414 8.22878 39.6152 9.33278 40.7192C10.4012 41.7876 11.5604 42.732 12.7922 43.547C7.044 47.0808 3.94236 47.4433 3.22651 46.7279ZM18.6068 43.1697C21.4812 41.0843 24.5114 38.5988 27.5145 35.8615C28.105 36.1564 28.7701 36.3233 29.4738 36.3233C31.9003 36.3233 33.8745 34.3492 33.8745 31.9226C33.8745 31.2616 33.7271 30.6347 33.465 30.0716C34.4222 29.0786 35.3526 28.0811 36.2531 27.0839C38.3131 29.5013 40.1641 31.8925 41.7535 34.1945C38.5182 40.1738 32.1888 44.2444 24.9263 44.2444C22.7126 44.2444 20.586 43.8649 18.6068 43.1697ZM46.7476 46.7446C46.0055 47.4867 42.837 47.1484 37.006 43.5824C38.258 42.7593 39.4358 41.8033 40.5198 40.7193C41.6784 39.5606 42.6916 38.2956 43.5516 36.9465C47.1488 42.8115 47.4941 45.9981 46.7476 46.7446Z"
+                                                fill="white" />
+                                        </g>
+                                        <defs>
+                                            <clipPath id="clip0_589_4870">
+                                                <rect width="50" height="50" fill="white" />
+                                            </clipPath>
+                                        </defs>
+                                    </svg>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="global__fon">
+                <video src="image/video_1.mov" autoplay muted loop></video>
+            </div>
+        </section>
+        <section class="help" id="helpBtn">
+            <div class="help-header">
+                <div class="help-header__item">
+                    <img src="./image/svg/Icon.svg" alt="">
+                    <p>
+                        Без скрытых платежей
+                    </p>
+                </div>
+                <div class="help-header__item">
+                    <img src="./image/svg/Icon.svg" alt="">
+                    <p>Безопасные сделки </p>
+                </div>
+                <div class="help-header__item">
+                    <img src="./image/svg/Icon.svg" alt="">
+                    <p>Поддержка 24/7</p>
+                </div>
+            </div>
+            <div class="help-main">
+                <div class="help-main__left">
+                    <h2>Начните прямо сейчас — это бесплатно!</h2>
+                    <p>Создайте задание и найдите специалиста рядом с домом уже сегодня. Или зарегистрируйтесь как
+                        исполнитель и получайте заказы без посредников.</p>
+                </div>
+                <div class="help-main__ridth">
+                    <div class="start__btn btn-blue image-zoom _anim-items">
+                        <div class="tt"></div>
+                        <a href="#" id="registerBtn">
+                            Зарегистрироваться
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <section class="missia" id="missionBtn">
+
+
+            <div class="missia__container _container">
+                <div class="missia__content flexbox">
+
+                    <div class="missia__cont">
+                        <div class="missia__title text-animate-blur _anim-items">
+                            <h2>
+                                Миссия VEXS
+                            </h2>
+                        </div>
+                        <div class="missia__desp text-animate-2 _anim-items">
+                            <p>
+                                Наша ключевая миссия — создать универсальную цифровую эко-систему, которая будет
+                                помогать гражданам в самых разных жизненных обстоятельствах: от поиска
+                                специалистов и рабочих до получения оперативной помощи через кнопку HELP,
+                                предотвращения опасных ситуаций, информирования о чрезвычайных случаях и
+                                создания безопасной городской среды.
+                            </p>
+                        </div>
+                    </div>
+                    <div class="missia__column">
+                        <div class="missia__item">
+                            <div class="missia__btn image-zoom _anim-items">
+                                <a href="#">
+                                    <span>Подробнее
+                                        о нашей миссии</span><svg width="50" height="50" viewBox="0 0 50 50" fill="none"
+                                        xmlns="http://www.w3.org/2000/svg">
+                                        <g clip-path="url(#clip0_589_4870)">
+                                            <path
+                                                d="M7.18557 39.8767L35.4671 11.5951L11.2258 11.5951L11.018 8.33987L41.0311 8.33987L41.0311 38.353L37.7758 38.1452L37.7758 13.9038L9.49427 42.1854L7.18557 39.8767Z"
+                                                fill="white" />
+                                        </g>
+                                        <defs>
+                                            <clipPath id="clip0_589_4870">
+                                                <rect width="50" height="50" fill="white" />
+                                            </clipPath>
+                                        </defs>
+                                    </svg>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="video-container">
+                <video autoplay muted loop id="myVideo">
+                    <source src="./video/sectionMissia.mp4" type="video/mp4">
+                </video>
+                <div class="video-overlay"></div>
+            </div>
+
+        </section>
+        <section class="help-button flexbox">
+            <div class="help-left">
+                <h2>Кнопка HELP</h2>
+                <p>Безопасность является центральной частью проекта. Кнопка HELP — основной элемент системы, позволяющий
+                    каждому пользователю оперативно запросить помощь в критической ситуации. Сервис автоматически
+                    уведомит ближайших специалистов, службы поддержки, а также предупредит других пользователей о
+                    возможной опасности в определённой точке города. Это позволит предотвращать трагедии, спасать жизни,
+                    помогать детям, семьям, пожилым людям и любому человеку, оказавшемуся в беде.</p>
+            </div>
+            <div class="help-ridth">
+
+                <div class="help-ridth__animated help-animation-container">
+                    <div class="help-ridth__animated">
+                        <div class="help-animation-container">
+                            <div class="help-ripple"></div>
+                            <div class="help-ripple"></div>
+                            <div class="help-ripple"></div>
+                            <div class="help-ripple"></div>
+                            <div class="help-ripple"></div>
+                            <div class="help-ripple"></div>
+                        </div>
+                        <div class="help-ridth__button" onclick="showHelpMessage()">HELP</div>
+                    </div>
+                </div>
+                <img src="./image/jpg/Rectangle.jpg" alt="">
+            </div>
+        </section>
+     
+
+        <section class="why">
+            <div class="why__container _container">
+                <div class="why__top flexbox">
+                    <div class="why__title text-animate-blur _anim-items">
+                        <h2>
+                            Как начать работать <br>
+                            и зарабатывать<br>
+                            с VEXS?
+                        </h2>
+                    </div>
+                    <div class="why__desp text-animate-2 _anim-items">
+                        <p style="line-height: 31.2px;">
+                            Мы делаем поиск мастера по всей
+                            Россий и заказ услуги онлайн простым и
+                            быстрым. Это платформа, где заказчики
+                            и исполнители находят друг друга на
+                            карте в реальном времени.
+                        </p>
+                    </div>
+                </div>
+                <div class="why__tabs">
+                    <div id="why__tab__one" class="why__tab" data-tab="1">
+                        <p class="flexbox" style="justify-content: space-around;">
+                            Для заказчиков
+                            <svg class="arrowtabOne" xmlns="http://www.w3.org/2000/svg" width="22" height="12"
+                                viewBox="0 0 22 12" fill="none">
+                                <path
+                                    d="M20.202 0L22 1.78471L12.2009 11.5055C12.0439 11.6622 11.8572 11.7866 11.6515 11.8715C11.4459 11.9563 11.2253 12 11.0025 12C10.7798 12 10.5592 11.9563 10.3536 11.8715C10.1479 11.7866 9.96118 11.6622 9.80416 11.5055L0 1.78471L1.798 0.00168133L11 9.12538L20.202 0Z"
+                                    fill="#75758E" />
+                            </svg>
+                        </p>
+                    </div>
+                    <div id="why__tab__two" class="why__tab" data-tab="2">
+                        <p class="flexbox" style="justify-content: space-around;">
+                            Для исполнителей
+                            <svg class="arrowtabTwo" xmlns="http://www.w3.org/2000/svg" width="22" height="12"
+                                viewBox="0 0 22 12" fill="none">
+                                <path
+                                    d="M20.202 0L22 1.78471L12.2009 11.5055C12.0439 11.6622 11.8572 11.7866 11.6515 11.8715C11.4459 11.9563 11.2253 12 11.0025 12C10.7798 12 10.5592 11.9563 10.3536 11.8715C10.1479 11.7866 9.96118 11.6622 9.80416 11.5055L0 1.78471L1.798 0.00168133L11 9.12538L20.202 0Z"
+                                    fill="#75758E" />
+                            </svg>
+                        </p>
+                    </div>
+                </div>
+                <div class="why__content-tabs">
+                    <div class="why__content-tab why__content-tab1 active tab-content" data-tab-content="1">
+                        <div class="tab-content__conts">
+                            <div class="tab-content__column">
+                                <div class="tab-content__item">
+                                    <div class="tab-content__rows">
+                                        <div class="tab-content__icon">
+                                            1
+                                        </div>
+                                        <div class="tab-content__desp">
+                                            <p>
+                                                Опишите задачу — ремонт, уборка, разгрузка, переезд или любую другую
+                                                услугу.
+                                            </p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="tab-content__column">
+                                <div class="tab-content__item">
+                                    <div class="tab-content__rows">
+                                        <div class="tab-content__icon">
+                                            2
+                                        </div>
+                                        <div class="tab-content__desp">
+                                            <p>
+                                                Получите отклики от мастеров рядом. Наблюдайте, как мастера на карте
+                                                откликаются на ваш заказ в реальном времени.
+                                            </p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="tab-content__column">
+                                <div class="tab-content__item">
+                                    <div class="tab-content__rows">
+                                        <div class="tab-content__icon">
+                                            3
+                                        </div>
+                                        <div class="tab-content__desp">
+                                            <p>
+                                                Выберите проверенного исполнителя. Сравните рейтинги, отзывы и цены.
+                                            </p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="tab-content__column">
+                                <div class="tab-content__item">
+                                    <div class="tab-content__rows">
+                                        <div class="tab-content__icon">
+                                            4
+                                        </div>
+                                        <div class="tab-content__desp">
+                                            <p>
+                                                Оплатите работу. Расчет через платформу с гарантией для обеих сторон.
+                                            </p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="why__content-tab why__content-tab2 tab-content" data-tab-content="2">
+                        <div class="tab-content__conts">
+                            <div class="tab-content__column">
+                                <div class="tab-content__item">
+                                    <div class="tab-content__rows">
+                                        <div class="tab-content__icon">
+                                            1
+                                        </div>
+                                        <div class="tab-content__desp">
+                                            <p>
+                                                Зарегистрируйтесь и подтвердите личность через Госуслуги.
+
+                                            </p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="tab-content__column">
+                                <div class="tab-content__item">
+                                    <div class="tab-content__rows">
+                                        <div class="tab-content__icon">
+                                            2
+                                        </div>
+                                        <div class="tab-content__desp">
+                                            <p>
+                                                Найдите заказы в вашем районе. Получайте уведомления о новых заданиях в
+                                                вашем районе
+
+                                            </p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="tab-content__column">
+                                <div class="tab-content__item">
+                                    <div class="tab-content__rows">
+                                        <div class="tab-content__icon">
+                                            3
+                                        </div>
+                                        <div class="tab-content__desp">
+                                            <p>
+                                                Выполните работу и получите рейтинг от заказчика.
+
+                                            </p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="tab-content__column">
+                                <div class="tab-content__item">
+                                    <div class="tab-content__rows">
+                                        <div class="tab-content__icon">
+                                            4
+                                        </div>
+                                        <div class="tab-content__desp">
+                                            <p>
+                                                Получите оплату. Вывод средств на карту без задержек.
+                                            </p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <section style="margin: 259px 0 139px 0; " class="faq">
+            <div class="faq__container _container">
+                <div class="faq__title text-animate-blur _anim-items">
+                    <h2>
+                        Частые вопросы о сервисе VEXS
+                    </h2>
+                </div>
+                <div class="faq__content text-animate-3 _anim-items">
+                    <div class="faq__elem">
+                        <div class="faq__spoller spoller-faq">
+                            <div class="spoller-faq__title">
+                                <h3>
+                                    Как проверяются мастера и исполнители на сервисе по поиску мастеров?
+                                </h3>
+                                <svg width="37" height="37" viewBox="0 0 37 37" fill="none"
+                                    xmlns="http://www.w3.org/2000/svg">
+                                    <path d="M18.8033 34.5737V3.03271M3.03284 18.8032H34.5738" stroke="white"
+                                        stroke-width="1.5" stroke-linecap="round" />
+                                </svg>
+                            </div>
+                            <div class="spoller-faq__desp">
+                                <p>
+                                    Все исполнители проходят верификацию через Госуслуги и проверку документов перед
+                                    тем, как начать работу.
+                                </p>
+                                <p>
+                                    Это гарантирует, что вы можете найти проверенного мастера рядом и безопасно заказать
+                                    услугу онлайн.
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="faq__elem">
+                        <div class="faq__spoller spoller-faq">
+                            <div class="spoller-faq__title">
+                                <h3>
+                                    Насколько безопасна оплата при заказе услуг мастеров онлайн?
+                                </h3>
+                                <svg width="37" height="37" viewBox="0 0 37 37" fill="none"
+                                    xmlns="http://www.w3.org/2000/svg">
+                                    <path d="M18.8033 34.5737V3.03271M3.03284 18.8032H34.5738" stroke="white"
+                                        stroke-width="1.5" stroke-linecap="round" />
+                                </svg>
+                            </div>
+                            <div class="spoller-faq__desp">
+                                <p>
+                                    Да, все сделки и платежи проходят через безопасную систему, деньги переводятся
+                                    только после подтверждения выполнения задания.
+                                </p>
+                                <p>
+                                    Таким образом, заказчики могут купить услугу мастера или заказать работу рядом с
+                                    домом без риска.
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="faq__elem">
+                        <div class="faq__spoller spoller-faq">
+                            <div class="spoller-faq__title">
+                                <h3>
+                                    Есть ли комиссия при заказе услуг частных мастеров?
+                                </h3>
+                                <svg width="37" height="37" viewBox="0 0 37 37" fill="none"
+                                    xmlns="http://www.w3.org/2000/svg">
+                                    <path d="M18.8033 34.5737V3.03271M3.03284 18.8032H34.5738" stroke="white"
+                                        stroke-width="1.5" stroke-linecap="round" />
+                                </svg>
+                            </div>
+                            <div class="spoller-faq__desp">
+                                <p>
+                                    На старте комиссия отсутствует, вы можете разместить задание бесплатно и получать
+                                    отклики от частных мастеров без посредников.
+                                </p>
+                                <p>
+                                    Для исполнителей — это возможность найти работу исполнителем рядом, а для заказчиков
+                                    — заказать услугу мастера напрямую.
+                                    Мы предоставляем онлайн-сервис по поиску специалистов, где можно быстро </p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="faq__elem">
+                        <div class="faq__spoller spoller-faq">
+                            <div class="spoller-faq__title">
+                                <h3>
+                                    Как отменить заказ мастера или онлайн-услугу?
+                                </h3>
+                                <svg width="37" height="37" viewBox="0 0 37 37" fill="none"
+                                    xmlns="http://www.w3.org/2000/svg">
+                                    <path d="M18.8033 34.5737V3.03271M3.03284 18.8032H34.5738" stroke="white"
+                                        stroke-width="1.5" stroke-linecap="round" />
+                                </svg>
+                            </div>
+                            <div class="spoller-faq__desp">
+                                <p>
+                                    Вы можете отменить заказ услуги специалиста в любое время до начала выполнения без
+                                    штрафов.
+                                </p>
+                                <p>
+                                    Система гибко реагирует на изменения — если вы передумали или нашли другого
+                                    исполнителя на карте рядом, просто отмените задание.
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </section>
+        <section class="map">
+            <div class="_container">
+                <div class="global__item">
+                    <div class="global__btn global-btn btn-blue image-zoom _anim-items _active">
+                        <a href="map.php">
+                            <span>Открыть карту</span>
+                            <svg width="50" height="50" viewBox="0 0 50 50" fill="none"
+                                xmlns="http://www.w3.org/2000/svg">
+                                <g clip-path="url(#clip0_215_2999)">
+                                    <path
+                                        d="M45.139 33.9712C46.3445 31.2186 46.9788 28.2211 46.9788 25.1258C46.9788 21.9133 46.2951 18.8063 44.9991 15.969C48.4813 10.6962 51.7472 4.10437 48.7987 1.15597C47.3204 -0.322481 44.7953 -0.378224 41.2943 0.990308C39.215 1.80298 36.6868 3.1807 33.9463 4.99048C31.1462 3.7348 28.0872 3.07342 24.9264 3.07342C21.8367 3.07342 18.8444 3.70556 16.0959 4.90687C10.8027 1.43625 4.17834 -1.80651 1.18848 1.18492C-1.78828 4.16021 1.41047 10.7336 4.84363 15.9906C3.55402 18.822 2.87377 21.9214 2.87377 25.1257C2.87377 28.3067 3.54395 31.3843 4.81527 34.199C3.08481 36.8404 1.79725 39.226 0.986241 41.2979C-0.382192 44.7992 -0.326547 47.324 1.1519 48.8024C1.92018 49.5707 2.97176 49.9553 4.29501 49.9553C5.26415 49.9553 6.3792 49.749 7.63507 49.3358C9.91201 48.5869 12.6246 47.1868 15.7086 45.1705C18.5622 46.4846 21.6907 47.1782 24.9261 47.1782C28.136 47.1782 31.2405 46.4956 34.076 45.2016C37.8506 47.6603 42.3061 49.996 45.6103 49.996C46.8885 49.996 47.9946 49.6463 48.822 48.819C51.8042 45.8371 48.5865 39.2417 45.139 33.9712ZM44.045 25.1257C44.045 27.1866 43.7159 29.1719 43.1097 31.0333C41.6449 29.0151 40.0015 26.9447 38.2113 24.8601C39.9533 22.83 41.557 20.8155 42.9881 18.8568C43.672 20.8217 44.045 22.9308 44.045 25.1257ZM42.3623 3.72268C44.9383 2.71589 46.3219 2.82815 46.7242 3.23038C47.4553 3.96149 47.0648 7.14449 43.3863 13.0512C42.5624 11.7972 41.6053 10.6178 40.5198 9.53233C39.4007 8.41318 38.1816 7.43044 36.884 6.58971C38.9331 5.31203 40.8004 4.33311 42.3623 3.72268ZM41.5912 15.7648C40.0431 17.9845 38.2452 20.2971 36.2517 22.638C34.8753 21.1163 33.4278 19.5944 31.9203 18.087C27.629 13.7957 23.218 9.98336 19.0308 6.93844C20.8886 6.33476 22.8697 6.00705 24.9262 6.00705C32.0697 6.00705 38.3096 9.94571 41.5912 15.7648ZM28.007 31.9225C28.007 31.1136 28.665 30.4556 29.4739 30.4556C30.2827 30.4556 30.9408 31.1136 30.9408 31.9225C30.9408 32.7314 30.2827 33.3894 29.4739 33.3894C28.665 33.3894 28.007 32.7315 28.007 31.9225ZM31.4128 27.9732C30.8274 27.6846 30.1695 27.5218 29.4739 27.5218C27.0473 27.5218 25.0731 29.4959 25.0731 31.9225C25.0731 32.5752 25.2171 33.1945 25.4731 33.7521C22.0874 36.8337 18.6766 39.5791 15.5173 41.7636C9.72454 38.4748 5.80769 32.2495 5.80769 25.1257C5.80769 17.8584 9.88375 11.5257 15.8694 8.29221C20.3481 11.3913 25.1634 15.4789 29.8459 20.1614C31.4038 21.7193 32.8956 23.2917 34.307 24.8613C33.3754 25.8991 32.4092 26.9382 31.4128 27.9732ZM3.26299 3.25943C4.01297 2.50915 7.21827 2.86072 13.1198 6.49123C11.7653 7.35309 10.4955 8.36956 9.33278 9.53224C8.24462 10.6204 7.28545 11.803 6.46027 13.0605C2.86047 7.1931 2.51633 4.00579 3.26299 3.25943ZM3.22651 46.7279C2.82438 46.3258 2.71192 44.942 3.71851 42.3667C4.31154 40.8517 5.23452 39.0704 6.42457 37.1361C7.25778 38.414 8.22878 39.6152 9.33278 40.7192C10.4012 41.7876 11.5604 42.732 12.7922 43.547C7.044 47.0808 3.94236 47.4433 3.22651 46.7279ZM18.6068 43.1697C21.4812 41.0843 24.5114 38.5988 27.5145 35.8615C28.105 36.1564 28.7701 36.3233 29.4738 36.3233C31.9003 36.3233 33.8745 34.3492 33.8745 31.9226C33.8745 31.2616 33.7271 30.6347 33.465 30.0716C34.4222 29.0786 35.3526 28.0811 36.2531 27.0839C38.3131 29.5013 40.1641 31.8925 41.7535 34.1945C38.5182 40.1738 32.1888 44.2444 24.9263 44.2444C22.7126 44.2444 20.586 43.8649 18.6068 43.1697ZM46.7476 46.7446C46.0055 47.4867 42.837 47.1484 37.006 43.5824C38.258 42.7593 39.4358 41.8033 40.5198 40.7193C41.6784 39.5606 42.6916 38.2956 43.5516 36.9465C47.1488 42.8115 47.4941 45.9981 46.7476 46.7446Z"
+                                        fill="white"></path>
+                                </g>
+                                <defs>
+                                    <clipPath id="clip0_589_4870">
+                                        <rect width="50" height="50" fill="white"></rect>
+                                    </clipPath>
+                                </defs>
+                            </svg>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+    <footer class="site-footer">
+        <div class="footer-row1">
+            <div class="footer-row1__logo flexbox">
+                <svg xmlns="http://www.w3.org/2000/svg" width="47" height="50" viewBox="0 0 47 50" fill="none">
+                    <path
+                        d="M24.9502 49.3877L20.6816 40.2412L37.7539 0H46.29L24.9502 49.3877ZM20.6816 20.7305L16.4141 28.6572L3 0H11.5361L20.6816 20.7305Z"
+                        fill="url(#paint0_linear_649_8590)" />
+                    <path
+                        d="M21.9502 49.3877L17.6816 40.2412L34.7539 0H43.29L21.9502 49.3877ZM17.6816 20.7305L13.4141 28.6572L0 0H8.53613L17.6816 20.7305Z"
+                        fill="white" />
+                    <defs>
+                        <linearGradient id="paint0_linear_649_8590" x1="15.1197" y1="49.7511" x2="55.6592" y2="14.1472"
+                            gradientUnits="userSpaceOnUse">
+                            <stop stop-color="#00FFFF" />
+                            <stop offset="1" stop-color="#FF00FF" />
+                        </linearGradient>
+                    </defs>
+                </svg>
+                <p>
+                    Цифровая экосистема
+                    нового поколения
+                </p>
+            </div>
+            <div class="footer-row1__apps flexbox">
+                <a id="google-play" href="#heder" rel="nofollow" class="header__link js-open-modal google-play">
+                    <svg width="30" height="30" viewBox="0 0 30 30" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M23.6212 20.398L20.4866 17.6583L8.97925 27.7452L23.6212 20.398Z" fill="white"></path>
+                        <path d="M23.6212 12.9399L8.97925 5.59283L20.4866 15.6797L23.6212 12.9399Z" fill="white"></path>
+                        <path
+                            d="M28.2095 18.0542C29.148 17.4027 29.148 15.9347 28.1471 15.2833L25.0759 13.7297L21.6493 16.6697L25.0759 19.6097L28.2095 18.0542Z"
+                            fill="white"></path>
+                        <path
+                            d="M5.97225 28.3333L19.3532 16.6647L5.97225 5.00097C5.29521 5.3111 4.84131 5.875 4.84131 6.60903V26.7243C4.84131 27.4583 5.29521 28.0232 5.97225 28.3333Z"
+                            fill="white"></path>
+                    </svg>
+
+                    <span>Google Play</span>
+                </a>
+                <a href="#header" id="app-store" rel="nofollow" class="header__link">
+                    <svg width="30" height="30" viewBox="0 0 30 30" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path
+                            d="M10.4276 27.4888C6.25993 27.4666 2.8125 19.5893 2.8125 15.5775C2.8125 9.0243 8.12186 7.58965 10.168 7.58965C11.0902 7.58965 12.0748 7.92494 12.9433 8.22164C13.5506 8.42861 14.1787 8.64226 14.528 8.64226C14.7371 8.64226 15.2299 8.46051 15.6649 8.30105C16.5927 7.95907 17.7471 7.53404 19.0914 7.53404H19.0995C20.1034 7.53404 23.1471 7.73803 24.9769 10.2824L25.4055 10.8788L24.7886 11.3098C23.9074 11.9255 22.2994 13.0487 22.2994 15.2734C22.2994 17.9082 24.1204 18.9215 24.9953 19.4089C25.3815 19.6241 25.7812 19.8459 25.7812 20.331C25.7812 20.6478 23.0509 27.4495 19.0858 27.4495C18.1157 27.4495 17.4298 27.1795 16.8249 26.9414C16.2129 26.7002 15.6849 26.4926 14.8124 26.4926C14.3701 26.4926 13.8109 26.6862 13.2188 26.8916C12.4098 27.1714 11.494 27.4888 10.4549 27.4888H10.4276Z"
+                            fill="white"></path>
+                        <path
+                            d="M18.7082 0.882355C18.8123 4.9083 16.1309 7.7013 13.4527 7.52614C13.0114 4.3133 16.1305 0.882355 18.7082 0.882355Z"
+                            fill="white"></path>
+                    </svg>
+                    <span>App Store</span>
+                </a>
+            </div>
+            <div class="footer-row1__social flexbox">
+                <div class="footer-row1__social__item tg-ikon">
+                    <a href="https://web.telegram.org/a/#-1002933627372">
+                        <img src="./image/svg/socialNetworks/SVG (3).svg" alt="">
+                    </a>
+                </div>
+                <div class="footer-row1__social__item vk-ikon">
+                    <img src="./image/svg/socialNetworks/SVG (2).svg" alt="">
+                </div>
+                <div class="footer-row1__social__item od-ikon">
+                    <img src="./image/svg/socialNetworks/SVG (1).svg" alt="">
+                </div>
+                <div class="footer-row1__social__item tik-ikon">
+                    <img src="./image/svg/socialNetworks/TikTok (1).svg" alt="">
+                </div>
+                <div class="footer-row1__social__item you-ikon">
+                    <img src="./image/svg/socialNetworks/SVG.svg" alt="">
+                </div>
+            </div>
+        </div>
+        <div class="footer-row2 flexbox">
+            <div class="footer-row2__item flexbox">
+                <a href="footer.html?section=КОМПАНИЯ">КОМПАНИЯ</a>
+                <a href="footer.html?section=О компании">О компании</a>
+                <a href="footer.html?section=Реклама на Vexs">Реклама на VEXS</a>
+                <a href="footer.html?section=Вакансии">Вакансии</a>
+                <a href="footer.html?section=Блог">Блог</a>
+            </div>
+            <div class="footer-row2__item flexbox">
+                <a href="footer.html?section=МИССИЯ">МИССИЯ</a>
+                <a href="footer.html?section=О миссии">О миссии</a>
+                <a href="footer.html?section=Кнопка HELP">Кнопка HELP</a>
+                <a href="footer.html?section=Благотворительность">Благотворительность</a>
+            </div>
+            <div class="footer-row2__item flexbox">
+                <a href="footer.html?section=ЗАКАЗЧИКАМ">ЗАКАЗЧИКАМ</a>
+                <a href="footer.html?section=Как найти мастера?">Как найти мастера?</a>
+                <a href="footer.html?section=Каталог услуг">Каталог услуг</a>
+                <a href="footer.html?section=Условия оплаты">Условия оплаты</a>
+            </div>
+            <div class="footer-row2__item flexbox">
+                <a href="footer.html?section=МАСТЕРАМ">МАСТЕРАМ</a>
+                <a href="footer.html?section=Как зарегистрироваться?">Как зарегистрироваться?</a>
+                <a href="footer.html?section=Вход для мастеров">Вход для мастеров</a>
+                <a href="footer.html?section=Система выплат мастерам">Система выплат мастерам</a>
+                <a href="footer.html?section=Реферальная программа">Реферальная программа</a>
+            </div>
+        </div>
+        <div class="footer-row3">
+            <p class="footer-row3__item1">© 2025 ООО "ВЕКС" Все права защищены <a href="">Карта сайта</a></p>
+            <p class="footer-row3__item2">На информационном ресурсе применяются рекомендательные технологии<a
+                    href="./policy/Политика конфиденциальности.pdf" download>Политика в отношении обработки персональных
+                    данных</a></p>
+            <p class="footer-row3__item3">Продолжая использовать наш сайт, ты даешь согласие на обработку файлов Cookies
+                и других пользовательских данных, в т.ч. с использованием системы Яндекс Метрика, в соответствии с <a
+                    download href="./policy/Политика конфиденциальности.pdf">Политикой конфиденциальности</a></p>
+        </div>
+    </footer>
+    <script src="./test.js"></script>
+    <script src="js/script.js"></script>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", () => {
+            const loaderWrapper = document.querySelector('.loader-wrapper');
+            const loader = document.querySelector('.loader');
+            const letters = document.querySelectorAll('.loader .letters span');
+            const video = document.querySelector('.video-bg video');
+            let contentLoaded = false;
+
+            // Минимальная анимация появления букв
+            letters.forEach((letter, i) => {
+                // Небольшая задержка появления букв
+                letter.style.animationDelay = `${i * 0.15}s`;
+                letter.style.opacity = '0';
+
+                // Плавное появление
+                setTimeout(() => {
+                    letter.style.transition = 'opacity 0.8s ease';
+                    letter.style.opacity = '1';
+                }, 500 + (i * 100));
+            });
+
+            // Обработка ошибок видео
+            video.addEventListener('error', (e) => {
+                console.error('Ошибка загрузки видео:', e);
+                document.querySelector('.video-bg').innerHTML = `
+            <div class="gradient-fallback" style="
+                position: absolute;
+                top: 0;
+                left: 0;
+                width: 100%;
+                height: 100%;
+                background: linear-gradient(135deg, #0f0c29, #302b63, #24243e);
+                z-index: 0;
+            "></div>
+        `;
+                finishLoading(); // Вызываем если видео не загрузилось
+            });
+
+            // Когда видео начинает воспроизводиться
+            video.addEventListener('playing', () => {
+                video.style.opacity = '1';
+            });
+
+            // Если видео быстро загрузилось
+            video.addEventListener('canplaythrough', () => {
+                if (!contentLoaded) {
+                    setTimeout(finishLoading, 1000); // Даем видео немного воспроизвестись
+                }
+            });
+
+            // Оптимизация для мобильных устройств
+            const isMobile = /iPhone|iPad|iPod|Android/i.test(navigator.userAgent);
+            if (isMobile) {
+                video.setAttribute('playsinline', '');
+                video.setAttribute('webkit-playsinline', '');
+                video.setAttribute('muted', '');
+            }
+
+            // Функция завершения загрузки
+            function finishLoading() {
+                if (contentLoaded) return;
+                contentLoaded = true;
+
+                // Плавно убираем начальную анимацию букв
+                letters.forEach((letter, i) => {
+                    setTimeout(() => {
+                        letter.style.animation = 'none';
+                        letter.style.opacity = '1';
+                        letter.style.transform = 'none';
+                    }, i * 50);
+                });
+
+                // Убираем эффекты анимации
+                const logoEffects = document.querySelectorAll('.logo-effect');
+                logoEffects.forEach(effect => {
+                    effect.style.opacity = '0';
+                    setTimeout(() => {
+                        if (effect.parentNode) effect.parentNode.removeChild(effect);
+                    }, 1000);
+                });
+
+                // Переводим лоадер в статичное состояние
+                setTimeout(() => {
+                    loaderWrapper.style.transition = 'all 1s ease';
+                    loaderWrapper.style.backgroundColor = 'transparent';
+                    loaderWrapper.style.pointerEvents = 'none';
+
+                    // Делаем логотип полупрозрачным
+                    loader.style.opacity = '0.8';
+                    loader.style.transform = 'scale(0.9)';
+
+                    // Добавляем класс для стилей
+                    loaderWrapper.classList.add('loaded');
+
+                    // Легкое свечение логотипа
+                    const logoContainer = document.querySelector('.loader .letters');
+                    if (logoContainer) {
+                        logoContainer.style.textShadow = '0 0 8px rgba(255, 255, 255, 0.1)';
+                    }
+                }, 500);
+            }
+
+            // Запасной таймер на случай если видео не загрузится
+            setTimeout(() => {
+                loader.style.display = 'none'
+                loaderWrapper.style.display = 'none'
+                // letters.style.display = 'none'
+                if (!contentLoaded) {
+                    finishLoading();
+
+
+                }
+            }, 2500); // Увеличено до 4 секунд
+
+            // Предзагрузка видео для лучшей производительности
+            window.addEventListener('load', () => {
+                // Добавляем стили для плавных переходов
+                const style = document.createElement('style');
+                style.textContent = `
+            .video-bg video {
+                transition: opacity 1s ease !important;
+            }
+            .loader-wrapper {
+                transition: all 1s ease !important;
+            }
+            .loader-wrapper.loaded {
+                pointer-events: none;
+                background: transparent !important;
+            }
+            .loader-wrapper.loaded .loader {
+                opacity: 0.8;
+                transform: scale(0.9);
+            }
+            .loader .letters span {
+                transition: all 0.5s ease;
+            }
+        `;
+                document.head.appendChild(style);
+
+                // Проверяем, не загрузился ли контент уже
+                setTimeout(() => {
+                    if (!contentLoaded) {
+                        finishLoading();
+                    }
+                }, 3000);
+            });
+        });
+    </script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            const loginModal = document.getElementById('loginModal');
+            const registerModal = document.getElementById('registerModal');
+            const loginBtn = document.getElementById('loginBtn');
+            const registerBtn = document.getElementById('registerBtn');
+            const switchToRegister = document.getElementById('switchToRegister');
+            const switchToLogin = document.getElementById('switchToLogin');
+            const closeButtons = document.querySelectorAll('.close');
+        <? php if ($active_modal === 'login'): ?>
+                loginModal.style.display = 'block';
+        <? php elseif($active_modal === 'register'): ?>
+                registerModal.style.display = 'block';
+        <? php endif; ?>
+        if (loginBtn) {
+                loginBtn.onclick = function (e) {
+                    e.preventDefault();
+                    loginModal.style.display = 'block';
+                    registerModal.style.display = 'none';
+                }
+            }
+            if (registerBtn) {
+                registerBtn.onclick = function (e) {
+                    e.preventDefault();
+                    registerModal.style.display = 'block';
+                    loginModal.style.display = 'none';
+                }
+            }
+            if (switchToRegister) {
+                switchToRegister.onclick = function (e) {
+                    e.preventDefault();
+                    loginModal.style.display = 'none';
+                    registerModal.style.display = 'block';
+                }
+            }
+            if (switchToLogin) {
+                switchToLogin.onclick = function (e) {
+                    e.preventDefault();
+                    registerModal.style.display = 'none';
+                    loginModal.style.display = 'block';
+                }
+            }
+            closeButtons.forEach(button => {
+                button.onclick = function () {
+                    const modalId = this.getAttribute('data-modal');
+                    if (modalId) {
+                        document.getElementById(modalId).style.display = 'none';
+                    }
+                }
+            });
+            window.onclick = function (event) {
+                if (event.target == loginModal) {
+                    loginModal.style.display = 'none';
+                }
+                if (event.target == registerModal) {
+                    registerModal.style.display = 'none';
+                }
+            }
+        });
+    </script>
+</body>
+
+</html>

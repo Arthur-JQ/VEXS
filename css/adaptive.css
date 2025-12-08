@@ -1,0 +1,31 @@
+
+/* Adaptive rules */
+.global__favorits, .global__favorit, .global__text, .global__desp, .global__opicanie, .global__opicanie p {
+    margin-left:0 !important;
+    padding-left:0 !important;
+    text-align:left !important;
+}
+
+@media (max-width:1024px){
+ .global__cont{margin-top:20px!important;}
+}
+
+@media (max-width:768px){
+ .global__cont{margin-top:10px!important;}
+}
+
+@media (max-width:430px){
+ .global__cont{margin-top:8px!important;}
+}
+
+@media (max-width:390px){
+ .global__cont{margin-top:6px!important;}
+}
+
+@media (max-width:360px){
+ .global__cont{margin-top:4px!important;}
+}
+
+@media (max-width:320px){
+ .global__cont{margin-top:2px!important;}
+}

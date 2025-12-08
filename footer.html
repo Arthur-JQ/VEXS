@@ -1,0 +1,389 @@
+<!DOCTYPE html>
+<html lang="ru">
+
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="css/modal.css">
+    <link rel="stylesheet" href="css/header.css">
+    <link rel="stylesheet" href="css/styleindex.css">
+    <link rel="stylesheet" href="css/footer.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Дополнительная информация</title>
+        <script defer src="./test.js"></script>
+    <script defer src="js/script.js"></script>
+    <style>
+
+        .container {
+            max-width: 800px;
+            margin: 200px auto 200px auto;
+            background: rgba(10, 10, 10, 0.445);
+            padding: 30px;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        h1 {
+            color: #333;
+            border-bottom: 2px solid #4CAF50;
+            padding-bottom: 10px;
+        }
+
+        .content {
+            margin: 20px 0;
+            font-size: 16px;
+            color: #555;
+        }
+
+        .back-button {
+            display: inline-block;
+            background-color: #4CAF50;
+            color: white;
+            padding: 10px 20px;
+            text-decoration: none;
+            border-radius: 4px;
+            border: none;
+            cursor: pointer;
+            font-size: 16px;
+            margin-top: 20px;
+        }
+
+        .back-button:hover {
+            background-color: #45a049;
+        }
+    </style>
+</head>
+
+<body>
+    <header id="header" class="header">
+        <div class="header__container _container">
+            <div class="header__content">
+                <div class="header__column">
+                    <div class="header__item header__logo">
+                        <a href="index1.php">
+                            <img src="image/header/Group 9 (5).png" alt="" title="" width="126" height="36">
+                        </a>
+                        <p>
+                            Цифровая экосистема нового поколения
+                        </p>
+                    </div>
+                </div>
+                <div class="header__column">
+                    <div class="header__item">
+                        <div class="header__links">
+                            <!-- <div class="modal-google none">
+                                Скоро в вашем телефоне
+                                <img class="bell" src="./image/svg/bell.min.svg" alt="">
+                            </div> -->
+                            <!-- <img src="./image/svg/Simple.svg" class="modal-google none" alt=""> -->
+                            <a id="google-play" href='#heder' rel="nofollow"
+                                class="header__link js-open-modal google-play">
+                                <svg width="30" height="30" viewBox="0 0 30 30" fill="none"
+                                    xmlns="http://www.w3.org/2000/svg">
+                                    <path d="M23.6212 20.398L20.4866 17.6583L8.97925 27.7452L23.6212 20.398Z"
+                                        fill="white" />
+                                    <path d="M23.6212 12.9399L8.97925 5.59283L20.4866 15.6797L23.6212 12.9399Z"
+                                        fill="white" />
+                                    <path
+                                        d="M28.2095 18.0542C29.148 17.4027 29.148 15.9347 28.1471 15.2833L25.0759 13.7297L21.6493 16.6697L25.0759 19.6097L28.2095 18.0542Z"
+                                        fill="white" />
+                                    <path
+                                        d="M5.97225 28.3333L19.3532 16.6647L5.97225 5.00097C5.29521 5.3111 4.84131 5.875 4.84131 6.60903V26.7243C4.84131 27.4583 5.29521 28.0232 5.97225 28.3333Z"
+                                        fill="white" />
+                                </svg>
+                                </svg>
+                                <span>Google Play</span>
+                                <img src="./image/svg/info.svg" alt="">
+                            </a>
+                            <a href='#header' id="app-store" rel="nofollow" class="header__link">
+                                <svg width="30" height="30" viewBox="0 0 30 30" fill="none"
+                                    xmlns="http://www.w3.org/2000/svg">
+                                    <path
+                                        d="M10.4276 27.4888C6.25993 27.4666 2.8125 19.5893 2.8125 15.5775C2.8125 9.0243 8.12186 7.58965 10.168 7.58965C11.0902 7.58965 12.0748 7.92494 12.9433 8.22164C13.5506 8.42861 14.1787 8.64226 14.528 8.64226C14.7371 8.64226 15.2299 8.46051 15.6649 8.30105C16.5927 7.95907 17.7471 7.53404 19.0914 7.53404H19.0995C20.1034 7.53404 23.1471 7.73803 24.9769 10.2824L25.4055 10.8788L24.7886 11.3098C23.9074 11.9255 22.2994 13.0487 22.2994 15.2734C22.2994 17.9082 24.1204 18.9215 24.9953 19.4089C25.3815 19.6241 25.7812 19.8459 25.7812 20.331C25.7812 20.6478 23.0509 27.4495 19.0858 27.4495C18.1157 27.4495 17.4298 27.1795 16.8249 26.9414C16.2129 26.7002 15.6849 26.4926 14.8124 26.4926C14.3701 26.4926 13.8109 26.6862 13.2188 26.8916C12.4098 27.1714 11.494 27.4888 10.4549 27.4888H10.4276Z"
+                                        fill="white" />
+                                    <path
+                                        d="M18.7082 0.882355C18.8123 4.9083 16.1309 7.7013 13.4527 7.52614C13.0114 4.3133 16.1305 0.882355 18.7082 0.882355Z"
+                                        fill="white" />
+                                </svg>
+                                <span>App Store</span>
+                                <img src="./image/svg/info.svg" alt="">
+                            </a>
+                        </div>
+                        <div class="header__btn btn">
+                            <?php if ($user): ?>
+                            <div class="user-menu">
+                                <span class="user-name">
+                                    <?php echo htmlspecialchars($user['name']); ?>
+                                </span>
+                            </div>
+                            <?php else: ?>
+                            <a href="#" rel="nofollow" id="loginBtn">
+                                Вход в кабинет
+                            </a>
+                            <?php endif; ?>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+    <div class="container">
+        <main id="main-content">
+            <!-- Динамический контент будет здесь -->
+             
+        </main>
+        <button class="back-button" onclick="goBack()">Назад</button>
+    </div>
+
+    <script>
+        // Функция для получения параметра из URL
+        function getQueryParam(name) {
+            const urlParams = new URLSearchParams(window.location.search);
+            return urlParams.get(name);
+        }
+
+        // Функция для кнопки "Назад" с полной перезагрузкой
+        function goBack() {
+            // Получаем URL предыдущей страницы
+            const referrer = document.referrer;
+
+            if (referrer && !referrer.includes('footer.html')) {
+                // Используем replace чтобы предотвратить добавление в историю браузера
+                // и заставляем страницу загрузиться заново
+                window.location.replace(referrer + '?reload=' + new Date().getTime());
+            } else {
+                // Если нет referrer или это та же страница, переходим на главную
+                window.location.replace('index1.html?reload=' + new Date().getTime());
+            }
+        }
+
+        // Альтернативная версия с использованием location.href для принудительной перезагрузки
+        function goBackAlternative() {
+            if (history.length > 1) {
+                // Переходим назад и затем перезагружаем страницу
+                history.back();
+
+                // Принудительно перезагружаем страницу после короткой задержки
+                setTimeout(() => {
+                    window.location.reload(true); // true = полная перезагрузка (без кэша)
+                }, 100);
+            } else {
+                window.location.href = 'index.html1?reload=' + new Date().getTime();
+            }
+        }
+
+        // Функция для загрузки контента
+        function loadContent() {
+            const section = getQueryParam('section');
+            let title = '';
+            let content = '';
+
+            switch (section) {
+                case 'КОМПАНИЯ':
+                    title = 'Компания';
+                    content = 'Общая информация о нашей компании.';
+                    break;
+                case 'О компании':
+                    title = 'О компании';
+                    content = 'Подробная информация о нашей компании, истории и достижениях.';
+                    break;
+                case 'Реклама на Vexs':
+                    title = 'Реклама на Vexs';
+                    content = 'Возможности размещения рекламы на нашей платформе.';
+                    break;
+                case 'Вакансии':
+                    title = 'Вакансии';
+                    content = 'Актуальные вакансии и условия работы в нашей компании.';
+                    break;
+                case 'Блог':
+                    title = 'Блог';
+                    content = 'Полезные статьи и новости компании.';
+                    break;
+                case 'МИССИЯ':
+                    title = 'Миссия';
+                    content = 'Основная миссия нашей компании и ее цели.';
+                    break;
+                case 'О миссии':
+                    title = 'О миссии';
+                    content = 'Подробное описание нашей миссии и стратегических целей.';
+                    break;
+                case 'Кнопка HELP':
+                    title = 'Кнопка HELP';
+                    content = 'Информация о функции экстренной помощи.';
+                    break;
+                case 'Благотворительность':
+                    title = 'Благотворительность';
+                    content = 'Информация о благотворительных проектах компании.';
+                    break;
+                case 'ЗАКАЗЧИКАМ':
+                    title = 'Заказчикам';
+                    content = 'Информация для клиентов и заказчиков услуг.';
+                    break;
+                case 'Как найти мастера?':
+                    title = 'Как найти мастера?';
+                    content = 'Инструкция по поиску и выбору мастера на нашей платформе.';
+                    break;
+                case 'Каталог услуг':
+                    title = 'Каталог услуг';
+                    content = 'Полный перечень предоставляемых услуг.';
+                    break;
+                case 'Условия оплаты':
+                    title = 'Условия оплаты';
+                    content = 'Способы и условия оплаты услуг.';
+                    break;
+                case 'МАСТЕРАМ':
+                    title = 'Мастерам';
+                    content = 'Информация для специалистов, предоставляющих услуг.';
+                    break;
+                case 'Как зарегистрироваться?':
+                    title = 'Как зарегистрироваться?';
+                    content = 'Пошаговая инструкция по регистрации для мастеров.';
+                    break;
+                case 'Вход для мастеров':
+                    title = 'Вход для мастеров';
+                    content = 'Доступ в личный кабинет для зарегистрированных мастеров.';
+                    break;
+                case 'Система выплат мастерам':
+                    title = 'Система выплат мастерам';
+                    content = 'Информация о порядке и сроках выплат вознаграждений.';
+                    break;
+                case 'Реферальная программа':
+                    title = 'Реферальная программа';
+                    content = 'Условия участия в реферальной программе и бонусы.';
+                    break;
+                default:
+                    title = 'Страница не найдена';
+                    content = 'Запрашиваемая информация не найдена.';
+            }
+
+            // Обновляем заголовок страницы и контент
+            document.title = title + ' - Vexs';
+            document.getElementById('main-content').innerHTML = `
+                <h1>${title}</h1>
+                <div class="content">${content}</div>
+            `;
+        }
+
+        // Загружаем контент при загрузке страницы
+        document.addEventListener('DOMContentLoaded', loadContent);
+
+        // Добавляем обработчик для полной перезагрузки при нажатии на ссылку в самой странице
+        document.addEventListener('click', function (e) {
+            if (e.target.tagName === 'A' && e.target.href.includes('footer.html')) {
+                // При клике на ссылку в footer.html, перезагружаем страницу с новым параметром
+                e.preventDefault();
+                const url = new URL(e.target.href);
+                window.location.href = url.href + '&reload=' + new Date().getTime();
+            }
+        });
+    </script>
+    <footer class="site-footer">
+        <div class="footer-row1">
+            <div class="footer-row1__logo flexbox">
+                <svg xmlns="http://www.w3.org/2000/svg" width="47" height="50" viewBox="0 0 47 50" fill="none">
+                    <path
+                        d="M24.9502 49.3877L20.6816 40.2412L37.7539 0H46.29L24.9502 49.3877ZM20.6816 20.7305L16.4141 28.6572L3 0H11.5361L20.6816 20.7305Z"
+                        fill="url(#paint0_linear_649_8590)" />
+                    <path
+                        d="M21.9502 49.3877L17.6816 40.2412L34.7539 0H43.29L21.9502 49.3877ZM17.6816 20.7305L13.4141 28.6572L0 0H8.53613L17.6816 20.7305Z"
+                        fill="white" />
+                    <defs>
+                        <linearGradient id="paint0_linear_649_8590" x1="15.1197" y1="49.7511" x2="55.6592" y2="14.1472"
+                            gradientUnits="userSpaceOnUse">
+                            <stop stop-color="#00FFFF" />
+                            <stop offset="1" stop-color="#FF00FF" />
+                        </linearGradient>
+                    </defs>
+                </svg>
+                <p>
+                    Цифровая экосистема
+                    нового поколения
+                </p>
+            </div>
+            <div class="footer-row1__apps flexbox">
+                <a id="google-play" href="#heder" rel="nofollow" class="header__link js-open-modal google-play">
+                    <svg width="30" height="30" viewBox="0 0 30 30" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M23.6212 20.398L20.4866 17.6583L8.97925 27.7452L23.6212 20.398Z" fill="white"></path>
+                        <path d="M23.6212 12.9399L8.97925 5.59283L20.4866 15.6797L23.6212 12.9399Z" fill="white"></path>
+                        <path
+                            d="M28.2095 18.0542C29.148 17.4027 29.148 15.9347 28.1471 15.2833L25.0759 13.7297L21.6493 16.6697L25.0759 19.6097L28.2095 18.0542Z"
+                            fill="white"></path>
+                        <path
+                            d="M5.97225 28.3333L19.3532 16.6647L5.97225 5.00097C5.29521 5.3111 4.84131 5.875 4.84131 6.60903V26.7243C4.84131 27.4583 5.29521 28.0232 5.97225 28.3333Z"
+                            fill="white"></path>
+                    </svg>
+
+                    <span>Google Play</span>
+                </a>
+                <a href="#header" id="app-store" rel="nofollow" class="header__link">
+                    <svg width="30" height="30" viewBox="0 0 30 30" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path
+                            d="M10.4276 27.4888C6.25993 27.4666 2.8125 19.5893 2.8125 15.5775C2.8125 9.0243 8.12186 7.58965 10.168 7.58965C11.0902 7.58965 12.0748 7.92494 12.9433 8.22164C13.5506 8.42861 14.1787 8.64226 14.528 8.64226C14.7371 8.64226 15.2299 8.46051 15.6649 8.30105C16.5927 7.95907 17.7471 7.53404 19.0914 7.53404H19.0995C20.1034 7.53404 23.1471 7.73803 24.9769 10.2824L25.4055 10.8788L24.7886 11.3098C23.9074 11.9255 22.2994 13.0487 22.2994 15.2734C22.2994 17.9082 24.1204 18.9215 24.9953 19.4089C25.3815 19.6241 25.7812 19.8459 25.7812 20.331C25.7812 20.6478 23.0509 27.4495 19.0858 27.4495C18.1157 27.4495 17.4298 27.1795 16.8249 26.9414C16.2129 26.7002 15.6849 26.4926 14.8124 26.4926C14.3701 26.4926 13.8109 26.6862 13.2188 26.8916C12.4098 27.1714 11.494 27.4888 10.4549 27.4888H10.4276Z"
+                            fill="white"></path>
+                        <path
+                            d="M18.7082 0.882355C18.8123 4.9083 16.1309 7.7013 13.4527 7.52614C13.0114 4.3133 16.1305 0.882355 18.7082 0.882355Z"
+                            fill="white"></path>
+                    </svg>
+                    <span>App Store</span>
+                </a>
+            </div>
+            <div class="footer-row1__social flexbox">
+                <div class="footer-row1__social__item tg-ikon">
+                    <a href="https://web.telegram.org/a/#-1002933627372">
+                        <img src="./image/svg/socialNetworks/SVG (3).svg" alt="">
+                    </a>
+                </div>
+                <div class="footer-row1__social__item vk-ikon">
+                    <img src="./image/svg/socialNetworks/SVG (2).svg" alt="">
+                </div>
+                <div class="footer-row1__social__item od-ikon">
+                    <img src="./image/svg/socialNetworks/SVG (1).svg" alt="">
+                </div>
+                <div class="footer-row1__social__item tik-ikon">
+                    <img src="./image/svg/socialNetworks/TikTok (1).svg" alt="">
+                </div>
+                <div class="footer-row1__social__item you-ikon">
+                    <img src="./image/svg/socialNetworks/SVG.svg" alt="">
+                </div>
+            </div>
+        </div>
+        <div class="footer-row2 flexbox">
+            <div class="footer-row2__item flexbox">
+                <a href="footer.html?section=КОМПАНИЯ">КОМПАНИЯ</a>
+                <a href="footer.html?section=О компании">О компании</a>
+                <a href="footer.html?section=Реклама на Vexs">Реклама на Vexs</a>
+                <a href="footer.html?section=Вакансии">Вакансии</a>
+                <a href="footer.html?section=Блог">Блог</a>
+            </div>
+            <div class="footer-row2__item flexbox">
+                <a href="footer.html?section=МИССИЯ">МИССИЯ</a>
+                <a href="footer.html?section=О миссии">О миссии</a>
+                <a href="footer.html?section=Кнопка HELP">Кнопка HELP</a>
+                <a href="footer.html?section=Благотворительность">Благотворительность</a>
+            </div>
+            <div class="footer-row2__item flexbox">
+                <a href="footer.html?section=ЗАКАЗЧИКАМ">ЗАКАЗЧИКАМ</a>
+                <a href="footer.html?section=Как найти мастера?">Как найти мастера?</a>
+                <a href="footer.html?section=Каталог услуг">Каталог услуг</a>
+                <a href="footer.html?section=Условия оплаты">Условия оплаты</a>
+            </div>
+            <div class="footer-row2__item flexbox">
+                <a href="footer.html?section=МАСТЕРАМ">МАСТЕРАМ</a>
+                <a href="footer.html?section=Как зарегистрироваться?">Как зарегистрироваться?</a>
+                <a href="footer.html?section=Вход для мастеров">Вход для мастеров</a>
+                <a href="footer.html?section=Система выплат мастерам">Система выплат мастерам</a>
+                <a href="footer.html?section=Реферальная программа">Реферальная программа</a>
+            </div>
+        </div>
+        <div class="footer-row3">
+            <p class="footer-row3__item1">© 2025 ООО "ВЕКС" Все права защищены <a href="">Карта сайта</a></p>
+            <p class="footer-row3__item2">На информационном ресурсе применяются рекомендательные технологии<a
+                    href="./policy/Политика конфиденциальности.pdf" download>Политика в отношении обработки персональных
+                    данных</a></p>
+            <p class="footer-row3__item3">Продолжая использовать наш сайт, ты даешь согласие на обработку файлов Cookies
+                и других пользовательских данных, в т.ч. с использованием системы Яндекс Метрика, в соответствии с <a
+                    download href="./policy/Политика конфиденциальности.pdf">Политикой конфиденциальности</a></p>
+        </div>
+    </footer>
+</body>
+
+</html>

@@ -1,0 +1,1153 @@
+/* 1. Сначала сбрасываем всё */
+*,
+*::before,
+*::after {
+  margin: 0;
+  opacity: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html, body, #map {
+  height: 100%;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+}
+
+/* Кнопка меню с яркой, динамичной анимацией */
+.fab {
+  position: fixed;
+  left: 16px;
+  top: 16px;
+  z-index: 1000;
+  width: 60px;
+  height: 60px;
+  border: none;
+  border-radius: 50%;
+  background: radial-gradient(circle at center, #ffffff 40%, #d4f9ff 100%);
+  box-shadow: 0 0 20px rgba(0, 255, 255, 0.5), 0 0 40px rgba(0, 255, 255, 0.25) inset;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  animation: fabPulse 2s infinite ease-in-out, fabWiggle 3.5s infinite ease-in-out;
+  transition: transform 0.2s ease, box-shadow 0.3s ease;
+}
+
+.fab:hover {
+  transform: scale(1.15) rotate(5deg);
+  box-shadow: 0 0 40px rgba(0, 255, 255, 0.9), 0 0 60px rgba(0, 255, 255, 0.4) inset;
+}
+
+.fab-logo {
+  width: 70%;
+  height: 70%;
+  object-fit: contain;
+  filter: drop-shadow(0 0 10px rgba(0, 255, 255, 0.9));
+  animation: fabGlow 1.8s infinite alternate ease-in-out;
+}
+
+@keyframes fabPulse {
+  0% { box-shadow: 0 0 10px rgba(0, 255, 255, 0.4); }
+  50% { box-shadow: 0 0 35px rgba(0, 255, 255, 0.9); }
+  100% { box-shadow: 0 0 10px rgba(0, 255, 255, 0.4); }
+}
+
+@keyframes fabGlow {
+  0% { filter: drop-shadow(0 0 4px rgba(0,255,255,0.4)); }
+  50% { filter: drop-shadow(0 0 14px rgba(0,255,255,1)); }
+  100% { filter: drop-shadow(0 0 4px rgba(0,255,255,0.4)); }
+}
+
+@keyframes fabWiggle {
+  0%, 100% { transform: rotate(0deg); }
+  10% { transform: rotate(10deg); }
+  20% { transform: rotate(-10deg); }
+  30% { transform: rotate(6deg); }
+  40% { transform: rotate(-6deg); }
+  50% { transform: rotate(3deg); }
+  60% { transform: rotate(-3deg); }
+  70% { transform: rotate(1deg); }
+  80%, 90% { transform: rotate(0deg); }
+}
+
+.drawer {
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: min(380px, 92vw);
+  background: #fff;
+  transform: translateX(-100%);
+  transition: transform 0.5s cubic-bezier(0.25, 0.8, 0.25, 1);
+  z-index: 1100;
+  display: flex;
+  flex-direction: column;
+  box-shadow: 20px 0 40px rgba(0,0,0,.18);
+  overflow: hidden;
+  will-change: transform;
+}
+
+.drawer.open {
+  transform: translateX(0);
+}
+
+.drawer-header {
+  display: flex;
+  align-items: center;
+  padding: 14px 16px;
+  border-bottom: 1px solid rgba(0,0,0,.08);
+  background: #fff;
+  position: relative;
+}
+
+.drawer-title {
+  font-weight: 700;
+  font-size: 18px;
+  color: #333;
+  margin-left: 10px;
+}
+
+.drawer-close {
+  margin-left: auto;
+  width: 36px;
+  height: 36px;
+  border: none;
+  border-radius: 8px;
+  background: transparent;
+  cursor: pointer;
+  font-size: 24px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #666;
+  transition: background 0.2s;
+}
+
+.drawer-close:hover {
+  background: rgba(0,0,0,.05);
+}
+
+.drawer-body {
+  flex: 1;
+  overflow-y: auto;
+  padding: 0;
+}
+
+.auth-btn {
+  flex: 1;
+  padding: 10px;
+  border-radius: 12px;
+  font-weight: 700;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  border: 2px solid transparent;
+  font-family: 'Inter', sans-serif;
+}
+
+/* Вход - бирюзовая */
+.auth-login {
+  background: #0ea5a4;
+  color: #fff;
+  border-color: #0ea5a4;
+}
+
+.auth-login:hover {
+  background: #fff;
+  color: #0ea5a4;
+  transform: translateY(-2px);
+  box-shadow: 0 6px 12px rgba(14,165,164,0.3);
+}
+
+/* Регистрация - белая */
+.auth-register {
+  background: #fff;
+  color: #0ea5a4;
+  border-color: #0ea5a4;
+}
+
+.auth-register:hover {
+  background: #0ea5a4;
+  color: #fff;
+  transform: translateY(-2px);
+  box-shadow: 0 6px 12px rgba(14,165,164,0.3);
+}
+
+/* Отдельный стиль только для модалок авторизации */
+.auth-modal {
+  width: 400px;
+  max-width: 90%;
+  padding: 20px 24px;
+  border-radius: 14px;
+  background: #f9fafb;
+  box-shadow: 0 12px 32px rgba(0,0,0,0.25);
+  z-index: 1250;
+  opacity: 0;
+  transform: translate(-50%, -50%) scale(0.95);
+  transition: opacity 0.25s ease, transform 0.25s cubic-bezier(.2,.8,.2,1);
+}
+
+.auth-modal.show {
+  opacity: 1;
+  transform: translate(-50%, -50%) scale(1);
+}
+
+.auth-modal h2 {
+  color: #0ea5a4;
+  font-size: 20px;
+  margin-bottom: 16px;
+}
+
+.auth-modal input {
+  width: 100%;
+  padding: 10px 12px;
+  margin-bottom: 12px;
+  border: 1px solid #cbd5e1;
+  border-radius: 8px;
+  font-size: 14px;
+}
+
+.auth-modal button {
+  width: 100%;
+  padding: 10px;
+  background: #0ea5a4;
+  color: #fff;
+  font-weight: 700;
+  border: none;
+  border-radius: 10px;
+  cursor: pointer;
+  transition: background 0.2s, transform 0.2s;
+}
+
+.auth-modal button:hover {
+  background: #14b8a6;
+  transform: translateY(-2px);
+}
+
+/* Крестик закрытия */
+.auth-modal .close {
+  position: absolute;
+  top: 12px;
+  right: 12px;
+  font-size: 22px;
+  color: #475569;
+  cursor: pointer;
+}
+
+/* Кнопка Выйти */
+.logout-btn {
+  display: inline-block;
+  padding: 8px 14px;
+  font-size: 14px;
+  font-weight: 700;
+  border-radius: 10px;
+  background-color: #0ea5a4;
+  color: #fff;
+  text-decoration: none;
+  border: none;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  text-align: center;
+}
+
+.logout-btn:hover {
+  background: #fff;
+  color: #0ea5a4;
+  transform: translateY(-2px);
+  box-shadow: 0 6px 12px rgba(14,165,164,0.3);
+}
+
+/* Контейнер модалки */
+.register-modal {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%) scale(0.95);
+  width: 400px;
+  max-width: 90%;
+  padding: 0;
+  z-index: 1250;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.25s ease, transform 0.25s cubic-bezier(.2,.8,.2,1);
+}
+
+/* Появление */
+.register-modal.show {
+  opacity: 1;
+  pointer-events: auto;
+  transform: translate(-50%, -50%) scale(1);
+}
+
+/* Заголовок */
+.register-modal .modal-content h2 {
+  color: #0ea5a4;
+  font-size: 20px;
+  margin-bottom: 16px;
+}
+
+/* Инпуты */
+.register-modal .modal-content input {
+  width: 100%;
+  padding: 10px 12px;
+  margin-bottom: 12px;
+  border: 1px solid #cbd5e1;
+  border-radius: 8px;
+  font-size: 14px;
+}
+
+/* Кнопка */
+.register-modal .modal-content button {
+  width: 100%;
+  padding: 10px;
+  background: #0ea5a4;
+  color: #fff;
+  font-weight: 700;
+  border: none;
+  border-radius: 10px;
+  cursor: pointer;
+  transition: background 0.2s, transform 0.2s;
+}
+
+.register-modal .modal-content button:hover {
+  background: #14b8a6;
+  transform: translateY(-2px);
+}
+
+/* Крестик */
+.register-modal .modal-content .close {
+  position: absolute;
+  top: 12px;
+  right: 12px;
+  font-size: 22px;
+  color: #475569;
+  cursor: pointer;
+}
+
+/* Адаптация под мобильные */
+@media (max-width: 768px) {
+  .logout-btn {
+    padding: 6px 10px;
+    font-size: 13px;
+    border-radius: 8px;
+  }
+}
+
+/* Поиск */
+.search-container {
+  padding: 16px;
+  border-bottom: 1px solid rgba(0,0,0,.08);
+}
+
+.search-box {
+  display: flex;
+  align-items: center;
+  background: #f5f5f5;
+  border-radius: 12px;
+  padding: 10px 14px;
+  transition: all 0.2s;
+}
+
+.search-box:focus-within {
+  box-shadow: 0 2px 10px rgba(0,0,0,.12);
+}
+
+.search-icon {
+  margin-right: 10px;
+  color: #666;
+}
+
+.search-input {
+  flex: 1;
+  border: none;
+  background: transparent;
+  outline: none;
+  font-size: 16px;
+}
+
+/* Сетка категорий */
+.categories-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(80px, 1fr));
+  gap: 12px;
+  padding: 16px;
+}
+
+.category-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 12px 8px;
+  border-radius: 12px;
+  background: #fff;
+  border: 1px solid rgba(0,0,0,.06);
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.category-item:hover {
+  background: #f9f9f9;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(0,0,0,.08);
+}
+
+.category-icon {
+  width: 32px;
+  height: 32px;
+  margin-bottom: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 18px;
+}
+
+.category-name {
+  font-size: 12px;
+  text-align: center;
+  color: #333;
+  font-weight: 500;
+}
+
+/* Разделитель */
+.divider {
+  height: 1px;
+  background: rgba(0,0,0,.08);
+  margin: 8px 16px;
+}
+
+/* Реклама */
+.ad-container {
+  margin: 16px;
+  padding: 16px;
+  background: #f0f7ff;
+  border-radius: 12px;
+  border: 1px solid rgba(0,0,0,.06);
+  font-family: 'Lora', serif;
+}
+
+.ad-title {
+  font-size: 16px;
+  font-weight: 700;
+  margin-bottom: 8px;
+  color: #333;
+}
+
+.ad-description {
+  font-size: 14px;
+  color: #666;
+  margin-bottom: 12px;
+  line-height: 1.4;
+}
+
+.ad-disclaimer {
+  font-size: 12px;
+  color: #999;
+  font-style: italic;
+}
+
+/* Затемнение фона */
+.backdrop {
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,.4);
+  backdrop-filter: blur(2px);
+  z-index: 1090;
+  display: none;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.backdrop.show {
+  display: block;
+  opacity: 1;
+}
+
+/* Встроенное всплывающее окно (модал) */
+.modal {
+  position: fixed;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%) scale(0.95);
+  background: #fff;
+  border-radius: 12px;
+  padding: 18px 20px;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+  z-index: 1200;
+  width: 420px;
+  max-width: calc(100% - 32px);
+  display: none;
+  opacity: 0;
+  transition: opacity 0.22s ease, transform 0.22s cubic-bezier(.2,.8,.2,1);
+}
+
+.modal.show {
+  display: block;
+  opacity: 1;
+  transform: translate(-50%, -50%) scale(1);
+}
+
+.modal h3 {
+  font-size: 18px;
+  margin-bottom: 8px;
+  color: #111827;
+}
+
+.modal p {
+  color: #475569;
+  font-size: 14px;
+  line-height: 1.35;
+}
+
+.modal .modal-actions {
+  margin-top: 14px;
+  display: flex;
+  justify-content: flex-end;
+  gap: 8px;
+}
+
+.btn {
+  appearance: none;
+  border: 0;
+  padding: 8px 12px;
+  border-radius: 8px;
+  cursor: pointer;
+  font-weight: 700;
+}
+
+.btn-close {
+  background: #e5e7eb;
+  color: #0f172a;
+}
+
+.btn-ok {
+  background: #0ea5a4;
+  color: #fff;
+}
+
+.sos-btn {
+  position: fixed;
+  top: 16px;
+  right: 16px;
+  z-index: 1050;
+  width: 56px;
+  height: 56px;
+  background: #e02424;
+  color: #fff;
+  font-weight: 800;
+  font-size: 16px;
+  border: none;
+  border-radius: 50%;
+  box-shadow: 0 8px 20px rgba(224,36,36,0.5);
+  cursor: pointer;
+  overflow: visible;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.sos-ring {
+  position: absolute;
+  top: 0;
+  left: 0;
+  transform: rotate(-90deg);
+  pointer-events: none;
+}
+
+.sos-ring circle {
+  transition: stroke-dashoffset 0.05s linear;
+}
+
+/* Мобильная адаптация для модального */
+@media (max-width: 480px) {
+  .modal {
+    width: calc(100% - 28px);
+    padding: 16px;
+    border-radius: 10px;
+  }
+  
+  .modal h3 {
+    font-size: 16px;
+  }
+  
+  .modal p {
+    font-size: 13px;
+  }
+}
+
+/* Мобильный интерфейс */
+.m-zoomstack, .m-chips, .m-search, .m-tabbar {
+  display: none;
+}
+
+@media (max-width: 768px) {
+  .fab {
+    width: 44px;
+    height: 44px;
+    font-size: 20px;
+    top: 12px;
+    left: 12px;
+  }
+  
+  .m-zoomstack {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    position: fixed;
+    right: 12px;
+    top: 50%;
+    transform: translateY(-50%);
+    z-index: 1000;
+  }
+  
+  .m-zoomstack button {
+    width: 44px;
+    height: 44px;
+    border-radius: 12px;
+    border: 1px solid rgba(0,0,0,.12);
+    background: #fff;
+    box-shadow: 0 6px 18px rgba(0,0,0,.15);
+    font-size: 22px;
+    font-weight: 700;
+  }
+  
+  .m-chips {
+    display: flex;
+    gap: 10px;
+    justify-content: space-between;
+    position: fixed;
+    left: 12px;
+    right: 12px;
+    bottom: 120px;
+    z-index: 1000;
+  }
+  
+  .m-chips button {
+    flex: 1;
+    padding: 10px 12px;
+    border-radius: 12px;
+    border: 1px solid rgba(0,0,0,.12);
+    background: #fff;
+    box-shadow: 0 6px 18px rgba(0,0,0,.12);
+    font-weight: 700;
+  }
+  
+  .m-search {
+    display: flex;
+    gap: 10px;
+    background: #fff;
+    border-radius: 12px;
+    padding: 2px 4px;
+    border: 1px solid rgba(0,0,0,.12);
+    box-shadow: 0 8px 22px rgba(0,0,0,.15);
+    position: fixed;
+    left: 12px;
+    right: 12px;
+    bottom: 65px;
+    z-index: 1000;
+  }
+  
+  .m-search input {
+    flex: 1;
+    border: 0;
+    outline: 0;
+    font-size: 14px;
+    line-height: 1;
+  }
+  
+  /* Мобильная кнопка поиска */
+  .m-search button {
+    width: 44px;
+    height: 44px;
+    border-radius: 10px;
+    border: 1px solid rgba(0,0,0,.1);
+    background: #fff;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 0;
+  }
+  
+  .m-search button img {
+    max-width: 100%;
+    max-height: 100%;
+    object-fit: contain;
+  }
+  
+  .m-tabbar {
+    display: flex;
+    gap: 8px;
+    justify-content: space-evenly;
+    padding: 8px 10px;
+    position: fixed;
+    left: 0;
+    right: 0;
+    bottom: 16px;
+    z-index: 1000;
+  }
+  
+  .m-tabbar button {
+    flex: 1;
+    border: 0;
+    background: #fff;
+    border-radius: 12px;
+    padding: 10px 6px;
+    box-shadow: 0 6px 18px rgba(0,0,0,.12);
+    font-size: 12px;
+    font-weight: 700;
+    border: 1px solid rgba(0,0,0,.08);
+    color: #0f172a;
+    opacity: .85;
+  }
+  
+  .m-tabbar .on {
+    background: #e9f6e9;
+    border-color: #bfe6c5;
+  }
+  
+  .leaflet-control-zoom {
+    display: none !important;
+  }
+  
+  .sos-btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: fixed;
+    top: 12px;
+    right: 12px;
+    z-index: 1050;
+    width: 56px;
+    height: 56px;
+    background: #e02424;
+    color: #fff;
+    font-weight: 800;
+    font-size: 16px;
+    border: none;
+    border-radius: 50%;
+    box-shadow: 0 8px 20px rgba(224, 36, 36, 0.5);
+    cursor: pointer;
+    transition: transform 0.2s, box-shadow 0.2s;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+    -webkit-touch-callout: none;
+  }
+  
+  .sos-btn:hover {
+    transform: scale(1.1);
+    box-shadow: 0 10px 25px rgba(224, 36, 36, 0.6);
+  }
+  
+  /* Кнопка "Назад" на мобильной (над поиском) */
+  .m-chips .back-btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 6px;
+    background-color: #007aff;
+    color: #fff;
+    font-weight: 700;
+    border-radius: 12px;
+    border: none;
+    box-shadow: 0 0 10px rgba(0, 122, 255, 0.5);
+    animation: backPulse 2s infinite ease-in-out;
+    transition: transform 0.2s;
+    font-size: 14px;
+    padding: 8px 12px;
+    text-decoration: none;
+  }
+  
+  /* Эффект дыхания/пульсации */
+  @keyframes backPulse {
+    0%, 100% {
+      transform: scale(1);
+      box-shadow: 0 0 10px rgba(0, 122, 255, 0.5);
+    }
+    50% {
+      transform: scale(1.08);
+      box-shadow: 0 0 20px rgba(0, 122, 255, 0.8);
+    }
+  }
+  
+  /* Легкое увеличение при нажатии */
+  .m-chips .back-btn:active {
+    transform: scale(1.1);
+  }
+}
+
+/* Убрать флаг Leaflet */
+.leaflet-control-attribution {
+  display: none !important;
+}
+
+/* Кнопки зума справа по центру, без рамок и скруглений (ПК-версия) */
+@media (min-width: 769px) {
+  .leaflet-top.leaflet-left {
+    top: 50% !important;
+    left: auto !important;
+    right: 20px !important;
+    transform: translateY(-50%);
+  }
+  
+  .leaflet-control-zoom {
+    box-shadow: none !important;
+    border: none !important;
+    background: transparent !important;
+  }
+  
+  .leaflet-control-zoom a {
+    display: block;
+    background: #fff !important;
+    color: #333 !important;
+    font-weight: bold;
+    width: 36px;
+    height: 36px;
+    line-height: 34px;
+    text-align: center;
+    border: 1px solid rgba(0, 0, 0, 0.2);
+    border-radius: 0 !important;
+    margin-bottom: 10px;
+    transition: transform 0.2s, background 0.2s;
+  }
+  
+  .leaflet-control-zoom a:hover {
+    transform: scale(1.1);
+    background: #f5f5f5 !important;
+  }
+  
+  .leaflet-control-zoom a:last-child {
+    margin-bottom: 0;
+  }
+}
+
+/* Кнопка "Назад" в мобильной панели */
+.m-tabbar .back-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  background-color: #007aff;
+  color: #fff;
+  font-weight: 700;
+  border-radius: 12px;
+  border: none;
+  box-shadow: 0 0 10px rgba(0, 122, 255, 0.5);
+  animation: backPulse 2s infinite ease-in-out;
+  transition: transform 0.2s;
+  font-size: 14px;
+  padding: 8px 12px;
+  text-decoration: none;
+}
+
+/* ПК-версия нижнего меню и поиска */
+@media (min-width: 769px) {
+  .pc-search, .pc-tabbar {
+    display: flex;
+    gap: 8px;
+    position: fixed;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 1000;
+  }
+  
+  .pc-search {
+    bottom: 80px;
+    width: 400px;
+    background: #fff;
+    padding: 6px 10px;
+    border-radius: 12px;
+    border: 1px solid rgba(0,0,0,.12);
+    box-shadow: 0 6px 18px rgba(0,0,0,.15);
+  }
+  
+  .pc-search button {
+    width: 44px;
+    height: 44px;
+    border-radius: 10px;
+    border: 1px solid rgba(0,0,0,.1);
+    background: #fff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+  }
+  
+  .pc-search input {
+    flex: 1;
+    border: 0;
+    outline: 0;
+    font-size: 14px;
+    padding: 6px 8px;
+    background: transparent;
+  }
+  
+  .pc-tabbar {
+    bottom: 16px;
+    justify-content: center;
+    background: #fff;
+    padding: 8px 12px;
+    border-radius: 16px;
+    box-shadow: 0 6px 20px rgba(0,0,0,.15);
+    gap: 12px;
+  }
+  
+  .pc-tabbar button {
+    flex: none;
+    min-width: 180px;
+    max-width: 200px;
+    padding: 10px 12px;
+    font-size: 13px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    border: none;
+    background: #f3f4f6;
+    border-radius: 12px;
+    cursor: pointer;
+    font-weight: 700;
+    transition: all 0.2s;
+  }
+  
+  .pc-tabbar button:hover {
+    background: #e0f2fe;
+    transform: translateY(-2px);
+  }
+  
+  .pc-tabbar .back-btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 6px;
+    background-color: #007aff;
+    color: #fff;
+    font-weight: 700;
+    border-radius: 12px;
+    border: none;
+    box-shadow: 0 0 10px rgba(0, 122, 255, 0.5);
+    font-size: 14px;
+    padding: 8px 20px;
+    text-decoration: none;
+    animation: backPulse 2s infinite ease-in-out;
+    transition: transform 0.2s, box-shadow 0.2s;
+    white-space: nowrap;
+    max-width: 100%;
+    box-sizing: border-box;
+  }
+  
+  /* При наведении лёгкое увеличение и усиление тени */
+  .pc-tabbar .back-btn:hover {
+    transform: scale(1.08);
+    box-shadow: 0 0 20px rgba(0, 122, 255, 0.8);
+  }
+  
+  /* При нажатии */
+  .pc-tabbar .back-btn:active {
+    transform: scale(1.1);
+  }
+}
+
+/* Специальная цветовая схема для роли "Исполнитель" */
+body.role-executor .fab {
+  background: radial-gradient(circle at center, #d8b4fe 40%, #c084fc 100%) !important;
+  box-shadow: 0 0 20px rgba(168, 85, 247, 0.5), 0 0 40px rgba(168, 85, 247, 0.25) inset !important;
+}
+
+body.role-executor .pc-tabbar {
+  background: #d8b4fe !important;
+  box-shadow: 0 6px 20px rgba(168, 85, 247, 0.3) !important;
+}
+
+body.role-executor .m-chips button,
+body.role-executor .m-tabbar button {
+  background: #d8b4fe !important;
+  border: 1px solid rgba(0, 0, 0, 0.1);
+  box-shadow: 0 6px 18px rgba(168, 85, 247, 0.25) !important;
+}
+
+@media (max-width: 768px) {
+  .pc-search,
+  .pc-tabbar {
+    display: none !important;
+  }
+}
+
+/* Поиск для неавторизованных пользователей */
+body:not(.role-executor):not(.logged-in) .m-search,
+body:not(.role-executor):not(.logged-in) .pc-search {
+  margin-top: 80px;
+}
+
+/* Можно подогнать для ПК и мобильных */
+@media (max-width: 768px) {
+  body:not(.role-executor):not(.logged-in) .m-search {
+    margin-top: 100px;
+  }
+}
+
+/* ФИКСИРОВАННЫЙ контейнер */
+.sos-wrapper {
+  position: relative;
+  width: 50px;
+  height: 50px;
+  overflow: visible;
+}
+
+/* Прежний твой стиль */
+.sos-pulse-icon {
+  position: relative;
+  width: 50px;
+  height: 50px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+/* АНИМАЦИЯ сердечка */
+.sos-pulse-icon img {
+  width: 40px;
+  height: 40px;
+  position: relative;
+  z-index: 2;
+  animation: pulse 1s infinite;
+}
+
+@keyframes pulse {
+  0% { transform: scale(1); }
+  25% { transform: scale(1.2); }
+  50% { transform: scale(1); }
+  75% { transform: scale(1.2); }
+  100% { transform: scale(1); }
+}
+
+/* АНИМАЦИЯ радиального круга */
+.sos-pulse-icon .pulse {
+  position: absolute;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background: rgba(255,0,0,0.3);
+  animation: ring 1.5s infinite;
+  z-index: 1;
+}
+
+@keyframes ring {
+  0% { transform: scale(1); opacity: 0.7; }
+  70% { transform: scale(2.5); opacity: 0; }
+  100% { transform: scale(2.5); opacity: 0; }
+}
+
+.premium-toggle {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  cursor: pointer;
+  user-select: none;
+  white-space: nowrap;
+}
+
+.premium-toggle input {
+  display: none;
+}
+
+.premium-toggle .slider {
+  position: relative;
+  width: 50px;
+  height: 26px;
+  background-color: #ccc;
+  border-radius: 13px;
+  transition: 0.3s;
+  flex-shrink: 0;
+}
+
+.premium-toggle .slider::before {
+  content: "";
+  position: absolute;
+  width: 22px;
+  height: 22px;
+  left: 2px;
+  top: 2px;
+  background-color: white;
+  border-radius: 50%;
+  transition: 0.3s;
+}
+
+.premium-toggle input:checked + .slider::before {
+  transform: translateX(24px);
+}
+
+.premium-toggle input:checked + .slider {
+  background-color: #4caf50;
+}
+
+.premium-toggle .label-text {
+  font-size: 14px;
+  font-weight: 500;
+  color: #333;
+  flex-shrink: 0;
+}
+
+.favorite-star {
+  cursor: pointer;
+  font-size: 28px;
+  transition: all 0.3s ease;
+  user-select: none;
+}
+
+.favorite-star:hover {
+  transform: scale(1.4) rotate(15deg);
+}
+
+.favorite-star.favorited {
+  color: gold !important;
+  text-shadow: 0 0 12px gold, 0 0 20px orange;
+  animation: shine 2s infinite;
+}
+
+@keyframes shine {
+  0%, 100% { filter: brightness(1); }
+  50% { filter: brightness(1.5); }
+}
+
+/* ВАЖНО: в самом конце добавь это - чтобы твои стили перебивали Leaflet! */
+.leaflet-container {
+  background: #000 !important;
+}
+
+.leaflet-control-zoom a {
+  background: #fff !important;
+  border: 1px solid rgba(0,0,0,0.2) !important;
+  border-radius: 0 !important;
+  box-shadow: none !important;
+}
+
+.leaflet-control-attribution {
+  display: none !important;
+}
+/* ============================================= */
+/*  ПОЛНОЕ И КОРРЕКТНОЕ СКРЫТИЕ МЕНЮ ДЛЯ НЕАВТОРИЗОВАННЫХ  */
+/* ============================================= */
+body:not(.logged-in) .pc-tabbar,
+body:not(.logged-in) .m-chips,
+body:not(.logged-in) .m-tabbar {
+    display: none !important;
+}
+
+/* Опционально: если у тебя где-то ещё есть элементы только для залогиненных */
+body:not(.logged-in) .premium-toggle,
+body:not(.logged-in) .logout-btn,
+body:not(.logged-in) .username {
+    display: none !important;
+}
+
+/* Красиво подвинем поиск вверх, когда нет нижнего меню */
+@media (max-width: 768px) {
+    body:not(.logged-in) .m-search {
+        bottom: 20px !important;     /* вместо 65px */
+    }
+}
+
+@media (min-width: 769px) {
+    body:not(.logged-in) .pc-search {
+        bottom: 30px !important;     /* вместо 80px */
+    }
+}

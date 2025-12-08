@@ -1,0 +1,122 @@
+.header {
+  padding: 40px 0;
+  position: fixed;
+  width: 100%;
+  top: 0;
+  left: 0;
+  z-index: 100;
+}
+@media (max-width: 1200px) {
+  .header {
+    padding: 20px 0;
+  }
+}
+.header__content {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+.header__item {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  gap: 50px;
+}
+.header__logo {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  gap: 16px;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+.header__logo p {
+  font-size: clamp(15px, 0.462962963vw + 13.3333333333px, 20px);
+  max-width: 266px;
+}
+@media (max-width: 991px) {
+  .header__logo p {
+    display: none;
+  }
+}
+.header__links {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  gap: 50px;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+@media (max-width: 1150px) {
+  .header__links {
+    display: none;
+  }
+}
+.header__link {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  gap: 12px;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  font-size: clamp(15px, 0.462962963vw + 13.3333333333px, 20px);
+  padding: 10px 16px;
+  border-radius: 999px;
+  position: relative;
+}
+
+.header__link svg,
+.header__link img {
+  width: 30px;
+  height: 30px;
+  -ms-flex-negative: 0;
+      flex-shrink: 0;
+}
+
+.header__link span {
+  display: inline-block;
+}
+
+.header__link::after {
+  content: "";
+  position: absolute;
+  left: 16px;
+  right: 16px;
+  bottom: 6px;
+  height: 2px;
+  background: currentColor;
+  border-radius: 999px;
+  -webkit-transform: scaleX(0);
+          transform: scaleX(0);
+  -webkit-transform-origin: left;
+          transform-origin: left;
+  -webkit-transition: -webkit-transform 0.25s ease;
+  transition: -webkit-transform 0.25s ease;
+  transition: transform 0.25s ease;
+  transition: transform 0.25s ease, -webkit-transform 0.25s ease;
+}
+
+.header__link:hover::after,
+.header__link:focus-visible::after {
+  -webkit-transform: scaleX(1);
+          transform: scaleX(1);
+}
+header.header {
+  -webkit-transition: all 0.2s ease 0s;
+  transition: all 0.2s ease 0s;
+  background-color: transparent;
+}
+
+header.header.active {
+  background-color: #000000;
+  padding: 10px 0;
+}
