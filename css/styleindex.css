@@ -2004,8 +2004,8 @@ h1 {
     text-align: center;
   }
 
-  .global__btn {
-    margin-top: -20px;
+  .global .global__btn {
+    margin-top: -302px !important;
   }
 }
 
@@ -2094,9 +2094,7 @@ h1 {
 
 
 @media (max-width: 768px) {
-  .global__btn {
-    margin-top: -100px !important;
-  }
+
 }
 
 /* Adjust text position above */

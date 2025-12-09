@@ -1413,6 +1413,10 @@ body.blur-all>.no-blur {
       border-radius: 10px;
    }
 
+   .missia__column {
+      display: none !important;
+   }
+
    .map .global__item .global__btn {
       top: 77px;
       left: -3px;
@@ -1513,11 +1517,10 @@ body.blur-all>.no-blur {
       padding: 0;
    }
 
-   .help-button {
-      padding-left: 0;
-   }
+
 
    .missia__desp p {
+      text-align: center;
       width: 390px;
    }
 
@@ -1548,9 +1551,14 @@ body.blur-all>.no-blur {
       padding-right: 0px;
    }
 
+
    .help-button .help-left p {
       width: 403px;
-      margin-left: 22px;
+      text-align: center;
+   }
+
+   .why__desp p {
+      text-align: center;
    }
 
    .missia__title h2 {
@@ -1572,7 +1580,12 @@ body.blur-all>.no-blur {
    }
 
    .help-button .help-left h2 {
+      /* margin-left: 47px; */
       text-align: center !important;
+   }
+
+   .help-button {
+      margin-right: 0;
    }
 
    .footer-row1 {
@@ -1847,6 +1860,10 @@ body.blur-all>.no-blur {
    }
 }
 
+.help-ridth__fon {
+   background-image: url('../image/jpg/Rectangle.jpg');
+   width: 100%;
+}
 
 @media (max-width: 400px) {
    .missia__desp p {
@@ -1855,6 +1872,7 @@ body.blur-all>.no-blur {
 
    .help-button .help-left p {
       width: 353px;
+      text-align: center;
    }
 
    .help-main-left {
@@ -1863,5 +1881,17 @@ body.blur-all>.no-blur {
 
    .global .global-btn a {
       margin-top: -20px;
+   }
+
+   .help-button .help-left p {
+      width: 322px;
+   }
+
+   .help-ridth {
+      display: none !important;
+   }
+
+   .map .global__item {
+      transform: translate(-53%, 121%);
    }
 }
