@@ -8,7 +8,9 @@
   box-sizing: border-box;
 }
 
-html, body, #map {
+html,
+body,
+#map {
   height: 100%;
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
 }
@@ -47,27 +49,72 @@ html, body, #map {
 }
 
 @keyframes fabPulse {
-  0% { box-shadow: 0 0 10px rgba(0, 255, 255, 0.4); }
-  50% { box-shadow: 0 0 35px rgba(0, 255, 255, 0.9); }
-  100% { box-shadow: 0 0 10px rgba(0, 255, 255, 0.4); }
+  0% {
+    box-shadow: 0 0 10px rgba(0, 255, 255, 0.4);
+  }
+
+  50% {
+    box-shadow: 0 0 35px rgba(0, 255, 255, 0.9);
+  }
+
+  100% {
+    box-shadow: 0 0 10px rgba(0, 255, 255, 0.4);
+  }
 }
 
 @keyframes fabGlow {
-  0% { filter: drop-shadow(0 0 4px rgba(0,255,255,0.4)); }
-  50% { filter: drop-shadow(0 0 14px rgba(0,255,255,1)); }
-  100% { filter: drop-shadow(0 0 4px rgba(0,255,255,0.4)); }
+  0% {
+    filter: drop-shadow(0 0 4px rgba(0, 255, 255, 0.4));
+  }
+
+  50% {
+    filter: drop-shadow(0 0 14px rgba(0, 255, 255, 1));
+  }
+
+  100% {
+    filter: drop-shadow(0 0 4px rgba(0, 255, 255, 0.4));
+  }
 }
 
 @keyframes fabWiggle {
-  0%, 100% { transform: rotate(0deg); }
-  10% { transform: rotate(10deg); }
-  20% { transform: rotate(-10deg); }
-  30% { transform: rotate(6deg); }
-  40% { transform: rotate(-6deg); }
-  50% { transform: rotate(3deg); }
-  60% { transform: rotate(-3deg); }
-  70% { transform: rotate(1deg); }
-  80%, 90% { transform: rotate(0deg); }
+
+  0%,
+  100% {
+    transform: rotate(0deg);
+  }
+
+  10% {
+    transform: rotate(10deg);
+  }
+
+  20% {
+    transform: rotate(-10deg);
+  }
+
+  30% {
+    transform: rotate(6deg);
+  }
+
+  40% {
+    transform: rotate(-6deg);
+  }
+
+  50% {
+    transform: rotate(3deg);
+  }
+
+  60% {
+    transform: rotate(-3deg);
+  }
+
+  70% {
+    transform: rotate(1deg);
+  }
+
+  80%,
+  90% {
+    transform: rotate(0deg);
+  }
 }
 
 .drawer {
@@ -82,7 +129,7 @@ html, body, #map {
   z-index: 1100;
   display: flex;
   flex-direction: column;
-  box-shadow: 20px 0 40px rgba(0,0,0,.18);
+  box-shadow: 20px 0 40px rgba(0, 0, 0, .18);
   overflow: hidden;
   will-change: transform;
 }
@@ -95,7 +142,7 @@ html, body, #map {
   display: flex;
   align-items: center;
   padding: 14px 16px;
-  border-bottom: 1px solid rgba(0,0,0,.08);
+  border-bottom: 1px solid rgba(0, 0, 0, .08);
   background: #fff;
   position: relative;
 }
@@ -124,7 +171,7 @@ html, body, #map {
 }
 
 .drawer-close:hover {
-  background: rgba(0,0,0,.05);
+  background: rgba(0, 0, 0, .05);
 }
 
 .drawer-body {
@@ -155,7 +202,7 @@ html, body, #map {
   background: #fff;
   color: #0ea5a4;
   transform: translateY(-2px);
-  box-shadow: 0 6px 12px rgba(14,165,164,0.3);
+  box-shadow: 0 6px 12px rgba(14, 165, 164, 0.3);
 }
 
 /* Регистрация - белая */
@@ -169,7 +216,7 @@ html, body, #map {
   background: #0ea5a4;
   color: #fff;
   transform: translateY(-2px);
-  box-shadow: 0 6px 12px rgba(14,165,164,0.3);
+  box-shadow: 0 6px 12px rgba(14, 165, 164, 0.3);
 }
 
 /* Отдельный стиль только для модалок авторизации */
@@ -179,11 +226,11 @@ html, body, #map {
   padding: 20px 24px;
   border-radius: 14px;
   background: #f9fafb;
-  box-shadow: 0 12px 32px rgba(0,0,0,0.25);
+  box-shadow: 0 12px 32px rgba(0, 0, 0, 0.25);
   z-index: 1250;
   opacity: 0;
   transform: translate(-50%, -50%) scale(0.95);
-  transition: opacity 0.25s ease, transform 0.25s cubic-bezier(.2,.8,.2,1);
+  transition: opacity 0.25s ease, transform 0.25s cubic-bezier(.2, .8, .2, 1);
 }
 
 .auth-modal.show {
@@ -253,7 +300,7 @@ html, body, #map {
   background: #fff;
   color: #0ea5a4;
   transform: translateY(-2px);
-  box-shadow: 0 6px 12px rgba(14,165,164,0.3);
+  box-shadow: 0 6px 12px rgba(14, 165, 164, 0.3);
 }
 
 /* Контейнер модалки */
@@ -268,7 +315,7 @@ html, body, #map {
   z-index: 1250;
   opacity: 0;
   pointer-events: none;
-  transition: opacity 0.25s ease, transform 0.25s cubic-bezier(.2,.8,.2,1);
+  transition: opacity 0.25s ease, transform 0.25s cubic-bezier(.2, .8, .2, 1);
 }
 
 /* Появление */
@@ -335,7 +382,7 @@ html, body, #map {
 /* Поиск */
 .search-container {
   padding: 16px;
-  border-bottom: 1px solid rgba(0,0,0,.08);
+  border-bottom: 1px solid rgba(0, 0, 0, .08);
 }
 
 .search-box {
@@ -348,7 +395,7 @@ html, body, #map {
 }
 
 .search-box:focus-within {
-  box-shadow: 0 2px 10px rgba(0,0,0,.12);
+  box-shadow: 0 2px 10px rgba(0, 0, 0, .12);
 }
 
 .search-icon {
@@ -379,7 +426,7 @@ html, body, #map {
   padding: 12px 8px;
   border-radius: 12px;
   background: #fff;
-  border: 1px solid rgba(0,0,0,.06);
+  border: 1px solid rgba(0, 0, 0, .06);
   cursor: pointer;
   transition: all 0.2s;
 }
@@ -387,7 +434,7 @@ html, body, #map {
 .category-item:hover {
   background: #f9f9f9;
   transform: translateY(-2px);
-  box-shadow: 0 4px 12px rgba(0,0,0,.08);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, .08);
 }
 
 .category-icon {
@@ -410,7 +457,7 @@ html, body, #map {
 /* Разделитель */
 .divider {
   height: 1px;
-  background: rgba(0,0,0,.08);
+  background: rgba(0, 0, 0, .08);
   margin: 8px 16px;
 }
 
@@ -420,7 +467,7 @@ html, body, #map {
   padding: 16px;
   background: #f0f7ff;
   border-radius: 12px;
-  border: 1px solid rgba(0,0,0,.06);
+  border: 1px solid rgba(0, 0, 0, .06);
   font-family: 'Lora', serif;
 }
 
@@ -448,7 +495,7 @@ html, body, #map {
 .backdrop {
   position: fixed;
   inset: 0;
-  background: rgba(0,0,0,.4);
+  background: rgba(0, 0, 0, .4);
   backdrop-filter: blur(2px);
   z-index: 1090;
   display: none;
@@ -470,13 +517,13 @@ html, body, #map {
   background: #fff;
   border-radius: 12px;
   padding: 18px 20px;
-  box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
   z-index: 1200;
   width: 420px;
   max-width: calc(100% - 32px);
   display: none;
   opacity: 0;
-  transition: opacity 0.22s ease, transform 0.22s cubic-bezier(.2,.8,.2,1);
+  transition: opacity 0.22s ease, transform 0.22s cubic-bezier(.2, .8, .2, 1);
 }
 
 .modal.show {
@@ -536,7 +583,7 @@ html, body, #map {
   font-size: 16px;
   border: none;
   border-radius: 50%;
-  box-shadow: 0 8px 20px rgba(224,36,36,0.5);
+  box-shadow: 0 8px 20px rgba(224, 36, 36, 0.5);
   cursor: pointer;
   overflow: visible;
   display: flex;
@@ -557,223 +604,16 @@ html, body, #map {
 }
 
 /* Мобильная адаптация для модального */
-@media (max-width: 480px) {
-  .modal {
-    width: calc(100% - 28px);
-    padding: 16px;
-    border-radius: 10px;
-  }
-  
-  .modal h3 {
-    font-size: 16px;
-  }
-  
-  .modal p {
-    font-size: 13px;
-  }
-}
+
 
 /* Мобильный интерфейс */
-.m-zoomstack, .m-chips, .m-search, .m-tabbar {
+.m-zoomstack,
+.m-chips,
+.m-search,
+.m-tabbar {
   display: none;
 }
 
-@media (max-width: 768px) {
-  .fab {
-    width: 44px;
-    height: 44px;
-    font-size: 20px;
-    top: 12px;
-    left: 12px;
-  }
-  
-  .m-zoomstack {
-    display: flex;
-    flex-direction: column;
-    gap: 8px;
-    position: fixed;
-    right: 12px;
-    top: 50%;
-    transform: translateY(-50%);
-    z-index: 1000;
-  }
-  
-  .m-zoomstack button {
-    width: 44px;
-    height: 44px;
-    border-radius: 12px;
-    border: 1px solid rgba(0,0,0,.12);
-    background: #fff;
-    box-shadow: 0 6px 18px rgba(0,0,0,.15);
-    font-size: 22px;
-    font-weight: 700;
-  }
-  
-  .m-chips {
-    display: flex;
-    gap: 10px;
-    justify-content: space-between;
-    position: fixed;
-    left: 12px;
-    right: 12px;
-    bottom: 120px;
-    z-index: 1000;
-  }
-  
-  .m-chips button {
-    flex: 1;
-    padding: 10px 12px;
-    border-radius: 12px;
-    border: 1px solid rgba(0,0,0,.12);
-    background: #fff;
-    box-shadow: 0 6px 18px rgba(0,0,0,.12);
-    font-weight: 700;
-  }
-  
-  .m-search {
-    display: flex;
-    gap: 10px;
-    background: #fff;
-    border-radius: 12px;
-    padding: 2px 4px;
-    border: 1px solid rgba(0,0,0,.12);
-    box-shadow: 0 8px 22px rgba(0,0,0,.15);
-    position: fixed;
-    left: 12px;
-    right: 12px;
-    bottom: 65px;
-    z-index: 1000;
-  }
-  
-  .m-search input {
-    flex: 1;
-    border: 0;
-    outline: 0;
-    font-size: 14px;
-    line-height: 1;
-  }
-  
-  /* Мобильная кнопка поиска */
-  .m-search button {
-    width: 44px;
-    height: 44px;
-    border-radius: 10px;
-    border: 1px solid rgba(0,0,0,.1);
-    background: #fff;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    padding: 0;
-  }
-  
-  .m-search button img {
-    max-width: 100%;
-    max-height: 100%;
-    object-fit: contain;
-  }
-  
-  .m-tabbar {
-    display: flex;
-    gap: 8px;
-    justify-content: space-evenly;
-    padding: 8px 10px;
-    position: fixed;
-    left: 0;
-    right: 0;
-    bottom: 16px;
-    z-index: 1000;
-  }
-  
-  .m-tabbar button {
-    flex: 1;
-    border: 0;
-    background: #fff;
-    border-radius: 12px;
-    padding: 10px 6px;
-    box-shadow: 0 6px 18px rgba(0,0,0,.12);
-    font-size: 12px;
-    font-weight: 700;
-    border: 1px solid rgba(0,0,0,.08);
-    color: #0f172a;
-    opacity: .85;
-  }
-  
-  .m-tabbar .on {
-    background: #e9f6e9;
-    border-color: #bfe6c5;
-  }
-  
-  .leaflet-control-zoom {
-    display: none !important;
-  }
-  
-  .sos-btn {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    position: fixed;
-    top: 12px;
-    right: 12px;
-    z-index: 1050;
-    width: 56px;
-    height: 56px;
-    background: #e02424;
-    color: #fff;
-    font-weight: 800;
-    font-size: 16px;
-    border: none;
-    border-radius: 50%;
-    box-shadow: 0 8px 20px rgba(224, 36, 36, 0.5);
-    cursor: pointer;
-    transition: transform 0.2s, box-shadow 0.2s;
-    -webkit-user-select: none;
-    -moz-user-select: none;
-    -ms-user-select: none;
-    user-select: none;
-    -webkit-touch-callout: none;
-  }
-  
-  .sos-btn:hover {
-    transform: scale(1.1);
-    box-shadow: 0 10px 25px rgba(224, 36, 36, 0.6);
-  }
-  
-  /* Кнопка "Назад" на мобильной (над поиском) */
-  .m-chips .back-btn {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 6px;
-    background-color: #007aff;
-    color: #fff;
-    font-weight: 700;
-    border-radius: 12px;
-    border: none;
-    box-shadow: 0 0 10px rgba(0, 122, 255, 0.5);
-    animation: backPulse 2s infinite ease-in-out;
-    transition: transform 0.2s;
-    font-size: 14px;
-    padding: 8px 12px;
-    text-decoration: none;
-  }
-  
-  /* Эффект дыхания/пульсации */
-  @keyframes backPulse {
-    0%, 100% {
-      transform: scale(1);
-      box-shadow: 0 0 10px rgba(0, 122, 255, 0.5);
-    }
-    50% {
-      transform: scale(1.08);
-      box-shadow: 0 0 20px rgba(0, 122, 255, 0.8);
-    }
-  }
-  
-  /* Легкое увеличение при нажатии */
-  .m-chips .back-btn:active {
-    transform: scale(1.1);
-  }
-}
 
 /* Убрать флаг Leaflet */
 .leaflet-control-attribution {
@@ -781,44 +621,7 @@ html, body, #map {
 }
 
 /* Кнопки зума справа по центру, без рамок и скруглений (ПК-версия) */
-@media (min-width: 769px) {
-  .leaflet-top.leaflet-left {
-    top: 50% !important;
-    left: auto !important;
-    right: 20px !important;
-    transform: translateY(-50%);
-  }
-  
-  .leaflet-control-zoom {
-    box-shadow: none !important;
-    border: none !important;
-    background: transparent !important;
-  }
-  
-  .leaflet-control-zoom a {
-    display: block;
-    background: #fff !important;
-    color: #333 !important;
-    font-weight: bold;
-    width: 36px;
-    height: 36px;
-    line-height: 34px;
-    text-align: center;
-    border: 1px solid rgba(0, 0, 0, 0.2);
-    border-radius: 0 !important;
-    margin-bottom: 10px;
-    transition: transform 0.2s, background 0.2s;
-  }
-  
-  .leaflet-control-zoom a:hover {
-    transform: scale(1.1);
-    background: #f5f5f5 !important;
-  }
-  
-  .leaflet-control-zoom a:last-child {
-    margin-bottom: 0;
-  }
-}
+
 
 /* Кнопка "Назад" в мобильной панели */
 .m-tabbar .back-btn {
@@ -841,7 +644,9 @@ html, body, #map {
 
 /* ПК-версия нижнего меню и поиска */
 @media (min-width: 769px) {
-  .pc-search, .pc-tabbar {
+
+  .pc-search,
+  .pc-tabbar {
     display: flex;
     gap: 8px;
     position: fixed;
@@ -849,29 +654,29 @@ html, body, #map {
     transform: translateX(-50%);
     z-index: 1000;
   }
-  
+
   .pc-search {
     bottom: 80px;
     width: 400px;
     background: #fff;
     padding: 6px 10px;
     border-radius: 12px;
-    border: 1px solid rgba(0,0,0,.12);
-    box-shadow: 0 6px 18px rgba(0,0,0,.15);
+    border: 1px solid rgba(0, 0, 0, .12);
+    box-shadow: 0 6px 18px rgba(0, 0, 0, .15);
   }
-  
+
   .pc-search button {
     width: 44px;
     height: 44px;
     border-radius: 10px;
-    border: 1px solid rgba(0,0,0,.1);
+    border: 1px solid rgba(0, 0, 0, .1);
     background: #fff;
     display: flex;
     align-items: center;
     justify-content: center;
     cursor: pointer;
   }
-  
+
   .pc-search input {
     flex: 1;
     border: 0;
@@ -880,17 +685,17 @@ html, body, #map {
     padding: 6px 8px;
     background: transparent;
   }
-  
+
   .pc-tabbar {
     bottom: 16px;
     justify-content: center;
     background: #fff;
     padding: 8px 12px;
     border-radius: 16px;
-    box-shadow: 0 6px 20px rgba(0,0,0,.15);
+    box-shadow: 0 6px 20px rgba(0, 0, 0, .15);
     gap: 12px;
   }
-  
+
   .pc-tabbar button {
     flex: none;
     min-width: 180px;
@@ -907,12 +712,12 @@ html, body, #map {
     font-weight: 700;
     transition: all 0.2s;
   }
-  
+
   .pc-tabbar button:hover {
     background: #e0f2fe;
     transform: translateY(-2px);
   }
-  
+
   .pc-tabbar .back-btn {
     display: flex;
     align-items: center;
@@ -933,13 +738,13 @@ html, body, #map {
     max-width: 100%;
     box-sizing: border-box;
   }
-  
+
   /* При наведении лёгкое увеличение и усиление тени */
   .pc-tabbar .back-btn:hover {
     transform: scale(1.08);
     box-shadow: 0 0 20px rgba(0, 122, 255, 0.8);
   }
-  
+
   /* При нажатии */
   .pc-tabbar .back-btn:active {
     transform: scale(1.1);
@@ -965,6 +770,7 @@ body.role-executor .m-tabbar button {
 }
 
 @media (max-width: 768px) {
+
   .pc-search,
   .pc-tabbar {
     display: none !important;
@@ -1012,11 +818,25 @@ body:not(.role-executor):not(.logged-in) .pc-search {
 }
 
 @keyframes pulse {
-  0% { transform: scale(1); }
-  25% { transform: scale(1.2); }
-  50% { transform: scale(1); }
-  75% { transform: scale(1.2); }
-  100% { transform: scale(1); }
+  0% {
+    transform: scale(1);
+  }
+
+  25% {
+    transform: scale(1.2);
+  }
+
+  50% {
+    transform: scale(1);
+  }
+
+  75% {
+    transform: scale(1.2);
+  }
+
+  100% {
+    transform: scale(1);
+  }
 }
 
 /* АНИМАЦИЯ радиального круга */
@@ -1025,15 +845,26 @@ body:not(.role-executor):not(.logged-in) .pc-search {
   width: 40px;
   height: 40px;
   border-radius: 50%;
-  background: rgba(255,0,0,0.3);
+  background: rgba(255, 0, 0, 0.3);
   animation: ring 1.5s infinite;
   z-index: 1;
 }
 
 @keyframes ring {
-  0% { transform: scale(1); opacity: 0.7; }
-  70% { transform: scale(2.5); opacity: 0; }
-  100% { transform: scale(2.5); opacity: 0; }
+  0% {
+    transform: scale(1);
+    opacity: 0.7;
+  }
+
+  70% {
+    transform: scale(2.5);
+    opacity: 0;
+  }
+
+  100% {
+    transform: scale(2.5);
+    opacity: 0;
+  }
 }
 
 .premium-toggle {
@@ -1071,11 +902,11 @@ body:not(.role-executor):not(.logged-in) .pc-search {
   transition: 0.3s;
 }
 
-.premium-toggle input:checked + .slider::before {
+.premium-toggle input:checked+.slider::before {
   transform: translateX(24px);
 }
 
-.premium-toggle input:checked + .slider {
+.premium-toggle input:checked+.slider {
   background-color: #4caf50;
 }
 
@@ -1104,8 +935,15 @@ body:not(.role-executor):not(.logged-in) .pc-search {
 }
 
 @keyframes shine {
-  0%, 100% { filter: brightness(1); }
-  50% { filter: brightness(1.5); }
+
+  0%,
+  100% {
+    filter: brightness(1);
+  }
+
+  50% {
+    filter: brightness(1.5);
+  }
 }
 
 /* ВАЖНО: в самом конце добавь это - чтобы твои стили перебивали Leaflet! */
@@ -1115,7 +953,7 @@ body:not(.role-executor):not(.logged-in) .pc-search {
 
 .leaflet-control-zoom a {
   background: #fff !important;
-  border: 1px solid rgba(0,0,0,0.2) !important;
+  border: 1px solid rgba(0, 0, 0, 0.2) !important;
   border-radius: 0 !important;
   box-shadow: none !important;
 }
@@ -1123,31 +961,34 @@ body:not(.role-executor):not(.logged-in) .pc-search {
 .leaflet-control-attribution {
   display: none !important;
 }
+
 /* ============================================= */
 /*  ПОЛНОЕ И КОРРЕКТНОЕ СКРЫТИЕ МЕНЮ ДЛЯ НЕАВТОРИЗОВАННЫХ  */
 /* ============================================= */
 body:not(.logged-in) .pc-tabbar,
 body:not(.logged-in) .m-chips,
 body:not(.logged-in) .m-tabbar {
-    display: none !important;
+  display: none !important;
 }
 
 /* Опционально: если у тебя где-то ещё есть элементы только для залогиненных */
 body:not(.logged-in) .premium-toggle,
 body:not(.logged-in) .logout-btn,
 body:not(.logged-in) .username {
-    display: none !important;
+  display: none !important;
 }
 
 /* Красиво подвинем поиск вверх, когда нет нижнего меню */
 @media (max-width: 768px) {
-    body:not(.logged-in) .m-search {
-        bottom: 20px !important;     /* вместо 65px */
-    }
+  body:not(.logged-in) .m-search {
+    bottom: 20px !important;
+    /* вместо 65px */
+  }
 }
 
 @media (min-width: 769px) {
-    body:not(.logged-in) .pc-search {
-        bottom: 30px !important;     /* вместо 80px */
-    }
+  body:not(.logged-in) .pc-search {
+    bottom: 30px !important;
+    /* вместо 80px */
+  }
 }

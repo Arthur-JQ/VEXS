@@ -1,87 +1,108 @@
 /* Адаптивный футер с аккордеоном */
 @media (max-width: 992px) {
-        .footer-row2 {
-            flex-wrap: wrap;
-            justify-content: space-between;
-            gap: 20px;
-        }
-        
-        .footer-row2__item {
-            min-width: calc(50% - 10px);
-            margin-bottom: 20px;
-        }
+    .footer-row2 {
+        flex-wrap: wrap;
+        justify-content: space-between;
+        gap: 20px;
     }
-    
-    @media (max-width: 768px) {
-        .footer-row2 {
-            flex-direction: column;
-            gap: 0;
-        }
-        
-        .footer-row2__item {
-            width: 100%;
-            min-width: 100%;
-            flex-direction: column;
-            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
-            position: relative;
-            padding: 15px 0;
-            cursor: pointer;
-        }
-        
-        .footer-row2__item:first-child {
-            border-top: 1px solid rgba(255, 255, 255, 0.1);
-        }
-        
-        /* Заголовок аккордеона */
-        .footer-row2__item > p {
-            font-weight: bold;
-            font-size: 16px;
-            color: white;
-            cursor: pointer;
-            padding-right: 30px;
-            position: relative;
-            margin-bottom: 0;
-            transition: all 0.3s ease;
-        }
-        
-        /* Стрелка аккордеона */
-        .footer-row2__item > p::after {
-            content: '▼';
-            position: absolute;
-            right: 0;
-            top: 50%;
-            transform: translateY(-50%);
-            transition: transform 0.3s ease;
-            font-size: 12px;
-            color: white;
-        }
-        
-        .footer-row2__item.active > p::after {
-            transform: translateY(-50%) rotate(180deg);
-        }
-        
-        /* Ссылки внутри аккордеона */
-        .footer-row2__item > a {
-            display: none;
-            padding: 10px 0;
-            opacity: 0;
-            transform: translateY(-10px);
-            transition: all 0.3s ease;
-        }
-        
-        .footer-row2__item.active > a {
-            display: block;
-            opacity: 1;
-            transform: translateY(0);
-        }
-        
-        /* Анимация для плавного раскрытия */
-        .footer-row2__item > a:nth-child(2) { transition-delay: 0.05s; }
-        .footer-row2__item > a:nth-child(3) { transition-delay: 0.1s; }
-        .footer-row2__item > a:nth-child(4) { transition-delay: 0.15s; }
-        .footer-row2__item > a:nth-child(5) { transition-delay: 0.2s; }
-        .footer-row2__item > a:nth-child(6) { transition-delay: 0.25s; }
+
+    .footer-row2__item {
+        min-width: calc(50% - 10px);
+        margin-bottom: 20px;
     }
-    
-    /* Дополнительная адаптивность для очень маленьких экранов */
-  
+}
+
+@media (max-width: 768px) {
+    .footer-row2 {
+        flex-direction: column;
+        gap: 0;
+    }
+
+
+
+    .global-btn a::before {
+        border-radius: 50%;
+        width: 150px;
+        height: 150px;
+    }
+
+    .footer-row2__item {
+        width: 100%;
+        min-width: 100%;
+        flex-direction: column;
+        border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        position: relative;
+        padding: 15px 0;
+        cursor: pointer;
+    }
+
+    .footer-row2__item:first-child {
+        border-top: 1px solid rgba(255, 255, 255, 0.1);
+    }
+
+    /* Заголовок аккордеона */
+    .footer-row2__item>p {
+        font-weight: bold;
+        font-size: 16px;
+        color: white;
+        cursor: pointer;
+        padding-right: 30px;
+        position: relative;
+        margin-bottom: 0;
+        transition: all 0.3s ease;
+    }
+
+    /* Стрелка аккордеона */
+    .footer-row2__item>p::after {
+        content: '▼';
+        position: absolute;
+        right: 0;
+        top: 50%;
+        transform: translateY(-50%);
+        transition: transform 0.3s ease;
+        font-size: 12px;
+        color: white;
+    }
+
+    .footer-row2__item.active>p::after {
+        transform: translateY(-50%) rotate(180deg);
+    }
+
+    /* Ссылки внутри аккордеона */
+    .footer-row2__item>a {
+        display: none;
+        padding: 10px 0;
+        opacity: 0;
+        transform: translateY(-10px);
+        transition: all 0.3s ease;
+    }
+
+    .footer-row2__item.active>a {
+        display: block;
+        opacity: 1;
+        transform: translateY(0);
+    }
+
+    /* Анимация для плавного раскрытия */
+    .footer-row2__item>a:nth-child(2) {
+        transition-delay: 0.05s;
+    }
+
+    .footer-row2__item>a:nth-child(3) {
+        transition-delay: 0.1s;
+    }
+
+    .footer-row2__item>a:nth-child(4) {
+        transition-delay: 0.15s;
+    }
+
+    .footer-row2__item>a:nth-child(5) {
+        transition-delay: 0.2s;
+    }
+
+    .footer-row2__item>a:nth-child(6) {
+        transition-delay: 0.25s;
+    }
+}
+
+/* Дополнительная адаптивность для очень маленьких экранов */
