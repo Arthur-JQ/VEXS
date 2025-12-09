@@ -1949,6 +1949,7 @@ body.blur-all>.no-blur {
 @media (max-width: 370px) {
    .missia__desp p {
       width: 320px;
+      margin-left: 6px;
       font-size: 12px;
       line-height: 1.4;
 
