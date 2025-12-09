@@ -1658,6 +1658,22 @@ body.blur-all>.no-blur {
    .help-ridth img {
       display: none;
    }
+
+   .help-button .help-left h2 {
+      font-size: 31px !important;
+      font-weight: 100;
+   }
+
+   .help-button .help-left p {
+      width: 320px;
+      font-size: 12px;
+      line-height: 1.4;
+   }
+
+   .video-container {
+      transform: translate(0%, -17%) scale(1) !important;
+   }
+
    .modal {
       width: calc(100% - 28px);
       padding: 16px;
@@ -1896,7 +1912,9 @@ body.blur-all>.no-blur {
       padding: 0 20px;
    }
 
-
+   .help-button .help-left h2 {
+      font-size: 29px !important;
+   }
 
    .help-button .help-left p {
       width: 322px;
@@ -1918,6 +1936,12 @@ body.blur-all>.no-blur {
 
    .map .global__item {
       transform: translate(10px, -40px);
+   }
+
+   .help-button .help-left p {
+      width: 320px;
+      font-size: 12px !important;
+      line-height: 1.4 !important;
    }
 
 }
@@ -1959,8 +1983,8 @@ body.blur-all>.no-blur {
    }
 
    .global .global-btn a {
-      height: 100px !important;
-      width: 100px !important;
+      height: 80px !important;
+      width: 80px !important;
    }
 }
 
