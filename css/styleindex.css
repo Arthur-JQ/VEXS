@@ -1865,7 +1865,16 @@ h1 {
 
 @media (max-width: 375px) {
   .global {
-    margin-top: 70px;
+    margin-top: 0px;
+  }
+
+  .global .global-btn a {
+    margin-top: 50px;
+  }
+
+  .help-main__left p {
+    width: 85%;
+    padding-left: 20px;
   }
 }
 
