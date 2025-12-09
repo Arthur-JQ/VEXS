@@ -672,9 +672,9 @@ h1 {
 
 @media (max-width: 768px) {
 
-  .global-btn a {
-    left: 232px;
-    top: -109px;
+ .global  .global-btn a {
+    left: 132px !important;
+    top: 201px !important;
   }
 
   .global-btn a::before {
@@ -2093,9 +2093,7 @@ h1 {
 }
 
 
-@media (max-width: 768px) {
-
-}
+@media (max-width: 768px) {}
 
 /* Adjust text position above */
 .global__opicanie {

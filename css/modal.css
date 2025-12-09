@@ -1351,7 +1351,8 @@ body.blur-all>.no-blur {
 
 @media (max-width: 600px) {
    .global__btn {
-      margin-top: -320px !important;
+      
+      margin-top: -100px !important;
    }
 
    .global-btn a {
@@ -1411,6 +1412,16 @@ body.blur-all>.no-blur {
       width: calc(100% - 28px);
       padding: 16px;
       border-radius: 10px;
+   }
+
+   .global .global-btn a {
+      margin-top: -30px;
+   }
+
+   .global-btn a::before {
+      border-radius: 50%;
+      width: 120px !important;
+      height: 120px !important;
    }
 
    .missia__column {
@@ -1510,8 +1521,6 @@ body.blur-all>.no-blur {
    .help-main {
       padding-left: 0px;
    }
-
-   .help-main__left p {}
 
    .help-main {
       padding: 0;
