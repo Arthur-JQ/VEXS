@@ -672,7 +672,7 @@ h1 {
 
 @media (max-width: 768px) {
 
- .global  .global-btn a {
+  .global .global-btn a {
     left: 132px !important;
     top: 201px !important;
   }
@@ -1868,9 +1868,16 @@ h1 {
     margin-top: 0px;
   }
 
-  .global .global-btn a {
-    margin-top: 50px;
+  .global .global-btn a span {
+    font-size: 18px !important;
   }
+
+
+  .global__desp {
+    display: none !important;
+  }
+
+
 
   .help-main__left p {
     width: 85%;

@@ -1351,7 +1351,7 @@ body.blur-all>.no-blur {
 
 @media (max-width: 600px) {
    .global__btn {
-      
+
       margin-top: -100px !important;
    }
 
@@ -1415,7 +1415,7 @@ body.blur-all>.no-blur {
    }
 
    .global .global-btn a {
-      margin-top: -30px;
+      margin-top: -250px;
    }
 
    .global-btn a::before {
@@ -1888,9 +1888,7 @@ body.blur-all>.no-blur {
       padding: 0 20px;
    }
 
-   .global .global-btn a {
-      margin-top: -20px;
-   }
+ 
 
    .help-button .help-left p {
       width: 322px;
