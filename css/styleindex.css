@@ -595,8 +595,8 @@ h1 {
   }
 
   .global-btn a::before {
-    width: 200px;
-    height: 200px;
+    width: 110px !important;
+    height: 110px !important;
   }
 }
 
@@ -1867,17 +1867,9 @@ h1 {
     margin-top: 0px;
   }
 
-  .global .global-btn a span {
-    font-size: 18px !important;
-  }
-
-
   .global__desp {
     display: none !important;
   }
-
-
-
   .help-main__left p {
     width: 85%;
   }
