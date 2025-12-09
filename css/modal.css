@@ -1829,4 +1829,12 @@ body.blur-all>.no-blur {
    .help-button .help-left p {
       width: 353px;
    }
+
+   .help-main-left {
+      padding: 0 20px;
+   }
+
+   .global .global-btn a {
+      margin-top: -20px;
+   }
 }
