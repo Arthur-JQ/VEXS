@@ -1415,8 +1415,19 @@ body.blur-all>.no-blur {
       white-space: nowrap;
    }
 
+
    .modal h3 {
       font-size: 16px;
+   }
+
+   .text-animate-blur h2 {
+      text-align: center;
+      padding-left: 0 !important;
+   }
+
+   .missia__container {
+      position: relative;
+      top: -42px;
    }
 
    .modal p {
@@ -1455,14 +1466,15 @@ body.blur-all>.no-blur {
 
    .help-main__left h2 {
       width: 73%;
-      font-size: 24px;
-      line-height: 19px;
+      font-size: 32px;
+      text-align: center;
+      line-height: 30px;
       padding-left: 0;
    }
 
    .tt {
       left: 200px;
-      top: -296px;
+      top: -346px;
    }
 
    .help-main__ridth #registerBtn {
@@ -1491,7 +1503,21 @@ body.blur-all>.no-blur {
    }
 
    .missia__desp p {
-      width: 440px;
+      width: 390px;
+   }
+
+   .help-main__ridth #registerBtn {
+      position: relative;
+      top: -405px !important;
+      left: 684px !important;
+   }
+
+   .help-main__left p {
+      width: 100%;
+   }
+
+   .help-main__left {
+      width: 450px;
    }
 
    .start__btn {
@@ -1501,18 +1527,30 @@ body.blur-all>.no-blur {
       top: 141px;
    }
 
-   .help-button .help-left p {
-      width: 453px;
+   .header__content {
+      padding-right: 0px;
    }
 
-   .help-left p,
-   h2 {
-      padding-left: 10px;
+   .help-button .help-left p {
+      width: 403px;
+      margin-left: 22px;
+   }
+
+   .missia__title h2 {
+      text-align: center !important;
+   }
+
+   .site-footer {
+      padding: 0 20px !important;
    }
 
    .global-btn a {
       margin-top: 3px;
       margin-left: -69px;
+   }
+
+   .help-button .help-left h2 {
+      text-align: center !important;
    }
 
    .footer-row1 {
@@ -1779,5 +1817,16 @@ body.blur-all>.no-blur {
 
    .leaflet-control-zoom a:last-child {
       margin-bottom: 0;
+   }
+}
+
+
+@media (max-width: 400px) {
+   .missia__desp p {
+      width: 350px;
+   }
+
+   .help-button .help-left p {
+      width: 353px;
    }
 }
