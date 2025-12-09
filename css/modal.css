@@ -1347,292 +1347,7 @@ body.blur-all>.no-blur {
       left: -100px !important;
       top: -179px !important;
    }
-}
 
-@media (max-width: 600px) {
-   .global__btn {
-
-      margin-top: -100px !important;
-   }
-
-   .global-btn a {
-      margin-top: -298px;
-   }
-
-   .global-btn a::before {
-      width: 150px;
-      height: 150px;
-   }
-
-   .help-main {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      flex-direction: column;
-   }
-
-   .map .global__item .global__btn {
-      top: 217px;
-      left: -73px;
-   }
-
-   .start__btn {
-      margin-top: 0;
-   }
-
-   .help-main__ridth #registerBtn {
-      position: relative;
-      top: -228px !important;
-      left: 118px !important;
-      margin: 0 !important;
-   }
-
-   .tt {
-      left: -100px;
-      top: -186px;
-   }
-
-   .missia {
-      margin-top: -350px;
-   }
-
-   /* .global__item .global__btn {
-      margin: auto;
-      margin-bottom: 1em;
-   } */
-   .global .global__btn {
-      margin-top: -300px !important;
-      margin-left: 47px !important;
-   }
-
-}
-
-@media (max-width: 480px) {
-   .modal {
-      width: calc(100% - 28px);
-      padding: 16px;
-      border-radius: 10px;
-   }
-
-   .global .global-btn a {
-      margin-top: -250px;
-   }
-
-   .global-btn a::before {
-      border-radius: 50%;
-      width: 120px !important;
-      height: 120px !important;
-   }
-
-   .missia__column {
-      display: none !important;
-   }
-
-   .map .global__item .global__btn {
-      top: 77px;
-      left: -3px;
-   }
-
-   .help-header div p {
-      line-height: 11.2px;
-      white-space: nowrap;
-   }
-
-
-   .modal h3 {
-      font-size: 16px;
-   }
-
-   .text-animate-blur h2 {
-      text-align: center;
-      padding-left: 0 !important;
-   }
-
-   .missia__container {
-      position: relative;
-      top: -42px;
-   }
-
-   .modal p {
-      font-size: 13px;
-   }
-
-   * {
-      padding: 0 10px;
-   }
-
-   .footer-row1 .footer-row1__social div {
-      margin-left: 10px;
-   }
-
-   .footer-row2__item:first-child {
-      border-top: 0 !important;
-   }
-
-   .global__desp {
-      margin-top: 5px !important;
-   }
-
-   .global__opicanie p {
-      margin-top: 50px !important;
-   }
-
-   .help-header {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-
-      padding: 0 10px !important;
-   }
-
-
-   .help-main__left h2 {
-      width: 73%;
-      font-size: 32px;
-      text-align: center;
-      line-height: 30px;
-      padding-left: 0;
-   }
-
-   .tt {
-      left: 200px;
-      top: -346px;
-   }
-
-   .help-main__left {
-      text-align: center;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      width: 440px;
-      margin-left: 0px;
-   }
-
-   .help-main__ridth #registerBtn {
-      top: 0;
-      left: 0;
-   }
-
-   .help-left {
-      margin-top: 370px !important;
-   }
-
-   .help-main {
-      padding-left: 0px;
-   }
-
-   .help-main {
-      padding: 0;
-   }
-
-
-
-   .missia__desp p {
-      text-align: center;
-      width: 390px;
-   }
-
-   .help-main__ridth #registerBtn {
-      position: relative;
-      width: 46%;
-      top: -405px !important;
-      left: 601px !important;
-   }
-
-   .help-main__ridth div a::before {
-      width: 378px;
-   }
-
-   .help-main__left p {
-      width: 100%;
-   }
-
-
-   .start__btn {
-      left: -393px;
-      margin: 0;
-      padding: 0;
-      top: 141px;
-   }
-
-   .header__content {
-      padding-right: 0px;
-   }
-
-
-   .help-button .help-left p {
-      width: 403px;
-      text-align: center;
-   }
-
-   .why__desp p {
-      text-align: center;
-   }
-
-   .missia__title h2 {
-      font-size: 38px;
-      text-align: center !important;
-   }
-
-   .help-left h2 {
-      font-size: 38px !important;
-   }
-
-   .site-footer {
-      padding: 0 20px !important;
-   }
-
-   .global-btn a {
-      margin-top: 3px;
-      margin-left: -69px;
-   }
-
-   .help-button .help-left h2 {
-      /* margin-left: 47px; */
-      text-align: center !important;
-   }
-
-   .help-button {
-      margin-right: 0;
-   }
-
-   .footer-row1 {
-      flex-direction: row;
-      gap: 20px;
-      align-items: center;
-      text-align: center;
-   }
-
-   .footer-row1__logo,
-   .footer-row1__apps,
-   .footer-row1__social {
-      width: 100%;
-      justify-content: center;
-   }
-
-   .footer-row3 {
-      padding: 15px;
-   }
-
-   .footer-row3 a {
-      font-size: 11px;
-      margin-left: 2px;
-   }
-
-   .footer-row3__item1,
-   .footer-row3__item2,
-   .footer-row3__item3 {
-      font-size: 12px;
-      line-height: 1.4;
-   }
-
-   .mt-50 {
-      margin-top: 80px !important;
-   }
-}
-
-@media (min-width: 769px) {
    .fab {
       width: 44px;
       height: 44px;
@@ -1869,9 +1584,299 @@ body.blur-all>.no-blur {
    }
 }
 
-.help-ridth__fon {
-   background-image: url('../image/jpg/Rectangle.jpg');
-   width: 100%;
+@media (max-width: 600px) {
+   .global__btn {
+
+      margin-top: -100px !important;
+   }
+
+   .global-btn a {
+      margin-top: -298px;
+   }
+
+   .missia__content {
+      padding-right: 0 !important;
+   }
+
+   .global-btn a::before {
+      width: 150px;
+      height: 150px;
+   }
+
+   .help-main {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-direction: column;
+   }
+
+   .map .global__item .global__btn {
+      top: 217px;
+      left: -36px;
+   }
+
+   .start__btn {
+      margin-top: 0;
+   }
+
+   .help-main__ridth #registerBtn {
+      position: relative;
+      top: -228px !important;
+      left: 118px !important;
+      margin: 0 !important;
+   }
+
+   .tt {
+      left: -100px;
+      top: -186px;
+   }
+
+   .missia {
+      margin-top: -350px;
+   }
+
+   .global .global__btn a svg {
+      display: none !important;
+   }
+
+   .global .global__btn {
+      top: 201px !important;
+      margin-left: 197px !important;
+   }
+
+}
+
+@media (max-width: 550px) {
+   .global .global-btn a {
+      top: 21px !important;
+      margin-left: -86px !important;
+
+   }
+}
+
+@media (max-width: 480px) {
+   .modal {
+      width: calc(100% - 28px);
+      padding: 16px;
+      border-radius: 10px;
+   }
+
+   .global .global-btn a {
+      margin-top: -300px;
+   }
+
+   .global-btn a::before {
+      border-radius: 50%;
+      width: 120px !important;
+      height: 120px !important;
+   }
+
+   .missia__column {
+      display: none !important;
+   }
+
+   .map .global__item .global__btn {
+      top: 77px;
+      left: -3px;
+   }
+
+   .help-header div p {
+      line-height: 11.2px;
+      white-space: nowrap;
+   }
+
+
+   .modal h3 {
+      font-size: 16px;
+   }
+
+   .text-animate-blur h2 {
+      text-align: center;
+      padding-left: 0 !important;
+   }
+
+   .missia__container {
+      position: relative;
+      top: -42px;
+   }
+
+   .modal p {
+      font-size: 13px;
+   }
+
+   * {
+      padding: 0 10px;
+   }
+
+   .footer-row1 .footer-row1__social div {
+      margin-left: 10px;
+   }
+
+   .footer-row2__item:first-child {
+      border-top: 0 !important;
+   }
+
+   .global__desp {
+      margin-top: 5px !important;
+   }
+
+   .global__opicanie p {
+      margin-top: 50px !important;
+   }
+
+   .help-header {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+
+      padding: 0 10px !important;
+   }
+
+
+   .help-main__left h2 {
+      width: 73%;
+      font-size: 32px;
+      text-align: center;
+      line-height: 30px;
+      padding-left: 0;
+   }
+
+   .tt {
+      left: 200px;
+      top: -346px;
+   }
+
+   .help-main__left {
+      text-align: center;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      width: 440px;
+      margin-left: 0px;
+   }
+
+   .help-main__ridth #registerBtn {
+      top: 0;
+      left: 0;
+   }
+
+   .help-left {
+      margin-top: 370px !important;
+   }
+
+   .help-main {
+      padding-left: 0px;
+   }
+
+   .help-main {
+      padding: 0;
+   }
+
+
+
+   .missia__desp p {
+      text-align: center;
+      width: 100%;
+   }
+
+   .help-main__ridth #registerBtn {
+      position: relative;
+      width: 46%;
+      top: -405px !important;
+      left: 601px !important;
+   }
+
+   .help-main__ridth div a::before {
+      width: 378px;
+   }
+
+   .help-main__left p {
+      width: 100%;
+   }
+
+
+   .start__btn {
+      left: -393px;
+      margin: 0;
+      padding: 0;
+      top: 141px;
+   }
+
+   .header__content {
+      padding-right: 0px;
+   }
+
+
+   .help-button .help-left p {
+      width: 403px;
+      text-align: center;
+   }
+
+   .why__desp p {
+      text-align: center;
+   }
+
+   .missia__title h2 {
+      font-size: 38px;
+      text-align: center !important;
+   }
+
+   .help-left h2 {
+      font-size: 38px !important;
+   }
+
+   .site-footer {
+      padding: 0 20px !important;
+   }
+
+   .global-btn a {
+      margin-top: 3px;
+      margin-left: -69px;
+   }
+
+   .help-button .help-left h2 {
+      /* margin-left: 47px; */
+      text-align: center !important;
+   }
+
+   .help-button {
+      margin-right: 0;
+   }
+
+   .footer-row1 {
+      flex-direction: row;
+      gap: 20px;
+      align-items: center;
+      text-align: center;
+   }
+
+   .footer-row1__logo,
+   .footer-row1__apps,
+   .footer-row1__social {
+      width: 100%;
+      justify-content: center;
+   }
+
+   .footer-row3 {
+      padding: 15px;
+   }
+
+   .footer-row3 a {
+      font-size: 11px;
+      margin-left: 2px;
+   }
+
+   .footer-row3__item1,
+   .footer-row3__item2,
+   .footer-row3__item3 {
+      font-size: 12px;
+      line-height: 1.4;
+   }
+
+   .mt-50 {
+      margin-top: 80px !important;
+   }
 }
 
 @media (max-width: 400px) {
@@ -1888,7 +1893,7 @@ body.blur-all>.no-blur {
       padding: 0 20px;
    }
 
- 
+
 
    .help-button .help-left p {
       width: 322px;
@@ -1898,7 +1903,56 @@ body.blur-all>.no-blur {
       display: none !important;
    }
 
-   .map .global__item {
-      transform: translate(-53%, 121%);
+   .map {
+      background-size: contain;
+      height: 254px;
+      padding-bottom: 0;
    }
+
+   .map .global__item a svg {
+      display: none;
+   }
+
+   .map .global__item {
+      transform: translate(-73%, -47%);
+   }
+}
+
+@media (max-width: 370px) {
+   .missia__desp p {
+      width: 320px;
+      font-size: 12px;
+      line-height: 1.4;
+
+   }
+
+   .missia__title h2 {
+      font-size: 33px;
+   }
+
+   .help-main__left h2 {
+      font-size: 33px;
+   }
+
+   .help-main__left p {
+      width: 320px;
+      font-size: 12px;
+      line-height: 1.4;
+   }
+
+   .global .global__btn {
+      top: 317px !important;
+      margin-left: 82px !important;
+   }
+
+   .map .global-btn a {
+      width: 80px !important;
+      height: 80px !important;
+   }
+}
+
+
+.help-ridth__fon {
+   background-image: url('../image/jpg/Rectangle.jpg');
+   width: 100%;
 }

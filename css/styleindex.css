@@ -673,8 +673,7 @@ h1 {
 @media (max-width: 768px) {
 
   .global .global-btn a {
-    left: 132px !important;
-    top: 201px !important;
+   
   }
 
   .global-btn a::before {
