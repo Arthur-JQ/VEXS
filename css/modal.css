@@ -45,6 +45,15 @@ body.blur-all>.no-blur {
    padding: 10px 20px 0 20px;
 }
 
+.modal-google1 {
+   display: none;
+   -webkit-animation-name: animatetop;
+   -webkit-animation-duration: 0.4s;
+   animation-name: animatetop;
+   animation-duration: 0.5s;
+   padding: 10px 20px 0 20px;
+}
+
 @-webkit-keyframes animatetop {
    from {
       top: -300px;
@@ -1391,9 +1400,8 @@ body.blur-all>.no-blur {
       margin-bottom: 1em;
    } */
    .global .global__btn {
-      margin-top: -289px !important;
+      margin-top: -300px !important;
       margin-left: 47px !important;
-
    }
 
 }
@@ -1477,13 +1485,18 @@ body.blur-all>.no-blur {
       top: -346px;
    }
 
+   .help-main__left {
+      text-align: center;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      width: 440px;
+      margin-left: 0px;
+   }
+
    .help-main__ridth #registerBtn {
       top: 0;
       left: 0;
-   }
-
-   .help-main__left {
-      margin-left: 91px;
    }
 
    .help-left {
@@ -1491,11 +1504,13 @@ body.blur-all>.no-blur {
    }
 
    .help-main {
-      padding-left: 5px;
+      padding-left: 0px;
    }
 
-   .help-main__left p {
-      padding-right: 60px;
+   .help-main__left p {}
+
+   .help-main {
+      padding: 0;
    }
 
    .help-button {
@@ -1508,17 +1523,19 @@ body.blur-all>.no-blur {
 
    .help-main__ridth #registerBtn {
       position: relative;
+      width: 46%;
       top: -405px !important;
-      left: 684px !important;
+      left: 601px !important;
+   }
+
+   .help-main__ridth div a::before {
+      width: 378px;
    }
 
    .help-main__left p {
       width: 100%;
    }
 
-   .help-main__left {
-      width: 450px;
-   }
 
    .start__btn {
       left: -393px;
@@ -1537,7 +1554,12 @@ body.blur-all>.no-blur {
    }
 
    .missia__title h2 {
+      font-size: 38px;
       text-align: center !important;
+   }
+
+   .help-left h2 {
+      font-size: 38px !important;
    }
 
    .site-footer {
@@ -1569,6 +1591,11 @@ body.blur-all>.no-blur {
 
    .footer-row3 {
       padding: 15px;
+   }
+
+   .footer-row3 a {
+      font-size: 11px;
+      margin-left: 2px;
    }
 
    .footer-row3__item1,

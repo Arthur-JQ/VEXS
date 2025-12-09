@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <link rel="icon" type="image/x-icon" href="./image/svg/Frame 1171274804.svg">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title></title>
+    <title>VEXS</title>
     <link rel="stylesheet" href="./css/modal.css">
     <link rel="stylesheet" href="./css/header.css">
     <link rel="stylesheet" href="./css/styleindex.css">
@@ -304,114 +304,114 @@
             }
         }
 
-      
 
-            /* Стили для букв */
-            .letters {
-                display: flex;
-                gap: 15px;
+
+        /* Стили для букв */
+        .letters {
+            display: flex;
+            gap: 15px;
+        }
+
+        .letters span {
+            display: inline-block;
+            font-size: 48px;
+            font-weight: 800;
+            color: white;
+            text-transform: uppercase;
+            text-shadow:
+                0 0 10px rgba(255, 255, 255, 0.7),
+                0 0 20px rgba(0, 191, 255, 0.5);
+            opacity: 0;
+            transform: translateY(30px);
+            animation: letterFloat 0.5s forwards;
+            font-family: 'Arial Black', sans-serif;
+            letter-spacing: 2px;
+        }
+
+        /* Анимация появления букв */
+        @keyframes letterFloat {
+            from {
+                opacity: 0;
+                transform: translateY(30px) scale(0.8);
             }
 
-            .letters span {
-                display: inline-block;
-                font-size: 48px;
-                font-weight: 800;
-                color: white;
-                text-transform: uppercase;
+            to {
+                opacity: 1;
+                transform: translateY(0) scale(1);
+            }
+        }
+
+        /* Анимация пульсации для букв после появления */
+        @keyframes letterPulse {
+
+            0%,
+            100% {
                 text-shadow:
                     0 0 10px rgba(255, 255, 255, 0.7),
                     0 0 20px rgba(0, 191, 255, 0.5);
+                transform: scale(1);
+            }
+
+            50% {
+                text-shadow:
+                    0 0 15px rgba(255, 255, 255, 0.9),
+                    0 0 30px rgba(0, 191, 255, 0.8),
+                    0 0 40px rgba(0, 191, 255, 0.4);
+                transform: scale(1.05);
+            }
+        }
+
+        /* Анимации скрытия */
+        .loader.hide {
+            opacity: 0;
+            visibility: hidden;
+            transform: scale(0.9);
+            transition: all 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .loader.hide .circle {
+            animation: none;
+            border-color: rgba(255, 255, 255, 0.1);
+            transition: all 0.5s ease;
+        }
+
+        .loader-wrapper.hide {
+            opacity: 0;
+            visibility: hidden;
+            transition: all 1s ease 0.3s;
+        }
+
+        .loader-wrapper.hide .video-bg video {
+            opacity: 0;
+            filter: blur(20px) brightness(0.3);
+            transform: scale(1.2);
+        }
+
+        /* Дополнительный эффект при наведении на буквы */
+        .letters span:hover {
+            color: #00bfff;
+            animation: letterPulse 0.5s ease infinite;
+        }
+
+        @keyframes spin {
+            to {
+                transform: rotate(360deg);
+            }
+        }
+
+        @keyframes showLetter {
+            from {
                 opacity: 0;
-                transform: translateY(30px);
-                animation: letterFloat 0.5s forwards;
-                font-family: 'Arial Black', sans-serif;
-                letter-spacing: 2px;
+                transform: scale(0.8);
+                filter: blur(6px);
             }
 
-            /* Анимация появления букв */
-            @keyframes letterFloat {
-                from {
-                    opacity: 0;
-                    transform: translateY(30px) scale(0.8);
-                }
-
-                to {
-                    opacity: 1;
-                    transform: translateY(0) scale(1);
-                }
+            to {
+                opacity: 1;
+                transform: scale(1);
+                filter: blur(0);
             }
-
-            /* Анимация пульсации для букв после появления */
-            @keyframes letterPulse {
-
-                0%,
-                100% {
-                    text-shadow:
-                        0 0 10px rgba(255, 255, 255, 0.7),
-                        0 0 20px rgba(0, 191, 255, 0.5);
-                    transform: scale(1);
-                }
-
-                50% {
-                    text-shadow:
-                        0 0 15px rgba(255, 255, 255, 0.9),
-                        0 0 30px rgba(0, 191, 255, 0.8),
-                        0 0 40px rgba(0, 191, 255, 0.4);
-                    transform: scale(1.05);
-                }
-            }
-
-            /* Анимации скрытия */
-            .loader.hide {
-                opacity: 0;
-                visibility: hidden;
-                transform: scale(0.9);
-                transition: all 0.8s cubic-bezier(0.4, 0, 0.2, 1);
-            }
-
-            .loader.hide .circle {
-                animation: none;
-                border-color: rgba(255, 255, 255, 0.1);
-                transition: all 0.5s ease;
-            }
-
-            .loader-wrapper.hide {
-                opacity: 0;
-                visibility: hidden;
-                transition: all 1s ease 0.3s;
-            }
-
-            .loader-wrapper.hide .video-bg video {
-                opacity: 0;
-                filter: blur(20px) brightness(0.3);
-                transform: scale(1.2);
-            }
-
-            /* Дополнительный эффект при наведении на буквы */
-            .letters span:hover {
-                color: #00bfff;
-                animation: letterPulse 0.5s ease infinite;
-            }
-
-            @keyframes spin {
-                to {
-                    transform: rotate(360deg);
-                }
-            }
-
-            @keyframes showLetter {
-                from {
-                    opacity: 0;
-                    transform: scale(0.8);
-                    filter: blur(6px);
-                }
-
-                to {
-                    opacity: 1;
-                    transform: scale(1);
-                    filter: blur(0);
-                }
-            }
+        }
     </style>
     <link rel="stylesheet" href="css/adaptive.css">
 </head>
@@ -451,6 +451,9 @@
                         <div class="header__links">
                             <div class="modal-google none">
                                 <img clas="modal-google none" src="./image/svg/Simple.svg" alt="">
+                            </div>
+                            <div class="modal-google1 none">
+                                <img clas="modal-google1 none" src="./image/svg/Simple.svg" alt="">
                             </div>
                             <a id="google-play" href='#heder' rel="nofollow"
                                 class="header__link js-open-modal google-play">
@@ -1119,16 +1122,22 @@
                     </a>
                 </div>
                 <div class="footer-row1__social__item vk-ikon">
-                    <img src="./image/svg/socialNetworks/SVG (2).svg" alt="">
+                    <a href="https://vk.com/vexsru">
+                        <img src="./image/svg/socialNetworks/SVG (2).svg" alt="">
+                    </a>
                 </div>
                 <div class="footer-row1__social__item od-ikon">
-                    <img src="./image/svg/socialNetworks/SVG (1).svg" alt="">
+                    <a href="https://ok.ru/group/70000042584178">
+                        <img src="./image/svg/socialNetworks/SVG (1).svg" alt="">
+                    </a>
                 </div>
                 <div class="footer-row1__social__item tik-ikon">
                     <img src="./image/svg/socialNetworks/TikTok (1).svg" alt="">
                 </div>
                 <div class="footer-row1__social__item you-ikon">
-                    <img src="./image/svg/socialNetworks/SVG.svg" alt="">
+                    <a href="https://www.youtube.com/@ooovexs">
+                        <img src="./image/svg/socialNetworks/SVG.svg" alt="">
+                    </a>
                 </div>
             </div>
         </div>
@@ -1383,139 +1392,139 @@
     </script>
 
     <script>
-    document.addEventListener('DOMContentLoaded', function() {
-        const footerItems = document.querySelectorAll('.footer-row2__item');
-        
-        // Функция для проверки наложения элементов
-        function checkOverlap() {
-            if (window.innerWidth <= 768) {
-                initAccordion();
-            } else {
-                // На больших экранах отключаем аккордеон
-                footerItems.forEach(item => {
-                    item.classList.remove('active');
-                    const links = item.querySelectorAll('a');
-                    links.forEach(link => {
-                        link.style.display = 'block';
-                        link.style.opacity = '1';
-                        link.style.transform = 'none';
-                    });
-                });
-            }
-        }
-        
-        // Инициализация аккордеона
-        function initAccordion() {
-            footerItems.forEach(item => {
-                // Только если есть ссылки
-                const links = item.querySelectorAll('a');
-                if (links.length > 0) {
-                    // Скрываем все ссылки по умолчанию
-                    links.forEach(link => {
-                        link.style.display = 'none';
-                        link.style.opacity = '0';
-                        link.style.transform = 'translateY(-10px)';
-                    });
-                    
-                    // Оставляем первый элемент открытым по умолчанию
-                    if (item === footerItems[0]) {
-                        item.classList.add('active');
+        document.addEventListener('DOMContentLoaded', function () {
+            const footerItems = document.querySelectorAll('.footer-row2__item');
+
+            // Функция для проверки наложения элементов
+            function checkOverlap() {
+                if (window.innerWidth <= 768) {
+                    initAccordion();
+                } else {
+                    // На больших экранах отключаем аккордеон
+                    footerItems.forEach(item => {
+                        item.classList.remove('active');
+                        const links = item.querySelectorAll('a');
                         links.forEach(link => {
                             link.style.display = 'block';
-                            setTimeout(() => {
-                                link.style.opacity = '1';
-                                link.style.transform = 'translateY(0)';
-                            }, 10);
+                            link.style.opacity = '1';
+                            link.style.transform = 'none';
                         });
-                    }
-                    
-                    // Добавляем обработчик клика на заголовок
-                    const title = item.querySelector('p');
-                    if (title) {
-                        title.addEventListener('click', function(e) {
-                            e.preventDefault();
-                            e.stopPropagation();
-                            
-                            // Закрываем все остальные аккордеоны
-                            footerItems.forEach(otherItem => {
-                                if (otherItem !== item) {
-                                    otherItem.classList.remove('active');
-                                    const otherLinks = otherItem.querySelectorAll('a');
-                                    otherLinks.forEach(link => {
+                    });
+                }
+            }
+
+            // Инициализация аккордеона
+            function initAccordion() {
+                footerItems.forEach(item => {
+                    // Только если есть ссылки
+                    const links = item.querySelectorAll('a');
+                    if (links.length > 0) {
+                        // Скрываем все ссылки по умолчанию
+                        links.forEach(link => {
+                            link.style.display = 'none';
+                            link.style.opacity = '0';
+                            link.style.transform = 'translateY(-10px)';
+                        });
+
+                        // Оставляем первый элемент открытым по умолчанию
+                        if (item === footerItems[0]) {
+                            item.classList.add('active');
+                            links.forEach(link => {
+                                link.style.display = 'block';
+                                setTimeout(() => {
+                                    link.style.opacity = '1';
+                                    link.style.transform = 'translateY(0)';
+                                }, 10);
+                            });
+                        }
+
+                        // Добавляем обработчик клика на заголовок
+                        const title = item.querySelector('p');
+                        if (title) {
+                            title.addEventListener('click', function (e) {
+                                e.preventDefault();
+                                e.stopPropagation();
+
+                                // Закрываем все остальные аккордеоны
+                                footerItems.forEach(otherItem => {
+                                    if (otherItem !== item) {
+                                        otherItem.classList.remove('active');
+                                        const otherLinks = otherItem.querySelectorAll('a');
+                                        otherLinks.forEach(link => {
+                                            link.style.opacity = '0';
+                                            link.style.transform = 'translateY(-10px)';
+                                            setTimeout(() => {
+                                                link.style.display = 'none';
+                                            }, 300);
+                                        });
+                                    }
+                                });
+
+                                // Переключаем текущий аккордеон
+                                if (item.classList.contains('active')) {
+                                    item.classList.remove('active');
+                                    links.forEach(link => {
                                         link.style.opacity = '0';
                                         link.style.transform = 'translateY(-10px)';
                                         setTimeout(() => {
                                             link.style.display = 'none';
                                         }, 300);
                                     });
+                                } else {
+                                    item.classList.add('active');
+                                    links.forEach(link => {
+                                        link.style.display = 'block';
+                                        setTimeout(() => {
+                                            link.style.opacity = '1';
+                                            link.style.transform = 'translateY(0)';
+                                        }, 10);
+                                    });
                                 }
                             });
-                            
-                            // Переключаем текущий аккордеон
-                            if (item.classList.contains('active')) {
-                                item.classList.remove('active');
-                                links.forEach(link => {
-                                    link.style.opacity = '0';
-                                    link.style.transform = 'translateY(-10px)';
-                                    setTimeout(() => {
-                                        link.style.display = 'none';
-                                    }, 300);
-                                });
-                            } else {
-                                item.classList.add('active');
-                                links.forEach(link => {
-                                    link.style.display = 'block';
-                                    setTimeout(() => {
-                                        link.style.opacity = '1';
-                                        link.style.transform = 'translateY(0)';
-                                    }, 10);
-                                });
-                            }
-                        });
-                    }
-                }
-            });
-        }
-        
-        // Проверяем при загрузке
-        checkOverlap();
-        
-        // Проверяем при изменении размера окна
-        let resizeTimer;
-        window.addEventListener('resize', function() {
-            clearTimeout(resizeTimer);
-            resizeTimer = setTimeout(function() {
-                checkOverlap();
-            }, 250);
-        });
-        
-        // Дополнительная проверка для планшетов
-        function checkTabletOverlap() {
-            if (window.innerWidth <= 992 && window.innerWidth > 768) {
-                const footerRow2 = document.querySelector('.footer-row2');
-                const items = document.querySelectorAll('.footer-row2__item');
-                let hasOverlap = false;
-                
-                // Проверяем, выходят ли элементы за границы контейнера
-                const containerRect = footerRow2.getBoundingClientRect();
-                
-                items.forEach(item => {
-                    const itemRect = item.getBoundingClientRect();
-                    if (itemRect.right > containerRect.right + 10) { // +10 для небольшого запаса
-                        hasOverlap = true;
+                        }
                     }
                 });
-                
-                if (hasOverlap) {
-                    initAccordion();
+            }
+
+            // Проверяем при загрузке
+            checkOverlap();
+
+            // Проверяем при изменении размера окна
+            let resizeTimer;
+            window.addEventListener('resize', function () {
+                clearTimeout(resizeTimer);
+                resizeTimer = setTimeout(function () {
+                    checkOverlap();
+                }, 250);
+            });
+
+            // Дополнительная проверка для планшетов
+            function checkTabletOverlap() {
+                if (window.innerWidth <= 992 && window.innerWidth > 768) {
+                    const footerRow2 = document.querySelector('.footer-row2');
+                    const items = document.querySelectorAll('.footer-row2__item');
+                    let hasOverlap = false;
+
+                    // Проверяем, выходят ли элементы за границы контейнера
+                    const containerRect = footerRow2.getBoundingClientRect();
+
+                    items.forEach(item => {
+                        const itemRect = item.getBoundingClientRect();
+                        if (itemRect.right > containerRect.right + 10) { // +10 для небольшого запаса
+                            hasOverlap = true;
+                        }
+                    });
+
+                    if (hasOverlap) {
+                        initAccordion();
+                    }
                 }
             }
-        }
-        
-        // Проверяем наложение на планшетах
-        checkTabletOverlap();
-        window.addEventListener('resize', checkTabletOverlap);
-    });
+
+            // Проверяем наложение на планшетах
+            checkTabletOverlap();
+            window.addEventListener('resize', checkTabletOverlap);
+        });
     </script>
 </body>
 

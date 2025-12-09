@@ -227,30 +227,21 @@ document.addEventListener("DOMContentLoaded", () => {
     let google = document.getElementById('google-play').querySelector('img');
 
     let modalGoogle = document.querySelector('.modal-google');
+    let modalGoogle1 = document.querySelector('.modal-google1');
     // let modalContent = modalGoogle.querySelector('.modal-content') || modalGoogle;
-
-    // Функция закрытия модального окна
     function closeModal() {
         modalGoogle.classList.remove('show', 'popap');
         modalGoogle.classList.add('none');
         document.removeEventListener('click', handleOutsideClick);
     }
-
-
     function openModal(modalClass) {
-        // Закрываем предыдущее состояние
         modalGoogle.classList.remove('popap', 'popap-two');
-
-        // Открываем с новым классом
         modalGoogle.classList.remove('none');
         modalGoogle.classList.add('show', modalClass);
-
-        // Добавляем обработчик закрытия при клике вне окна
         setTimeout(() => {
             document.addEventListener('click', handleOutsideClick);
         }, 0);
     }
-
     // Обработчик клика вне модального окна
     function handleOutsideClick(event) {
         // Проверяем, был ли клик вне модального окна
@@ -271,18 +262,34 @@ document.addEventListener("DOMContentLoaded", () => {
 
     document.addEventListener('keydown', handleEscapeKey);
 
+ function closeModal1() {
+        modalGoogle1.classList.remove('show', 'popap');
+        modalGoogle1.classList.add('none');
+        document.removeEventListener('click', handleOutsideClick);
+    }
+    function openModal1(modalClass) {
+        modalGoogle1.classList.remove('popap', 'popap-two');
+        modalGoogle1.classList.remove('none');
+        modalGoogle1.classList.add('show', modalClass);
+        setTimeout(() => {
+            document.addEventListener('click', handleOutsideClick);
+        }, 0);
+    }
+
     google.addEventListener('click', (event) => {
         event.stopPropagation(); // Предотвращаем всплытие
-        if (modalGoogle.classList.contains('show')) {
-            closeModal();
+        if (modalGoogle1.classList.contains('show')) {
+            closeModal1();
         } else {
-            modalGoogle.style.cssText = `
+            modalGoogle1.style.cssText = `
                     top: 36%;
-                    left: 46.4%;
+                    left: 38.4%;
             `
-            openModal('popap');
+            openModal1('popap');
         }
     });
+
+
 
     appStore.addEventListener('click', (event) => {
         event.stopPropagation(); // Предотвращаем всплытие
