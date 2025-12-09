@@ -644,7 +644,6 @@ body,
 
 /* ПК-версия нижнего меню и поиска */
 @media (min-width: 769px) {
-
   .pc-search,
   .pc-tabbar {
     display: flex;

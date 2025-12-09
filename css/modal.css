@@ -1655,6 +1655,9 @@ body.blur-all>.no-blur {
 }
 
 @media (max-width: 480px) {
+   .help-ridth img {
+      display: none;
+   }
    .modal {
       width: calc(100% - 28px);
       padding: 16px;
@@ -1809,7 +1812,7 @@ body.blur-all>.no-blur {
 
 
    .help-button .help-left p {
-      width: 403px;
+      width: 100%;
       text-align: center;
    }
 
@@ -1914,8 +1917,9 @@ body.blur-all>.no-blur {
    }
 
    .map .global__item {
-      transform: translate(-73%, -47%);
+      transform: translate(10px, -40px);
    }
+
 }
 
 @media (max-width: 370px) {
@@ -1948,6 +1952,15 @@ body.blur-all>.no-blur {
    .map .global-btn a {
       width: 80px !important;
       height: 80px !important;
+   }
+
+   .global .global-btn a span {
+      font-size: 11px !important;
+   }
+
+   .global .global-btn a {
+      height: 100px !important;
+      width: 100px !important;
    }
 }
 
